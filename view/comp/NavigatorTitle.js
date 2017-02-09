@@ -17,34 +17,36 @@ import {
 
 let title_color_bg = 'rgba(238, 83, 88,1.0)';
 
-var NavigatorTitle = React.createClass({
-    propTypes:{
-        onPress:PropTypes.func,
-    },
-    getInitialState(){
-    		return {
-    		}
-    },
-    onBtnPress:function(){
-    			this.props.onPress && this.props.onPress()
-    },
-    render:function() {
-        return (
-                	<View style={styles.container}>
-                    <TouchableHighlight
-                        disabled={this.state.isPress}
-                        underlayColor="#fff0"
-                        onPress={this.onBtnPress}>
-                  		<Image
-                          source={require('image!back')}
-  		                    style={styles.image}
-  		                    />
-                    </TouchableHighlight>
-                		<Text style={styles.text}>{this.props.text}</Text>
-                	</View>
-                );
-    },
- })
+export default class NavigatorTitle extends Component{
+  static propTypes={
+      onPress:PropTypes.func,
+  }
+
+  constructor(props) {
+    super(props)
+  }
+
+  onBtnPress(){
+  			this.props.onPress && this.props.onPress()
+  }
+
+  render() {
+      return (
+              	<View style={styles.container}>
+                  <TouchableHighlight
+                      disabled={this.state.isPress}
+                      underlayColor="#fff0"
+                      onPress={this.onBtnPress}>
+                		<Image
+                        source={require('image!back')}
+		                    style={styles.image}
+		                    />
+                  </TouchableHighlight>
+              		<Text style={styles.text}>{this.props.text}</Text>
+              	</View>
+              );
+  }
+}
 
 let styles = StyleSheet.create({
 
@@ -73,5 +75,3 @@ let styles = StyleSheet.create({
 
 }
 );
-
-module.exports = NavigatorTitle;

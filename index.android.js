@@ -9,45 +9,46 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
+
+import LoginView from './view/LoginView';
+// import TabView from './TabView.android';
 
 export default class cpxzs extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Navigator
+        style={{flex:1}}
+        initialRoute={{component: LoginView}}
+        configureScene={this.configureScene}
+        renderScene={this.renderScene}/>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  /**
+   * 配置场景动画
+   * @param route 路由
+   * @param routeStack 路由栈
+   * @returns {*} 动画
+   */
+  configureScene(route, routeStack) {
+    if (route.type == 'Bottom') {
+      return Navigator.SceneConfigs.FloatFromBottom; // 底部弹出
+    }
+    return Navigator.SceneConfigs.PushFromRight; // 右侧弹出
+  }
+
+  /**
+  * 使用动态页面加载
+  * @param route 路由
+  * @param navigator 导航器
+  * @returns {XML} 页面
+  */
+ renderScene(route, navigator) {
+   return <route.component navigator={navigator}  {...route.passProps} />;
+ }
+}
 
 AppRegistry.registerComponent('cpxzs', () => cpxzs);

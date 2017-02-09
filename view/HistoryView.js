@@ -14,9 +14,7 @@ import {
 
 import styles from './stylecpxzs';
 import Utils from './Utils';
-import RefreshableListView from 'react-native-refreshable-listview';
 import LoadingView from './comp/Loading';
-import RefreshingIndicator from './comp/RefreshingIndicator';
 import NavigatorTitle from './comp/NavigatorTitle';
 import Calendar from 'react-native-calendar';
 import moment from  'moment';
@@ -27,46 +25,47 @@ var ds = new ListView.DataSource({rowHasChanged: function(r1, r2):bool{
                                  }})  // assumes immutable objects
 var customDayHeadings = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
-var HistoryView = React.createClass({
-    getInitialState: function() {
-      return {
-          //datalist
-          dataSource:ds.cloneWithRows([
-            {"number":"14042","item":"001","firstThreePattern":"组六","midThreePattern":"组三","lastThreePattern":"组六","thirdNumPattern":"小双","fourthNumPattern":"小双"},
-            {"number":"11197","item":"002","firstThreePattern":"豹子","midThreePattern":"组三","lastThreePattern":"组六","thirdNumPattern":"大单","fourthNumPattern":"大单"},
-            {"number":"25788","item":"003","firstThreePattern":"组六","midThreePattern":"组六","lastThreePattern":"组三","thirdNumPattern":"大双","fourthNumPattern":"大双"},
-            {"number":"03351","item":"004","firstThreePattern":"组三","midThreePattern":"组三","lastThreePattern":"组六","thirdNumPattern":"大单","fourthNumPattern":"小单"},
-            {"number":"42969","item":"005","firstThreePattern":"组六","midThreePattern":"组六","lastThreePattern":"组三","thirdNumPattern":"大双","fourthNumPattern":"大单"},
-            {"number":"64264","item":"006","firstThreePattern":"组六","midThreePattern":"组六","lastThreePattern":"组六","thirdNumPattern":"大双","fourthNumPattern":"小双"},
-            {"number":"58665","item":"007","firstThreePattern":"组六","midThreePattern":"组三","lastThreePattern":"组三","thirdNumPattern":"大双","fourthNumPattern":"大单"},
-            {"number":"13391","item":"008","firstThreePattern":"组三","midThreePattern":"组三","lastThreePattern":"组六","thirdNumPattern":"大单","fourthNumPattern":"小单"},
-            {"number":"98168","item":"009","firstThreePattern":"组六","midThreePattern":"组六","lastThreePattern":"组六","thirdNumPattern":"大双","fourthNumPattern":"大双"}
-          ]),
-          total:0,
-          loaded:false,
-          fetchurl:'historyNumber/loadHistoryNumber',//查询当天
-          //http://cpxzs.com/historyNumber/loadHistoryNumber?caipiaoType=cqssc&dateStr=0
-          modalVisible: false,
-          qdate:moment().format('YYYY-MM-DD')
-      };
-    },
-    showModal:function(){
+export default class HistoryView extends React.Component{
+    constructor(props){
+      super(props)
+      this.state={
+        dataSource:ds.cloneWithRows([
+          {"number":"14042","item":"001","firstThreePattern":"组六","midThreePattern":"组三","lastThreePattern":"组六","thirdNumPattern":"小双","fourthNumPattern":"小双"},
+          {"number":"11197","item":"002","firstThreePattern":"豹子","midThreePattern":"组三","lastThreePattern":"组六","thirdNumPattern":"大单","fourthNumPattern":"大单"},
+          {"number":"25788","item":"003","firstThreePattern":"组六","midThreePattern":"组六","lastThreePattern":"组三","thirdNumPattern":"大双","fourthNumPattern":"大双"},
+          {"number":"03351","item":"004","firstThreePattern":"组三","midThreePattern":"组三","lastThreePattern":"组六","thirdNumPattern":"大单","fourthNumPattern":"小单"},
+          {"number":"42969","item":"005","firstThreePattern":"组六","midThreePattern":"组六","lastThreePattern":"组三","thirdNumPattern":"大双","fourthNumPattern":"大单"},
+          {"number":"64264","item":"006","firstThreePattern":"组六","midThreePattern":"组六","lastThreePattern":"组六","thirdNumPattern":"大双","fourthNumPattern":"小双"},
+          {"number":"58665","item":"007","firstThreePattern":"组六","midThreePattern":"组三","lastThreePattern":"组三","thirdNumPattern":"大双","fourthNumPattern":"大单"},
+          {"number":"13391","item":"008","firstThreePattern":"组三","midThreePattern":"组三","lastThreePattern":"组六","thirdNumPattern":"大单","fourthNumPattern":"小单"},
+          {"number":"98168","item":"009","firstThreePattern":"组六","midThreePattern":"组六","lastThreePattern":"组六","thirdNumPattern":"大双","fourthNumPattern":"大双"}
+        ]),
+        total:0,
+        loaded:false,
+        fetchurl:'historyNumber/loadHistoryNumber',//查询当天
+        //http://cpxzs.com/historyNumber/loadHistoryNumber?caipiaoType=cqssc&dateStr=0
+        modalVisible: false,
+        qdate:moment().format('YYYY-MM-DD')
+      }
+    }
+
+    showModal(){
         this.setState({
             modalVisible: true
         })
-    },
+    }
 
     onRequestClose() {
         this.setState({
             modalVisible: flase
         })
-    },
+    }
 
-    componentDidMount:function(){
+    componentDidMount(){
       this.queryData('caipiaoType=cqssc&dateStr=0');
-    },
+    }
 
-    queryData:function(param:string){
+    queryData(param:string){
       if (!Utils.online) {
         return;
       }
@@ -88,7 +87,8 @@ var HistoryView = React.createClass({
                  // charthtml:JSON.stringify(data.details),
                });
          })
-     },
+     }
+
      formatNumber(num:string){
        var numstr = '';
        for (var i = 0; i < num.length; i++) {
@@ -98,7 +98,8 @@ var HistoryView = React.createClass({
          }
          numstr = numstr +num.charAt(i)+" ";
        }
-     },
+     }
+
      //view for row
      renderRow(data) {
      return(
@@ -114,11 +115,13 @@ var HistoryView = React.createClass({
             </View>
             </TouchableHighlight>
             );
-     },
-     onPress:function(){
+     }
+
+     onPress(){
         this.showModal();
-     },
-     onDateSelect:function(qdate:string){
+     }
+
+     onDateSelect(qdate:string){
          // this.setState({
          //               date:qdate,
          //               loaded:false,
@@ -137,7 +140,8 @@ var HistoryView = React.createClass({
         }
         //Utils.showAlert(qdate,'提示');
         this.queryData('caipiaoType=cqssc&dateStr='+qdate)
-     },
+     }
+
      getStyle(value:string){
        if (value == '组三') {
          return styles.firstPage_history_item_zusan;
@@ -149,8 +153,9 @@ var HistoryView = React.createClass({
          return styles.firstPage_history_item_baozi;
        }
        return styles.firstPage_history_item_zusan;
-     },
-    render:function(){
+     }
+
+    render(){
       return (
         <View style={styles.container}>
           <NavigatorTitle
@@ -231,7 +236,5 @@ var HistoryView = React.createClass({
               />
         </View>
       );
-    },
-});
-
-module.exports = HistoryView;
+    }
+}

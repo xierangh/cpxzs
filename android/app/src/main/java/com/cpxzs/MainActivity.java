@@ -1,7 +1,6 @@
 package com.cpxzs;
 
 import com.facebook.react.ReactActivity;
-import com.psykar.cookiemanager.CookieManagerPackage;
 
 public class MainActivity extends ReactActivity {
 

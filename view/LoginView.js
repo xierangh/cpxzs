@@ -13,7 +13,7 @@ import Utils from './Utils';
 import CustomButton from './comp/CustomButton';
 import CheckBox from './comp/CheckBox';
 import RegisterView from './RegisterView'
-import TabView from './TabView';
+import TabView from './TabView.android';
 import FortgetPasswordView from './FortgetPasswordView'
 
 export default class LoginView extends React.Component{
@@ -133,12 +133,13 @@ export default class LoginView extends React.Component{
       <View style={styles.container}>
         <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20,paddingVertical:10,marginTop:46,color:'#333'}}>用户登录</Text>
         <View style={{alignItems:'center',marginVertical:30}}>
-          <Image source={require('image!index_logo')} style={{width:76,height:76,borderRadius:38,borderWidth:3,borderColor:'#edddc6'}}/>
+          <Image source={require('./ico/index_logo.png')} style={{width:76,height:76,borderRadius:38,borderWidth:3,borderColor:'#edddc6'}}/>
         </View>
         <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:123,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
             <View style={{height:60,flexDirection:'row'}}>
               <Text style={styles.style_input_label}>邮箱</Text>
               <TextInput style={styles.style_input}
+                  underlineColorAndroid={'transparent'}
                   autoCorrect={false}
                   onChangeText={(text) => this.setState({username:text})}
                   value={this.state.username}
@@ -150,6 +151,7 @@ export default class LoginView extends React.Component{
             <View style={{height:60,flexDirection:'row'}}>
               <Text style={styles.style_input_label}>密码</Text>
               <TextInput style={styles.style_input}
+                  underlineColorAndroid={'transparent'}
                   autoCorrect={false}
                   onChangeText={(text) => this.setState({passwd:text})}
                   value={this.state.passwd}
@@ -182,10 +184,6 @@ export default class LoginView extends React.Component{
 
   goForgetView(){
     this.props.navigator.push({
-                              leftButtonIcon:require('./ico/back.png'),
-//                                                               leftButtonTitle:'',
-                              onLeftButtonPress:() => this.props.navigator.pop(),
-                              tintColor:'#fff',
                               navigationBarHidden:true,
                               title:'',
                               itemWrapperStyle:styles.wrapperStyle,
@@ -195,10 +193,6 @@ export default class LoginView extends React.Component{
 
   goReg(){
     this.props.navigator.push({
-                              leftButtonIcon:require('./ico/back.png'),
-//                                                               leftButtonTitle:'',
-                              onLeftButtonPress:() => this.props.navigator.pop(),
-                              tintColor:'#fff',
                               navigationBarHidden:true,
                               title:'',
                               itemWrapperStyle:styles.wrapperStyle,

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "lodash": "^4.11.2",
+    "moment": "^2.17.1",
     "react": "15.4.1",
     "react-native": "0.39.2",
     "react-native-calendar": "^0.10.0",
@@ -15,8 +16,8 @@
     "react-native-pullrefresh-scrollview": "^1.1.0",
     "react-native-refreshable-listview": "^1.3.0",
     "react-native-root-toast": "^1.0.3",
-    "react-native-socketio": "^0.3.0",
     "react-native-storage": "^0.0.16",
+    "react-native-tab-navigator": "^0.3.3",
     "react-native-vector-icons": "^3.0.0",
     "react-timer-mixin": "^0.13.3",
     "rn-calendars": "^0.1.3"
@@ -24,6 +25,7 @@
   "devDependencies": {
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
+    "invariant": "^2.2.2",
     "jest": "18.0.0",
     "react-test-renderer": "15.4.1"
   },

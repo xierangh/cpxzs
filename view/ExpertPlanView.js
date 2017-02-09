@@ -15,9 +15,7 @@ import styles from './stylecpxzs';
 import Utils from './Utils';
 import Loading from './comp/Loading'
 import JppHideView from './comp/JppHideView'
-import RefreshableListView from 'react-native-refreshable-listview';
 import LoadingView from './comp/Loading';
-import RefreshingIndicator from './comp/RefreshingIndicator';
 import PlanItemView from './comp/PlanItemView'
 import PlanSelectView from './comp/PlanSelectView'
 import NotoolTimeViewOld from './comp/NotoolTimeViewOld'

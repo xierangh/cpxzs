@@ -12,7 +12,6 @@ import {
 
 import _ from 'lodash'
 import Storage from 'react-native-storage';
-// import CookieManager from'react-native-cookies';
 
 //url
 // let BASE_URL = 'http://192.168.0.211/'
@@ -101,11 +100,6 @@ let Utils = {
     })
     .then((response)=>{
       // console.log(response);
-      // Get cookies as a request header string
-      // CookieManager.get(BASE_URL, (err, res) => {
-      //   console.log('Got cookies for url', res);
-      //   // Outputs 'user_session=abcdefg; path=/;'
-      // })
 
       var cookieset = response.headers.map['set-cookie'];
       console.log(cookieset);
