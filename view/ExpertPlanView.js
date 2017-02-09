@@ -571,7 +571,7 @@ class ExpertPlanView extends React.Component {
           <View style={styles.firstPage_history}>
             <View style={styles.firstPage_history_start}></View>
             <Text style={styles.firstPage_history_left}>请选择计划</Text>
-            <Image source={require('image!down')} style={{width:20,height:20,marginRight:20}} />
+            <Image source={require('./ico/down.png')} style={{width:20,height:20,marginRight:20}} />
           </View>
         </TouchableHighlight>
         {this.state.isPlan &&

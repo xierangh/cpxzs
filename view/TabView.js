@@ -135,7 +135,7 @@ export default class tabView extends React.Component{
   onNewsPress(){
     this.props.navigator.push({
                               // leftButtonIcon:require('image!back'),
-   //                                                               leftButtonTitle:'',
+   //leftButtonTitle:'',
                               // onLeftButtonPress:() => this.props.navigator.pop(),
                               // tintColor:'#fff',
                               navigationBarHidden:true,

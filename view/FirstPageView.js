@@ -254,7 +254,7 @@ export default class FirstPageView extends React.Component{
         </View>
         <View style={styles.firstPage_kaijiang}>
           <View style={styles.firstPage_kaijiang_icon_view}>
-            <Image source={require('image!index_logo')} style={styles.firstPage_kaijiang_icon} / >
+            <Image source={require('./ico/index_logo.png')} style={styles.firstPage_kaijiang_icon} / >
           </View>
 
           <View style={styles.firstPage_kaijiang_right}>
@@ -295,45 +295,45 @@ export default class FirstPageView extends React.Component{
         <View style={styles.firstPage_planRow}>
           <ImageButton
             onPress={()=>this.onBtnPress('精品计划','jpPlan')}
-            iconUrl={require('image!jinpinPlan')}
+            iconUrl={require('./ico/jinpinPlan.png')}
             title={'精品计划'}
             bgcolor={'#f00'}
             />
 
             <ImageButton
-              iconUrl={require('image!remaPlan')}
+              iconUrl={require('./ico/remaPlan.png')}
               title={'热码计划'}
               />
           <ImageButton
-            iconUrl={require('image!babyPlan')}
+            iconUrl={require('./ico/babyPlan.png')}
             title={'推波计划'}
             bgcolor={'#0f0'}
             />
             <ImageButton
               onPress={()=>this.onBtnPress('做号工具','zuohao')}
-              iconUrl={require('image!shenshengPlan')}
+              iconUrl={require('./ico/shenshengPlan.png')}
               title={'做号工具'}
               bgcolor={'#00f'}
               />
         </View>
         <View style={styles.firstPage_planRow}>
           <ImageButton
-            iconUrl={require('image!zusan')}
+            iconUrl={require('./ico/zusan.png')}
             title={'倍投计算'}
             customStyle={styles.customStyle}
             />
           <ImageButton
-            iconUrl={require('image!zuxuan')}
+            iconUrl={require('./ico/zuxuan.png')}
             title={'推波计算'}
             customStyle={styles.customStyle}
             />
             <ImageButton
-              iconUrl={require('image!dadi')}
+              iconUrl={require('./ico/dadi.png')}
               title={'大底验证'}
               customStyle={styles.customStyle}
               />
             <ImageButton
-              iconUrl={require('image!yilou')}
+              iconUrl={require('./ico/yilou.png')}
               title={'遗漏助手'}
               customStyle={styles.customStyle}
               />

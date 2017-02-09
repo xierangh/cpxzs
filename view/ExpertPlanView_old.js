@@ -80,7 +80,7 @@ class ExpertPlanView extends React.Component {
             <Text style={styles.firstPage_title_right}>立即生成</Text>
         </View>
         <View style={{backgroundColor:'#fff',flexDirection:'row',marginVertical:5,justifyContent:'center'}}>
-          <Image source={require('image!index_logo')} style={{marginLeft:10,marginRight:2,width:30,height:30}} / >
+          <Image source={require('./ico/index_logo.png')} style={{marginLeft:10,marginRight:2,width:30,height:30}} / >
           <Text style={{textAlign:'left',flex:1,alignSelf:'center'}}>第20161222-063期</Text>
            <View style={{flexDirection:'row'}}>
                 <Text style={{textAlign:'center',alignSelf:'center'}}>投注时间剩余:</Text>
@@ -98,7 +98,7 @@ class ExpertPlanView extends React.Component {
           <View style={styles.firstPage_history}>
             <View style={styles.firstPage_history_start}></View>
             <Text style={styles.firstPage_history_left}>请选择玩法</Text>
-            <Image source={require('image!index_logo')} style={{width:20,height:20,marginRight:20}} />
+            <Image source={require('./ico/index_logo.png')} style={{width:20,height:20,marginRight:20}} />
           </View>
         </TouchableHighlight>
         {this.state.isWf &&
@@ -114,7 +114,7 @@ class ExpertPlanView extends React.Component {
           <View style={styles.firstPage_history}>
             <View style={styles.firstPage_history_start}></View>
             <Text style={styles.firstPage_history_left}>请设置玩法方案</Text>
-            <Image source={require('image!index_logo')} style={{width:20,height:20,marginRight:20}} />
+            <Image source={require('./ico/index_logo.png.png')} style={{width:20,height:20,marginRight:20}} />
           </View>
         </TouchableHighlight>
         {this.state.isFn &&

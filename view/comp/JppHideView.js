@@ -32,7 +32,7 @@ export default class JppHideView extends React.Component{
             <View style={{marginRight:8,width:64,height:30,borderRadius:12,borderWidth:1,borderColor:'#f00',flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
               <Text style={{color:'#ea5656'}}>{this.props.title}</Text>
               <Text style={{color:'#ea5656'}}>{this.props.title_const}</Text>
-              <Image source={require('image!m_down')} style={{width:7,height:7}} />
+              <Image source={require('./../ico/m_down.png')} style={{width:7,height:7}} />
             </View>
         </TouchableHighlight>
       )

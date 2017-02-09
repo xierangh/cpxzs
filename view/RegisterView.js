@@ -97,7 +97,7 @@ export default class RegisterView extends React.Component{
       <View style={styles.container}>
         <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20,color:'#333',paddingVertical:10,marginTop:46}}>用户注册</Text>
         <View style={{alignItems:'center',marginVertical:30}}>
-          <Image source={require('image!index_logo')} style={{width:76,height:76,borderRadius:38,borderWidth:3,borderColor:'#edddc6'}}/>
+          <Image source={require('./ico/index_logo.png')} style={{width:76,height:76,borderRadius:38,borderWidth:3,borderColor:'#edddc6'}}/>
         </View>
         <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:240,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
             <View style={{height:60,flexDirection:'row'}}>

@@ -163,7 +163,7 @@ export default class HistoryView extends React.Component{
              text={'历史开奖详情'}>
           </NavigatorTitle>
           <View style={{flexDirection:'row',marginVertical:5,justifyContent:'center'}}>
-            <Image source={require('image!logo_min')} style={{marginLeft:10,marginRight:6,width:30,height:30}} / >
+            <Image source={require('./ico/logo_min.png')} style={{marginLeft:10,marginRight:6,width:30,height:30}} / >
             <Text style={{textAlign:'left',flex:1,alignSelf:'center'}}>时时彩{this.state.qdate}开奖记录</Text>
             <TouchableHighlight
             underlayColor={'#0002'}

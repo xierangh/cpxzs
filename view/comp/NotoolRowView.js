@@ -60,7 +60,7 @@ class NumberCircle extends React.Component{
         onPress={()=>this.onClick()}>
         <Image
             resizeMode={'contain'}
-            source={this.state.isSelected?require('image!zhgj_selected'):require('image!zhgj_default')}
+            source={this.state.isSelected?require('./../ico/zhgj_selected.png'):require('./../ico/zhgj_default.png')}
             style={mystyle.circle}>
           <View >
             <Text style={this.state.isSelected?mystyle.c_number_selected:mystyle.c_number}>{this.state.number}</Text>

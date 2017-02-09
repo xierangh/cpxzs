@@ -14,11 +14,13 @@ import {
 
 import TabNavigator from 'react-native-tab-navigator';
 import styles from './stylecpxzs';
+import Utils from './Utils'
 import FirstPageView from './FirstPageView';
 import ExpertPlanView from './ExpertPlanView';
 import NoToolView from './NoToolView';
 import UserCenterView from './UserCenterView';
 import HistoryView from './HistoryView';
+import NetWorkTool from './utils/NetWorkTool'
 
 //main view which has many tabbars
 export default class tabView extends Component{
@@ -165,8 +167,8 @@ export default class tabView extends Component{
       <TabNavigator.Item
          selected={this.state.selectedTab === 'epTab'}
          title="精品计划"
-         renderIcon={() => <Image source={require('./ico/jingpin_default.png')} />}
-         renderSelectedIcon={() => <Image source={require('./ico/jingpin_selected.png')} />}
+         renderIcon={() => <Image source={require('./ico/jinpin_default.png')} />}
+         renderSelectedIcon={() => <Image source={require('./ico/jinpin_selected.png')} />}
          onPress={() => this.setState({ selectedTab: 'epTab' })}>
          {epview}
        </TabNavigator.Item>

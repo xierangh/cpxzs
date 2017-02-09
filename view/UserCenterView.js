@@ -46,12 +46,12 @@ export default class UserCenterView extends React.Component{
           >
         <View style={{height:270,alignItems:'stretch',flexDirection:'row',backgroundColor:'gray'}}>
           <Image
-            source={require('image!user-bg')}
+            source={require('./ico/user-bg.png')}
             style={{flex:1,height:270,resizeMode:'stretch',backgroundColor:'#fff0'}}>
             <View style={{alignItems:'center',marginTop:75}}>
               <Image
                   resizeMode={'center'}
-                  source={require('image!user_icon')}
+                  source={require('./ico/index_logo.png')}
                   style={{width:76,height:76,borderRadius:38,borderWidth:3,borderColor:'#fff',backgroundColor:'#fff'}}/>
               </View>
               <View style={{alignItems:'center',marginTop:10}}>
@@ -79,18 +79,18 @@ export default class UserCenterView extends React.Component{
         </View>
 
         {/*<UserRowView
-          img={require('image!01')}
+          img={require('./ico/01.png')}
           title={'会员等级:'+Utils.userInfo.vipLevel}
         />
         */}
         <UserRowView
-          img={require('image!02')}
+          img={require('./ico/02.png')}
           title={'用户名'}
           titleRight={Utils.userInfo.loginName}
         />
 
         <UserRowView
-          img={require('image!04')}
+          img={require('./ico/04.png')}
           onNext={()=>this.onClick('pwdmodify')}
           title={'修改密码'}
           titleRight={'修改登陆密码'}
@@ -98,7 +98,7 @@ export default class UserCenterView extends React.Component{
         {/*
         <View style={styles.splitLine_ww}></View>
         <UserRowView
-          img={require('image!03')}
+          img={require('./ico/03.png')}
           onNext={()=>this.onClick()}
           title={'绑定账号'}
           titleRight={'绑定您的支付账号'}
@@ -106,38 +106,38 @@ export default class UserCenterView extends React.Component{
 
         <View style={styles.splitLine_ww}></View>
         <UserRowView
-          img={require('image!05')}
+          img={require('./ico/05.png')}
           onNext={()=>this.onClick()}
           title={'充值记录'}
           titleRight={''}
         />
         <UserRowView
-          img={require('image!06')}
+          img={require('./ico/06.png')}
           onNext={()=>this.onClick('TuiGuangView')}
           title={'推广链接'}
           titleRight={'复制链接给好友赢奖励'}
         />
         <UserRowView
-          img={require('image!07')}
+          img={require('./ico/07.png')}
           onNext={()=>this.onClick('TuanduiView')}
           title={'团队管理'}
           titleRight={''}
         />
         <View style={styles.splitLine_ww}></View>
         <UserRowView
-          img={require('image!08')}
+          img={require('./ico/08.png')}
           onNext={()=>this.onClick()}
           title={'在线客服'}
           titleRight={'小助手交流群：3478869478'}
         />
         <UserRowView
-          img={require('image!09')}
+          img={require('./ico/09.png')}
           onNext={()=>this.onClick()}
           title={'留言建议'}
           titleRight={'复制链接给好友赢奖励'}
         />
         <UserRowView
-          img={require('image!10')}
+          img={require('./ico/10.png')}
           onNext={()=>this.onClick()}
           title={'更新版本'}
           titleRight={'当前已是最新版本'}

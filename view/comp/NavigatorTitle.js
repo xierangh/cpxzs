@@ -38,7 +38,7 @@ export default class NavigatorTitle extends Component{
                       underlayColor="#fff0"
                       onPress={this.onBtnPress}>
                 		<Image
-                        source={require('image!back')}
+                        source={require('./../ico/back.png')}
 		                    style={styles.image}
 		                    />
                   </TouchableHighlight>
