@@ -360,7 +360,7 @@ class ExpertPlanView extends React.Component {
 
   render(){
     return(
-      <View style={styles.container_tab}>
+      <View style={styles.container}>
         <View style={styles.firstPage_title_container}>
             <Text style={styles.firstPage_title_center}>精品计划</Text>
         </View>

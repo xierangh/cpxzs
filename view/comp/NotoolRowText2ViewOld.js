@@ -7,7 +7,8 @@ import {
     View,
     StyleSheet,
     TouchableHighlight,
-    Dimensions
+    Dimensions,
+    PixelRatio
 } from 'react-native';
 
 import _ from 'lodash'
@@ -176,8 +177,8 @@ if (height <= 568) {
 }else {
   width_L=50;
 }
-
-console.log('old:'+height);
+var pxielRatio = PixelRatio.get();
+console.log('*************old:height='+height+',width='+width+',pxielRatio='+pxielRatio);
 const mystyle=StyleSheet.create({
 	circle:{
 		width:width_L,

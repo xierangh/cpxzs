@@ -10,13 +10,13 @@ import {
   StatusBarIOS
 } from 'react-native';
 
-import TabView from './view/TabView';
+import TabView from './view/TabView.android';
 import LoginView from './view/LoginView';
 import Utils from './view/Utils';
 import styles from './view/stylecpxzs'
 
 export default class cpxzs extends React.Component{
- 
+
  constructor(props){
    super(props)
  }

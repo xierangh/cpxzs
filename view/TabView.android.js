@@ -21,6 +21,7 @@ import NoToolView from './NoToolView';
 import UserCenterView from './UserCenterView';
 import HistoryView from './HistoryView';
 import NetWorkTool from './utils/NetWorkTool'
+import NewsView from './NewsView'
 
 //main view which has many tabbars
 export default class tabView extends Component{
@@ -148,11 +149,15 @@ export default class tabView extends Component{
    var fbview = <FirstPageView
      onItemPress={(title,data)=>this.goPlanView(title,data)}
      onMorePress={()=>this.goHistory()}
+     onNewsPress={()=>this.onNewsPress()}
      />;
-    var epview = <ExpertPlanView />;
+    var epview = <ExpertPlanView
+      loginout={()=>this.loginout()}
+      />;
     var ntview = <NoToolView />;
     var ucview = <UserCenterView
       onClick={(component)=>this.onClick(component)}
+      loginout={()=>this.loginout()}
       />;
    return(
     <TabNavigator>

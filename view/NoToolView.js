@@ -86,7 +86,7 @@ export default class NoToolView extends React.Component{
 
   render(){
     return (
-      <View style={styles.container_tab}>
+      <View style={styles.container}>
         <View style={styles.firstPage_title_container}>
             <NotoolTitleView
               items={items}

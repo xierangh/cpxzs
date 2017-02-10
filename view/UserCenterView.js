@@ -40,7 +40,7 @@ export default class UserCenterView extends React.Component{
 
   render(){
     return (
-      <View style={[styles.container_tab,{backgroundColor:'#eeeeee'}]}>
+      <View style={[styles.container,{backgroundColor:'#eeeeee'}]}>
         <ScrollView
           automaticallyAdjustContentInsets={false}
           >

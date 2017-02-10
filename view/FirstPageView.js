@@ -233,6 +233,9 @@ export default class FirstPageView extends React.Component{
     // this._connect();
     // this.connect();
   }
+  goHistory(){
+    this.props.onMorePress && this.props.onMorePress();
+  }
   render(){
     return (
       <View style={styles.container}>
@@ -345,7 +348,7 @@ export default class FirstPageView extends React.Component{
         <Text style={styles.firstPage_history_left}>历史开奖</Text>
         <TouchableHighlight
             underlayColor={'#fff2'}
-            onPress={()=>this.props.onMorePress}>
+            onPress={()=>this.goHistory()}>
             <Text style={styles.firstPage_history_right}>更多>></Text>
         </TouchableHighlight>
       </View>
