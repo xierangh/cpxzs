@@ -34,7 +34,6 @@ export default class NavigatorTitle extends Component{
       return (
               	<View style={styles.container}>
                   <TouchableHighlight
-                      disabled={this.state.isPress}
                       underlayColor="#fff0"
                       onPress={this.onBtnPress}>
                 		<Image

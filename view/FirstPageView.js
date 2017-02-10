@@ -345,7 +345,7 @@ export default class FirstPageView extends React.Component{
         <Text style={styles.firstPage_history_left}>历史开奖</Text>
         <TouchableHighlight
             underlayColor={'#fff2'}
-            onPress={this.props.onMorePress}>
+            onPress={()=>this.props.onMorePress}>
             <Text style={styles.firstPage_history_right}>更多>></Text>
         </TouchableHighlight>
       </View>

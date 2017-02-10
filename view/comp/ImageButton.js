@@ -18,7 +18,7 @@ import {
 export default class ImageButton extends React.Component{
     static propTypes={
         onPress:PropTypes.func,
-        iconUrl:PropTypes.object,
+        iconUrl:PropTypes.number,
         title:PropTypes.string,
         bgcolor:PropTypes.string,
     }

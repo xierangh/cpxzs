@@ -66,9 +66,9 @@ export default class HistoryView extends React.Component{
     }
 
     queryData(param:string){
-      if (!Utils.online) {
-        return;
-      }
+      // if (!Utils.online) {
+      //   return;
+      // }
       this.setState({
         loaded:false,
       })
@@ -218,7 +218,7 @@ export default class HistoryView extends React.Component{
             <ListView
                 ref='list'
                 dataSource={this.state.dataSource}
-                renderRow={this.renderRow}
+                renderRow={(rowdata)=>this.renderRow(rowdata)}
                 enableEmptySections={true}
                 automaticallyAdjustContentInsets={false}
                 renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => <View key={sectionID,rowID} style={styles.splitLine_l}></View>}
@@ -226,14 +226,7 @@ export default class HistoryView extends React.Component{
               :
               <LoadingView />
           }
-          <ListView
-              ref='list'
-              dataSource={this.state.dataSource}
-              renderRow={this.renderRow}
-              enableEmptySections={true}
-              automaticallyAdjustContentInsets={false}
-              renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => <View key={sectionID,rowID} style={styles.splitLine_l}></View>}
-              />
+
         </View>
       );
     }

@@ -16,7 +16,7 @@ export default class UserRowView extends React.Component{
     onNext: React.PropTypes.func,
     title:  React.PropTypes.string,
     titleRight:  React.PropTypes.string,
-    img: React.PropTypes.object,
+    img: React.PropTypes.number,
     bgcolor: React.PropTypes.string
   }
   //如果图片没有背景色可以配置bgcolor
