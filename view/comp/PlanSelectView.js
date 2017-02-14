@@ -8,6 +8,7 @@ import {
     StyleSheet
 } from 'react-native';
 
+import Utils from './../Utils'
 class PlanView extends React.Component{
   static propTypes={
     value:React.PropTypes.object,
@@ -144,21 +145,21 @@ const mystyle=StyleSheet.create({
       backgroundColor:'#eee',
       flexDirection:'row',
       justifyContent:'space-around',
-      paddingVertical:5,
+      paddingVertical:3,
     },
     col:{
-      width:70,
-      height:30,
+      width:70*Utils.scale,
+      height:34*Utils.scale,
     },
     name:{
-      fontSize:14,
+      fontSize:14*Utils.scale,
       textAlign:'center',
     },
     name_selected:{
       color:'rgba(238, 83, 88,1.0)',
     },
     winRate:{
-      fontSize:8,
+      fontSize:8*Utils.scale,
       textAlign:'center',
       marginTop:5
     }

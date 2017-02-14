@@ -163,33 +163,37 @@ export default class tabView extends Component{
     <TabNavigator>
      <TabNavigator.Item
         selected={this.state.selectedTab === 'fbTab'}
+        selectedTitleStyle={styles.selectedTitleStyle}
         title="首页"
-        renderIcon={() => <Image source={require('./ico/index_default.png')} />}
-        renderSelectedIcon={() => <Image source={require('./ico/index_selected.png')} />}
+        renderIcon={() => <Image source={require('./ico/index_default.png')} style={styles.tab_bar_icon}/>}
+        renderSelectedIcon={() => <Image source={require('./ico/index_selected.png')} style={styles.tab_bar_icon}/>}
         onPress={() => this.setState({ selectedTab: 'fbTab' })}>
         {fbview}
       </TabNavigator.Item>
       <TabNavigator.Item
          selected={this.state.selectedTab === 'epTab'}
+         selectedTitleStyle={styles.selectedTitleStyle}
          title="精品计划"
-         renderIcon={() => <Image source={require('./ico/jinpin_default.png')} />}
-         renderSelectedIcon={() => <Image source={require('./ico/jinpin_selected.png')} />}
+         renderIcon={() => <Image source={require('./ico/jinpin_default.png')} style={styles.tab_bar_icon}/>}
+         renderSelectedIcon={() => <Image source={require('./ico/jinpin_selected.png')} style={styles.tab_bar_icon}/>}
          onPress={() => this.setState({ selectedTab: 'epTab' })}>
          {epview}
        </TabNavigator.Item>
        <TabNavigator.Item
           selected={this.state.selectedTab === 'ntTab'}
+          selectedTitleStyle={styles.selectedTitleStyle}
           title="做号工具"
-          renderIcon={() => <Image source={require('./ico/zuohao_default.png')} />}
-          renderSelectedIcon={() => <Image source={require('./ico/zuohao_selected.png')} />}
+          renderIcon={() => <Image source={require('./ico/zuohao_default.png')} style={styles.tab_bar_icon}/>}
+          renderSelectedIcon={() => <Image source={require('./ico/zuohao_selected.png')} style={styles.tab_bar_icon}/>}
           onPress={() => this.setState({ selectedTab: 'ntTab' })}>
           {ntview}
         </TabNavigator.Item>
         <TabNavigator.Item
            selected={this.state.selectedTab === 'ucTab'}
+           selectedTitleStyle={styles.selectedTitleStyle}
            title="我的"
-           renderIcon={() => <Image source={require('./ico/user_default.png')} />}
-           renderSelectedIcon={() => <Image source={require('./ico/user_selected.png')} />}
+           renderIcon={() => <Image source={require('./ico/user_default.png')} style={styles.tab_bar_icon}/>}
+           renderSelectedIcon={() => <Image source={require('./ico/user_selected.png')} style={styles.tab_bar_icon}/>}
            onPress={() => this.setState({ selectedTab: 'ucTab' })}>
            {ucview}
          </TabNavigator.Item>

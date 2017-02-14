@@ -6,6 +6,7 @@ import {
     View,
     Image,
     TextInput,
+    StyleSheet
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -95,12 +96,10 @@ export default class RegisterView extends React.Component{
   render(){
     return (
       <View style={styles.container}>
-        <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20,color:'#333',paddingVertical:10,marginTop:46}}>用户注册</Text>
-        <View style={{alignItems:'center',marginVertical:30}}>
-          <Image source={require('./ico/index_logo.png')} style={{width:76,height:76,borderRadius:38,borderWidth:3,borderColor:'#edddc6'}}/>
-        </View>
-        <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:240,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
-            <View style={{height:60,flexDirection:'row'}}>
+        <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20*Utils.scale,color:'#333',paddingVertical:10,marginTop:46,marginBottom:20}}>用户注册</Text>
+
+        <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:240*Utils.scale,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
+            <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
                   onChangeText={(text) => this.setState({username:text})}
@@ -111,7 +110,7 @@ export default class RegisterView extends React.Component{
                   placeholderTextColor='#929292'></TextInput>
             </View>
             <View style={styles.splitLine}></View>
-            <View style={{height:60,flexDirection:'row'}}>
+            <View style={mystyle.rowview}>
             <TextInput style={styles.style_input}
                 autoCorrect={false}
                 onChangeText={(text) => this.setState({nickName:text})}
@@ -122,7 +121,7 @@ export default class RegisterView extends React.Component{
                 placeholderTextColor='#929292'></TextInput>
             </View>
             <View style={styles.splitLine}></View>
-            <View style={{height:60,flexDirection:'row'}}>
+            <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
                   onChangeText={(text) => this.setState({passwd:text})}
@@ -133,7 +132,7 @@ export default class RegisterView extends React.Component{
                   placeholderTextColor='#929292'></TextInput>
             </View>
             <View style={styles.splitLine}></View>
-            <View style={{height:60,flexDirection:'row'}}>
+            <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
                   onChangeText={(text) => this.setState({confirm_password:text})}
@@ -166,5 +165,10 @@ export default class RegisterView extends React.Component{
     );
   }
 }
-
-module.exports = RegisterView;
+var mystyle = StyleSheet.create({
+  rowview:{
+    height:60*Utils.scale,
+    flexDirection:'row',
+    alignItems:'center'
+  }
+})

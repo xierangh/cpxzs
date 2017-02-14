@@ -54,8 +54,8 @@ export default class FortgetPasswordView extends React.Component{
          text={'找回密码'}>
       </NavigatorTitle>
         <Text style={{marginTop:20,color:'#666',marginLeft:23,fontSize:14}}>请输入注册邮箱号</Text>
-        <View style={{marginTop:5,marginLeft:23,marginRight:23,borderRadius:5,height:60,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
-            <View style={{height:60,flexDirection:'row'}}>
+        <View style={{marginTop:5,marginLeft:23,marginRight:23,borderRadius:5,height:60*Utils.scale,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
+            <View style={{height:60*Utils.scale,flexDirection:'row'}}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
                   onChangeText={(text) => this.setState({email:text})}

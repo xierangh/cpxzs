@@ -7,19 +7,28 @@
 import React, {Component} from 'react';
 import {
   Alert,
-  Dimensions
+  Dimensions,
+  PixelRatio
 } from 'react-native';
 
 import _ from 'lodash'
 import Storage from 'react-native-storage';
+var pxielRatio = PixelRatio.get();
+var SPR = 2;//原来的屏幕是苹果
+var scale=SPR/pxielRatio;
+if(pxielRatio >= 2){
+    scale =1;
+}
 
 //url
 // let BASE_URL = 'http://192.168.0.211/'
 // let BASE_URL = 'http://vip.cpxzs.com/'
 let BASE_URL = 'http://www.cpxzs.com/';
-let TIME_OUT= 5000;
+let TIME_OUT= 5000*10;
 
 let Utils = {
+   //缩放比例
+   scale:scale,
    storage : new Storage({
     //最大容量，默认值1000条数据循环存储
     size: 1000,
@@ -51,6 +60,9 @@ let Utils = {
     }
     if(height == 667){
       marg = 3;
+    }
+    if (pxielRatio){
+        marg=3;
     }
     return marg;
   },

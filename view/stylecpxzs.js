@@ -8,15 +8,23 @@
 var React = require('react-native');
 
 var {
-	StyleSheet
+	StyleSheet,
+	PixelRatio
 } = React;
 
-let FONT_BIG_PLUS = 24;
-let FONT_BIG = 18;
-let FONT_BIG_SUB = 16;
-let FONT_NORMAL = 14;
-let FONT_SMALL = 12;
-let FONT_SMALL_S = 11;
+var pxielRatio = PixelRatio.get();
+var SPR = 2;//原来的屏幕是苹果
+var scale = SPR/pxielRatio;//缩放比例
+if(pxielRatio >= 2){
+	scale = 1;
+}
+
+let FONT_BIG_PLUS = 24*scale;
+let FONT_BIG = 18*scale;
+let FONT_BIG_SUB = 16*scale;
+let FONT_NORMAL = 14*scale;
+let FONT_SMALL = 12*scale;
+let FONT_SMALL_S = 11*scale;
 
 
 let underlayColor = '#fff3';
@@ -37,45 +45,52 @@ let TEXT_COLOR_DARK_GRAY = '#ffffff'
 
 //分割线
 let SPLIT_LINE = '#e5e5e5';
-let FirstPageCircleSize = 36;
+let FirstPageCircleSize = 36*scale;
 
 var stylecpxzs = StyleSheet.create({
+    selectedTitleStyle:{
+		color:'#ea5656',
+	},
 	//页面切换背景颜色
 	wrapperStyle:{
 		backgroundColor:title_color_bg,
 	},
+	tab_bar_icon:{
+		width:24,
+		height:24,
+	},
 	//分割线-view
 	splitLine_l_black: {
-		height: .3,
+		height: .3*scale,
 		backgroundColor: '#ccc',
 	},
 	splitLine_l: {
-		height: .5,
+		height: .5*2/pxielRatio,
 		backgroundColor: SPLIT_LINE,
 	},
 	splitLine: {
-		height: 1,
+		height: 1*scale,
 		backgroundColor: SPLIT_LINE,
 	},
 	splitLine_w: {
-		height: 3,
+		height: 3*scale,
 		backgroundColor: '#eee',
 	},
 	splitLine_ww: {
-		height: 3,
+		height: 3*scale,
 		backgroundColor: '#EEE6',
 	},
 	//按钮
 	image:{
-		width:30,
-		height:30,
+		width:30*scale,
+		height:30*scale,
 	},
 	style_view_commit:{
 	    justifyContent: 'center',
 	    alignItems: 'center',
-			marginRight:20,
-			height:60,
-			width:60,
+			marginRight:20*scale,
+			height:60*scale,
+			width:60*scale,
 	  },
 	//首页start
 	firstPage_title_container:{
@@ -94,7 +109,7 @@ var stylecpxzs = StyleSheet.create({
 		marginTop:25,
 		flex:3,
 		backgroundColor:'#f0f0',
-		marginBottom:5,
+		marginBottom:5*scale,
 		fontWeight:'bold',
 		alignSelf:'center',
 	},
@@ -128,16 +143,16 @@ var stylecpxzs = StyleSheet.create({
 		padding:5,
 	},
 	firstPage_kaijiang_icon_view:{
-		width:100,
-		height:100,
+		width:100*scale,
+		height:100*scale,
 		borderRadius: 6,
 		backgroundColor:'rgb(239,116,119)',
 		alignItems:'center',
 	},
 	firstPage_kaijiang_icon:{
 		resizeMode:'contain',
-		width:100,
-		height:100,
+		width:100*scale,
+		height:100*scale,
 	},
 	firstPage_kaijiang_right:{
 		flex:1,
@@ -203,7 +218,7 @@ var stylecpxzs = StyleSheet.create({
 		fontWeight:'bold',
 		alignSelf:'center',
 		marginRight:5,
-		width:65,
+		width:65*scale,
 	},
 	//计划
 	customStyle:{
@@ -222,7 +237,7 @@ var stylecpxzs = StyleSheet.create({
 	},
 	firstPage_history_start:{
 		backgroundColor:title_color_bg,
-		width:4,
+		width:4*scale,
 		marginLeft:5,
 		paddingVertical:2,
 	},
@@ -273,7 +288,7 @@ var stylecpxzs = StyleSheet.create({
 	},
 	rowStyle: {
 		flexDirection: 'row',
-		paddingVertical: 8,
+		paddingVertical: 8*scale,
 		paddingLeft:0,
 		paddingRight:0,
 		flexWrap: 'wrap',
@@ -310,7 +325,7 @@ var stylecpxzs = StyleSheet.create({
 		fontSize: FONT_SMALL,
 	},
 	history_end: {
-		width:40,
+		width:40*scale,
 		marginRight:10,
 		textAlign: 'left', //位置
 		color: TABLE_TEXT_COLOR,
@@ -353,22 +368,22 @@ var stylecpxzs = StyleSheet.create({
 	//首页end
 	//登录输入，和按钮 start
 	style_input_label: {
-		marginTop: 23,
 		marginLeft: 20,
 		marginRight: 20,
 		textAlign:'center',
-		fontSize:FONT_NORMAL,
+		fontSize:FONT_NORMAL*scale,
 		color:'#929292',
 	},
 	style_input: {
-		marginTop: 10,
 		marginLeft: 20,
 		marginRight: 20,
 		paddingLeft:10,
 		paddingRight:10,
-		height: 40,
+		height: 40*scale,
+		fontSize:FONT_NORMAL*scale,
 		color:'#929292',
 		flex: 1,
+		alignSelf:'center',
 	},
 	style_inputmbg:{
 		marginBottom:15,
@@ -472,9 +487,18 @@ var stylecpxzs = StyleSheet.create({
 		justifyContent:'space-around',
 	},
 	jpp_hide_view_btn:{
-		paddingVertical:10,
+    	marginVertical:5,
+		padding:5,
 		justifyContent:'center',
 		alignItems:'center',
+	},
+    jpp_hide_view_btn_selected:{
+		borderWidth:1,
+		borderColor:'#ea5656',
+		borderRadius:5,
+    },
+    jpp_hide_view_btn_text:{
+		color:'#ea5656'
 	},
 	jpp_hide_view_fn:{
 		backgroundColor:'#EEE',
@@ -599,9 +623,9 @@ var stylecpxzs = StyleSheet.create({
 	},
 	notool_sub_title_start:{
 		backgroundColor:title_color_bg,
-		width:3,
+		width:3*scale,
 		marginLeft:5,
-		height:15,
+		height:15*scale,
 	},
 	notool_sub_title_left:{
 		flex:1,
@@ -617,7 +641,7 @@ var stylecpxzs = StyleSheet.create({
 		textAlign:'center',
 	},
 	notool_sub_title_right:{
-		width:30,
+		width:30*scale,
 		paddingVertical:10,
 		marginLeft:10,
 		marginRight:10,
@@ -643,8 +667,8 @@ var stylecpxzs = StyleSheet.create({
 
 	notool_btn:{
 		flex:1,
-		width:68,
-		height:30,
+		width:68*scale,
+		height:30*scale,
 		borderRadius:4,
 		borderColor:'rgb(255,131,33)',
 		borderWidth:1,
@@ -654,7 +678,7 @@ var stylecpxzs = StyleSheet.create({
 		margin:3,
 	},
 	notool_btn_text:{
-		fontSize:14,
+		fontSize:14*scale,
 		color:'#fff',
 		textAlign:'center',
 	},

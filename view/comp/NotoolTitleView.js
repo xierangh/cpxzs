@@ -8,6 +8,7 @@ import {
     StyleSheet
 } from 'react-native';
 
+import Utils from './../Utils'
 class PlanView extends React.Component{
   static propTypes={
     value:React.PropTypes.object,
@@ -120,6 +121,7 @@ export default class NotoolTitleView extends React.Component{
   }
 }
 
+
 const mystyle=StyleSheet.create({
     row:{
       marginTop:25,
@@ -135,7 +137,7 @@ const mystyle=StyleSheet.create({
       backgroundColor:'rgb(186,26,33)'
     },
     col:{
-      width:70,
+      width:70*Utils.scale,
       height:30,
       borderRadius:2,
       justifyContent:'space-around',
@@ -145,7 +147,7 @@ const mystyle=StyleSheet.create({
       backgroundColor:'#fff',
     },
     name:{
-      fontSize:14,
+      fontSize:14*Utils.scale,
       color:'#fff',
       textAlign:'center',
     },

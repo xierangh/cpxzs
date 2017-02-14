@@ -6,6 +6,9 @@ import {
     View,
     Image,
     TextInput,
+    StyleSheet,
+    StatusBar,
+    BackAndroid
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -56,6 +59,14 @@ export default class LoginView extends React.Component{
         //或者有其他异常，则在catch中返回
         console.log(err);
       })
+
+      BackAndroid.addEventListener('hardwareBackPress', function() {
+          if (!this.onMainScreen()) {
+              this.props.navigator.pop();
+              return true;
+          }
+          return false;
+      });
   }
   componentWillUnmount(){
     console.log('LoginView unmount');
@@ -131,12 +142,19 @@ export default class LoginView extends React.Component{
   render(){
     return (
       <View style={styles.container}>
-        <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20,paddingVertical:10,marginTop:46,color:'#333'}}>用户登录</Text>
+      <StatusBar
+         backgroundColor="#f000"
+         barStyle="default"
+         translucent={true}
+       />
+        <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20*Utils.scale,paddingVertical:10,marginTop:46*Utils.scale,color:'#333'}}>用户登录</Text>
         <View style={{alignItems:'center',marginVertical:30}}>
-          <Image source={require('./ico/index_logo.png')} style={{width:76,height:76,borderRadius:38,borderWidth:3,borderColor:'#edddc6'}}/>
+          <Image
+            source={require('./ico/index_logo.png')}
+            style={{width:76*Utils.scale,height:76*Utils.scale,borderRadius:38*Utils.scale,borderWidth:3,borderColor:'#edddc6'}}/>
         </View>
-        <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:123,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
-            <View style={{height:60,flexDirection:'row'}}>
+        <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:123*Utils.scale,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
+            <View style={mystyle.rowview}>
               <Text style={styles.style_input_label}>邮箱</Text>
               <TextInput style={styles.style_input}
                   underlineColorAndroid={'transparent'}
@@ -148,7 +166,7 @@ export default class LoginView extends React.Component{
                   placeholderTextColor='#929292'></TextInput>
             </View>
             <View style={styles.splitLine}></View>
-            <View style={{height:60,flexDirection:'row'}}>
+            <View style={mystyle.rowview}>
               <Text style={styles.style_input_label}>密码</Text>
               <TextInput style={styles.style_input}
                   underlineColorAndroid={'transparent'}
@@ -166,7 +184,7 @@ export default class LoginView extends React.Component{
                  label="记住密码"
                  checked={this.state.savepwd}
                  labelStyle={{marginLeft:23}}
-                 boxStyle={{width:100}}
+                 boxStyle={{width:150*Utils.scale}}
                  onChange={(checked) => this.checkSelect(checked)} />
             <Text onPress={()=>this.goForgetView()} style={{flex:1,textAlign:'right',marginRight:23,color:'#ea5656'}}>忘记密码?</Text>
         </View>
@@ -177,7 +195,7 @@ export default class LoginView extends React.Component{
         </CustomButton>
 
 
-        <Text onPress={()=>this.goReg()} style={{flex:1,fontSize:16,alignSelf:'stretch',textAlign:'center',color:'#666',marginTop:100}}>去注册新用户</Text>
+        <Text onPress={()=>this.goReg()} style={{flex:1,fontSize:16*Utils.scale,alignSelf:'stretch',textAlign:'center',color:'#666',marginTop:100*Utils.scale}}>去注册新用户</Text>
       </View>
     );
   }
@@ -200,3 +218,12 @@ export default class LoginView extends React.Component{
     });
   }
 }
+
+var mystyle = StyleSheet.create({
+  rowview:{
+      height:60*Utils.scale,
+      flexDirection:'row',
+      alignItems:'center',
+      justifyContent:'space-around',
+  }
+})

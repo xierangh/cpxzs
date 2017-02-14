@@ -8,7 +8,6 @@ import {
     StyleSheet,
     TouchableHighlight,
     Image,
-    Dimensions
 } from 'react-native';
 
 import _ from 'lodash'
@@ -194,7 +193,7 @@ export default class NotoolRowView extends React.Component{
   }
 }
 
-var circle_size=26;
+var circle_size=26*Utils.scale;
 var marg = Utils.getNotoolMargin();
 // console.log(height);
 const mystyle=StyleSheet.create({
@@ -206,12 +205,12 @@ const mystyle=StyleSheet.create({
 		margin:marg,
 	},
 	c_number:{
-		fontSize:14,
+		fontSize:14*Utils.scale,
 		color:'#333',
 		textAlign:'center',
 	},
 	c_number_selected:{
-		fontSize:14,
+		fontSize:14*Utils.scale,
 		color:'#fff',
 		textAlign:'center',
 	},

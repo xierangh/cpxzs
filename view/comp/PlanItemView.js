@@ -81,7 +81,7 @@ export default class PlanItemView extends React.Component{
           underlayColor="#fff1"
           onPress={() => this.onItemPress()}>
            <View style={styles.rowStyle} >
-             <Text style={styles.plan_item}>{this.props.data.item} <Icon name={'long-arrow-down'} size={10} color={'#f00'}/></Text>
+             <Text style={styles.plan_item}>{this.props.data.item} <Icon name={'long-arrow-down'} size={10*Utils.scale} color={'#f00'}/></Text>
              <Text style={styles.plan_center_row_w}>{this.props.data.resultNumber}</Text>
              <Text style={styles.plan_center_row_w}>{this.formatPlanNumber(this.props.data.planNum)}</Text>
              {this.props.data.status?

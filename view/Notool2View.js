@@ -15,12 +15,8 @@ import styles from './stylecpxzs';
 import Utils from './Utils';
 import LoadingView from './comp/Loading'
 import NotoolRowView from './comp/NotoolRowView'
-import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
 import NotoolRowYiLouView from './comp/NotoolRowYiLouView'
-import NotoolRowTextView from './comp/NotoolRowTextView'
-import NotoolRowText2View from './comp/NotoolRowText2View'
 import NotoolRowText2ViewOld from './comp/NotoolRowText2ViewOld'
-import NotoolTitleView from './comp/NotoolTitleView'
 import CheckBoxsView from './comp/CheckBoxsView'
 
 //获得杀012的号码

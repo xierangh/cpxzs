@@ -13,6 +13,7 @@ import {
     TouchableHighlight,
 } from 'react-native';
 
+import Utils from './../Utils'
 export default class CustomButton extends React.Component {
    static propTypes = {
       onPress: React.PropTypes.func,
@@ -62,7 +63,7 @@ let styles = StyleSheet.create({
                                      marginTop:15,
                                      marginLeft:20,
                                      marginRight:20,
-                                     height:46,
+                                     height:46*Utils.scale,
                                      borderRadius:5,
                                      justifyContent: 'center',
                                      alignItems: 'stretch',
@@ -75,7 +76,7 @@ let styles = StyleSheet.create({
 	                             },
                                  style_text_commit:{
                                            color:'#ffffff',
-                                           fontSize:20,
+                                           fontSize:20*Utils.scale,
                                            textAlign:'center',
                                  },
                                  container: {

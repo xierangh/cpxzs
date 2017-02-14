@@ -47,9 +47,7 @@ class ExpertPlanView extends React.Component {
       dataSource:ds.cloneWithRows([
       {"item":"022-024","wei":"个位","planNum":"29160","resultNumber":"9,6,1,8,1","status":true,"planName":null,"itemIndex":0,"amount":95.0,
       "caipiaoList":[{"period":20161230022,"result":"9,6,1,8,1"}],"hotColdSubList":null}]),
-      total:0,
       loaded:false,
-      fetchurl:'loadHistoryNumber?caipioaType=cqssc&dateStr=0',//查询当天
       isWf:true,
       isFn:true,
       isPlan:false,
@@ -427,129 +425,92 @@ class ExpertPlanView extends React.Component {
             <Text style={styles.firstPage_history_left}>请设置玩法方案</Text>
           </View>
         </TouchableHighlight>
-        {this.state.isFn &&
-            <View style={styles.jpp_hide_view_fn}>
-              <Text style={{marginTop:5,marginLeft:11,marginRight:5}}>方案设置</Text>
-              <JppHideView
-                title={this.getFn1_w_show()}
-                onClick={()=>this.showPicker(1)}
-              />
-              <JppHideView
-                title={this.state.fn2_m+''}
-                title_const={'码'}
-                onClick={()=>this.showPicker(2)}
-              />
-              <JppHideView
-                title={this.state.fn3_q+''}
-                title_const={'期'}
-                onClick={()=>this.showPicker(3)}
-              />
-              <TouchableHighlight
-                underlayColor={'#ea565630'}
-                onPress={() => this.onfinish()}>
-                  <View style={{backgroundColor:'#ffaf48',borderRadius:3,width:66*Utils.scale,height:28*Utils.scale,borderWidth:1,marginRight:10,borderColor:'#ffaf48',justifyContent:'center',marginLeft:1,marginTop:1}}>
-                    <Text style={{textAlign:'center',color:'#fff',fontSize:12*Utils.scale}}>完成</Text>
-                  </View>
-              </TouchableHighlight>
-          </View>
-        }
 
-        {this.state.showPicker==1 &&
-          <View style={{backgroundColor:'#fff',marginBottom:20}}>
-
-            {this.state.wf == 'dw' &&
+        <View style={styles.jpp_hide_view_fn}>
+          <Text style={{marginTop:5,marginLeft:11,marginRight:5}}>方案设置</Text>
+          <View style={{backgroundColor:'#fff',marginBottom:20,width:100,flex:1,alignSelf:'center'}}>
+              {this.state.wf == 'dw' &&
               <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn1_w:index})}>
-                  <Picker.Item label="个" value="1" />
-                  <Picker.Item label="十" value="2" />
-                  <Picker.Item label="百" value="3" />
-                  <Picker.Item label="千" value="4" />
-                  <Picker.Item label="万" value="5" />
+                  selectedValue={this.state.fn1_w}
+                  onValueChange={(itemValue) => this.setState({fn1_w:itemValue})}>
+                <Picker.Item label="个" value="1" />
+                <Picker.Item label="十" value="2" />
+                <Picker.Item label="百" value="3" />
+                <Picker.Item label="千" value="4" />
+                <Picker.Item label="万" value="5" />
               </Picker>
-            }
-            {this.state.wf == 'bdw' &&
+              }
+              {this.state.wf == 'bdw' &&
               <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn1_w:index})}>
-                  <Picker.Item label="前二" value="1" />
-                  <Picker.Item label="前三" value="2" />
-                  <Picker.Item label="后二" value="3" />
-                  <Picker.Item label="后三" value="4" />
-                  <Picker.Item label="五星" value="5" />
-                  <Picker.Item label="中三" value="6" />
-                  <Picker.Item label="前四" value="7" />
-                  <Picker.Item label="后四" value="8" />
+                  selectedValue={this.state.fn1_w}
+                  onValueChange={(itemValue) => this.setState({fn1_w:itemValue})}>
+                <Picker.Item label="前二" value="1" />
+                <Picker.Item label="前三" value="2" />
+                <Picker.Item label="后二" value="3" />
+                <Picker.Item label="后三" value="4" />
+                <Picker.Item label="五星" value="5" />
+                <Picker.Item label="中三" value="6" />
+                <Picker.Item label="前四" value="7" />
+                <Picker.Item label="后四" value="8" />
               </Picker>
-            }
-            {this.state.wf == 'zux' &&
+              }
+              {this.state.wf == 'zux' &&
               <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn1_w:index})}>
+                  selectedValue={this.state.fn1_w}
+                  onValueChange={(itemValue) => this.setState({fn1_w:itemValue})}>
                 <Picker.Item label="前二" value="1" />
                 <Picker.Item label="后二" value="2" />
                 <Picker.Item label="前三组六" value="3" />
                 <Picker.Item label="中三组六" value="4" />
                 <Picker.Item label="后三祖六" value="5" />
               </Picker>
-            }
-            {this.state.wf == 'zhx' &&
+              }
+              {this.state.wf == 'zhx' &&
               <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn1_w:index})}>
+                  selectedValue={this.state.fn1_w}
+                  onValueChange={(itemValue) => this.setState({fn1_w:itemValue})}>
                 <Picker.Item label="前二" value="1" />
                 <Picker.Item label="前三" value="2" />
                 <Picker.Item label="后二" value="3" />
                 <Picker.Item label="中三" value="4" />
                 <Picker.Item label="后三" value="5" />
               </Picker>
-            }
-            <TouchableHighlight onPress={()=>{this.showPicker(0)}} underlayColor="#fff2">
-                <Text style={{alignSelf:'flex-end',width:100,textAlign:'center',color:'#000'}}>关闭</Text>
-            </TouchableHighlight>
+              }
           </View>
-        }
 
-        {this.state.showPicker==2 &&
-          <View style={{backgroundColor:'#fff',marginBottom:20}}>
+          <View style={{backgroundColor:'#fff',marginBottom:20,width:100,flex:1}}>
 
-            {this.state.wf == 'bdw' ?
-              <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn2_m: index})}>
-                <Picker.Item label="1码" value="1" />
-                <Picker.Item label="2码" value="2" />
-                <Picker.Item label="3码" value="3" />
-                <Picker.Item label="4码" value="4" />
-                <Picker.Item label="5码" value="5" />
-                <Picker.Item label="6码" value="6" />
-              </Picker>
-              :
-              <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn2_m: index})}>
-                <Picker.Item label="1码" value="1" />
-                <Picker.Item label="2码" value="2" />
-                <Picker.Item label="3码" value="3" />
-                <Picker.Item label="4码" value="4" />
-                <Picker.Item label="5码" value="5" />
-                <Picker.Item label="6码" value="6" />
-                <Picker.Item label="7码" value="7" />
-                <Picker.Item label="8码" value="8" />
-                <Picker.Item label="9码" value="9" />
-              </Picker>
-            }
-            <TouchableHighlight onPress={()=>{this.showPicker(0)}} underlayColor="#fff2">
-              <Text style={{alignSelf:'flex-end',width:100,textAlign:'center',color:'#000'}}>关闭</Text>
-            </TouchableHighlight>
-        </View>
-      }
-
-      {this.state.showPicker==3 &&
-        <View style={{backgroundColor:'#fff',marginBottom:20}}>
+              {this.state.wf == 'bdw' ?
+                  <Picker
+                      selectedValue={this.state.fn2_m}
+                      onValueChange={(itemValue) => this.setState({fn2_m: itemValue})}>
+                    <Picker.Item label="1码" value="1" />
+                    <Picker.Item label="2码" value="2" />
+                    <Picker.Item label="3码" value="3" />
+                    <Picker.Item label="4码" value="4" />
+                    <Picker.Item label="5码" value="5" />
+                    <Picker.Item label="6码" value="6" />
+                  </Picker>
+                  :
+                  <Picker
+                      selectedValue={this.state.fn2_m}
+                      onValueChange={(itemValue) => this.setState({fn2_m: itemValue})}>
+                    <Picker.Item label="1码" value="1" />
+                    <Picker.Item label="2码" value="2" />
+                    <Picker.Item label="3码" value="3" />
+                    <Picker.Item label="4码" value="4" />
+                    <Picker.Item label="5码" value="5" />
+                    <Picker.Item label="6码" value="6" />
+                    <Picker.Item label="7码" value="7" />
+                    <Picker.Item label="8码" value="8" />
+                    <Picker.Item label="9码" value="9" />
+                  </Picker>
+              }
+          </View>
+          <View style={{backgroundColor:'#fff',marginBottom:20,width:100,flex:1}}>
             <Picker
-              selectedValue={this.state.fn1_q}
-              onValueChange={(index) => this.setState({fn3_q: index})}>
+                selectedValue={this.state.fn3_q}
+                onValueChange={(itemValue) => this.setState({fn3_q: itemValue})}>
               <Picker.Item label="1期" value="1" />
               <Picker.Item label="2期" value="2" />
               <Picker.Item label="3期" value="3" />
@@ -566,11 +527,17 @@ class ExpertPlanView extends React.Component {
               <Picker.Item label="14期" value="14" />
               <Picker.Item label="15期" value="15" />
             </Picker>
-            <TouchableHighlight onPress={()=>{this.showPicker(0)}} underlayColor="#fff2">
-              <Text style={{alignSelf:'flex-end',width:100,textAlign:'center',color:'#000'}}>关闭</Text>
-            </TouchableHighlight>
-        </View>
-      }
+          </View>
+
+          <TouchableHighlight
+            underlayColor={'#ea565630'}
+            onPress={() => this.onfinish()}>
+              <View style={{backgroundColor:'#ffaf48',borderRadius:3,width:66*Utils.scale,height:28*Utils.scale,borderWidth:1,marginRight:10,borderColor:'#ffaf48',justifyContent:'center',marginLeft:1,marginTop:1}}>
+                <Text style={{textAlign:'center',color:'#fff',fontSize:12*Utils.scale}}>完成</Text>
+              </View>
+          </TouchableHighlight>
+      </View>
+
 
         <View style={styles.splitLine_w}></View>
         <TouchableHighlight onPress={()=>this.onPlanPress()} underlayColor="#fff2">
@@ -590,7 +557,7 @@ class ExpertPlanView extends React.Component {
         <View style={styles.splitLine}></View>
         <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
           <Text style={{fontSize:13*Utils.scale,paddingVertical:10,marginLeft:10}}>选中:</Text>
-          <Text style={{fontSize:13*Utils.scale,paddingVertical:10,color:'#f00',flex:1}}>{this.getWf_show()}>{this.getFn1_w_show()} {this.state.fn2_m}码 {this.fn3_q}期>{this.state.planValue.jhfaName}({this.state.planValue.winRate}%)</Text>
+          <Text style={{fontSize:13*Utils.scale,paddingVertical:10,color:'#f00',flex:1}}>{this.getWf_show()}>{this.getFn1_w_show()} {this.state.fn2_m}码 {this.state.fn3_q}期>{this.state.planValue.jhfaName}({this.state.planValue.winRate}%)</Text>
 
         </View>
         <View style={styles.splitLine}></View>

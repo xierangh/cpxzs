@@ -14,7 +14,6 @@ import styles from './stylecpxzs';
 import Utils from './Utils';
 import LoadingView from './comp/Loading';
 import ImageButton from './comp/ImageButton';
-import NotoolTimeView from './comp/NotoolTimeView'
 import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
 import PullRefreshScrollView from 'react-native-pullrefresh-scrollview';
 
@@ -112,12 +111,20 @@ export default class FirstPageView extends React.Component{
     }
 
   componentDidMount(){
-    this.refresh();
+    this.refreshMust();
   }
 
+  refreshMust(){
+      this.queryCurrentPeriod();
+  }
   refresh(){
+      this.timer && clearTimeout(this.timer);
     // this.queryTime();
-    this.queryCurrentPeriod();
+      this.timer = setInterval(()=>{
+          this.timer && clearTimeout(this.timer);
+          this.queryCurrentPeriod();
+      },1000*60*2
+      );
   }
 
   queryTime(){
@@ -239,12 +246,7 @@ export default class FirstPageView extends React.Component{
   render(){
     return (
       <View style={styles.container}>
-      <PullRefreshScrollView
-          ref="PullRefresh"
-          backgroundColor={'#fff'}
-          onRefresh={()=>this.refresh()}
-          showsVerticalScrollIndicator={false}
-        >
+
         <View style={styles.firstPage_title_container}>
             <Text style={styles.firstPage_title_left}>彩票小助手</Text>
             <TouchableHighlight
@@ -257,7 +259,7 @@ export default class FirstPageView extends React.Component{
         </View>
         <View style={styles.firstPage_kaijiang}>
           <View style={styles.firstPage_kaijiang_icon_view}>
-            <Image source={require('./ico/index_logo.png')} style={styles.firstPage_kaijiang_icon} / >
+            <Image source={require('./ico/index_logo_2.png')} style={styles.firstPage_kaijiang_icon} />
           </View>
 
           <View style={styles.firstPage_kaijiang_right}>
@@ -293,7 +295,14 @@ export default class FirstPageView extends React.Component{
             />
         </View>
       </View>
+
       <View style={styles.splitLine_l}></View>
+      <PullRefreshScrollView
+          ref="PullRefresh"
+          backgroundColor={'#fff'}
+          onRefresh={()=>this.refreshMust()}
+          showsVerticalScrollIndicator={false}
+      >
       <View style={{marginTop:5}}>
         <View style={styles.firstPage_planRow}>
           <ImageButton

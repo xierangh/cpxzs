@@ -44,18 +44,17 @@ export default class UserCenterView extends React.Component{
         <ScrollView
           automaticallyAdjustContentInsets={false}
           >
-        <View style={{height:270,alignItems:'stretch',flexDirection:'row',backgroundColor:'gray'}}>
+        <View style={{height:270*Utils.scale,alignItems:'stretch',flexDirection:'row',backgroundColor:'gray'}}>
           <Image
             source={require('./ico/user-bg.png')}
-            style={{flex:1,height:270,resizeMode:'stretch',backgroundColor:'#fff0'}}>
-            <View style={{alignItems:'center',marginTop:75}}>
+            style={{flex:1,height:270*Utils.scale,resizeMode:'stretch',backgroundColor:'#fff0'}}>
+            <View style={{alignItems:'center',marginTop:75*Utils.scale}}>
               <Image
-                  resizeMode={'center'}
                   source={require('./ico/index_logo.png')}
-                  style={{width:76,height:76,borderRadius:38,borderWidth:3,borderColor:'#fff',backgroundColor:'#fff'}}/>
+                  style={{width:76*Utils.scale,height:76*Utils.scale,borderRadius:38*Utils.scale,borderWidth:3,borderColor:'#fff'}}/>
               </View>
               <View style={{alignItems:'center',marginTop:10}}>
-                <Text style={{color:'#fff',fontSize:20}}>{Utils.userInfo.nickName}</Text>
+                <Text style={{color:'#fff',fontSize:20*Utils.scale}}>{Utils.userInfo.nickName}</Text>
               </View>
               {/*
               <View style={{marginTop:45,flexDirection:'row'}}>

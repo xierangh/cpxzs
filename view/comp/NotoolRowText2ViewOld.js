@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import _ from 'lodash'
+import Utils from './../Utils'
 
 class NumberCircle extends React.Component{
   static propTypes={
@@ -168,6 +169,7 @@ var height_L=24;
 var borderRadius=4;
 
 var {height, width} = Dimensions.get('window');
+var pxielRatio = PixelRatio.get();
 var marg = 3;
 if (height <= 568) {
     width_L=40;
@@ -177,7 +179,10 @@ if (height <= 568) {
 }else {
   width_L=50;
 }
-var pxielRatio = PixelRatio.get();
+width_L = width_L*Utils.scale;
+height_L = height_L*Utils.scale;
+// marg = marg*2/pxielRatio;
+
 console.log('*************old:height='+height+',width='+width+',pxielRatio='+pxielRatio);
 const mystyle=StyleSheet.create({
 	circle:{
@@ -190,7 +195,7 @@ const mystyle=StyleSheet.create({
 		margin:marg,
 	},
 	c_number:{
-		fontSize:12,
+		fontSize:12*Utils.scale,
 		color:'#333',
 		textAlign:'center',
 	},
@@ -204,7 +209,7 @@ const mystyle=StyleSheet.create({
 		margin:marg,
 	},
 	c_number_selected:{
-		fontSize:12,
+		fontSize:12*Utils.scale,
 		color:'#fff',
 		textAlign:'center',
 	},

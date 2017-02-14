@@ -15,6 +15,7 @@ import {
     Image,
 } from 'react-native';
 
+import Utils from './../Utils'
 let title_color_bg = 'rgba(238, 83, 88,1.0)';
 
 export default class NavigatorTitle extends Component{
@@ -68,7 +69,7 @@ let styles = StyleSheet.create({
                                    color:'#fff',
                                    alignSelf:'center',
                                    textAlign:'center',
-                                   fontSize:18,
+                                   fontSize:18*Utils.scale,
                                    marginRight:50,
                                  },
 

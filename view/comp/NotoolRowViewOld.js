@@ -6,10 +6,12 @@ import {
     Text,
     View,
     StyleSheet,
-    TouchableHighlight
+    TouchableHighlight,
+    PixelRatio
 } from 'react-native';
 
 import _ from 'lodash'
+import Utils from './../Utils'
 
 class NumberCircle extends React.Component{
   static propTypes={
@@ -177,7 +179,8 @@ export default class NotoolRowView extends React.Component{
   }
 }
 
-var circle_size=24;
+var circle_size=24*Utils.scale;
+
 const mystyle=StyleSheet.create({
 	circle:{
 		width:circle_size,
@@ -189,7 +192,7 @@ const mystyle=StyleSheet.create({
 		margin:3,
 	},
 	c_number:{
-		fontSize:14,
+		fontSize:14*Utils.scale,
 		color:'#fff',
 		textAlign:'center',
 	},
@@ -203,7 +206,7 @@ const mystyle=StyleSheet.create({
 		margin:3,
 	},
 	c_number_selected:{
-		fontSize:14,
+		fontSize:14*Utils.scale,
 		color:'#fff',
 		textAlign:'center',
 	},

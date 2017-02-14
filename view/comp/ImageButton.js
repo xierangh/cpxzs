@@ -11,9 +11,10 @@ import {
     View,
     Text,
     TouchableHighlight,
-    Image,
+    Image
 } from 'react-native';
 
+import Utils from './../Utils'
 
 export default class ImageButton extends React.Component{
     static propTypes={
@@ -56,31 +57,34 @@ export default class ImageButton extends React.Component{
                 );
     }
  }
-let FirstPageCircleSize = 40;
+
+
+let FirstPageCircleSize = 40*Utils.scale;
+console.log('FirstPageCircleSize='+FirstPageCircleSize);
 let styles = StyleSheet.create(
-                              {
-                                firstPage_kaijiang_circle:{
-                              		width:FirstPageCircleSize,
-                              		height:FirstPageCircleSize,
-                              		borderRadius:FirstPageCircleSize/2,
-                              		alignItems:'center',
-                              		justifyContent:'center',
-                              		margin:5,
-                              	},
-                               style_view_commit:{
-                                justifyContent: 'center',
-                               	alignItems: 'center',
-                               	height:60,
-                               	width:60,
-                              },
-                             image:{
-                               height:40,
-                               width:40,
-                             },
-                             text: {
-                               textAlign:'center',
-                               color:'#323232',
-                               fontSize:13,
-                             },
+      {
+        firstPage_kaijiang_circle:{
+            width:FirstPageCircleSize,
+            height:FirstPageCircleSize,
+            borderRadius:FirstPageCircleSize/2,
+            alignItems:'center',
+            justifyContent:'center',
+            margin:3,
+        },
+       style_view_commit:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        height:60*Utils.scale,
+        width:60*Utils.scale,
+      },
+     image:{
+       height:40*Utils.scale,
+       width:40*Utils.scale,
+     },
+     text: {
+       textAlign:'center',
+       color:'#323232',
+       fontSize:13*Utils.scale,
+     },
 }
 );

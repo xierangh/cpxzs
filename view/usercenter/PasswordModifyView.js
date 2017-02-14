@@ -6,6 +6,7 @@ import {
     View,
     Image,
     TextInput,
+    StyleSheet
 } from 'react-native';
 
 import styles from './../stylecpxzs';
@@ -64,8 +65,8 @@ export default class PasswordModifyView extends React.Component{
          onPress={()=>this.props.navigator.pop()}
          text={'修改密码'}>
       </NavigatorTitle>
-        <View style={{marginTop:20,marginLeft:23,marginRight:23,borderRadius:5,height:180,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
-            <View style={{height:60,flexDirection:'row'}}>
+        <View style={{marginTop:20,marginLeft:23,marginRight:23,borderRadius:5,height:180*Utils.scale,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
+            <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
                   onChangeText={(text) => this.setState({passwd:text})}
@@ -77,7 +78,7 @@ export default class PasswordModifyView extends React.Component{
                   placeholderTextColor='#929292'></TextInput>
             </View>
             <View style={styles.splitLine}></View>
-            <View style={{height:60,flexDirection:'row'}}>
+            <View style={mystyle.rowview}>
             <TextInput style={styles.style_input}
                 autoCorrect={false}
                 onChangeText={(text) => this.setState({new_passwd:text})}
@@ -89,7 +90,7 @@ export default class PasswordModifyView extends React.Component{
                 placeholderTextColor='#929292'></TextInput>
             </View>
             <View style={styles.splitLine}></View>
-            <View style={{height:60,flexDirection:'row'}}>
+            <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
                   onChangeText={(text) => this.setState({confirm_passwd:text})}
@@ -112,3 +113,11 @@ export default class PasswordModifyView extends React.Component{
     );
   }
 }
+
+var mystyle = StyleSheet.create({
+  rowview:{
+    height:60*Utils.scale,
+    flexDirection:'row',
+    alignItems:'center'
+  }
+})

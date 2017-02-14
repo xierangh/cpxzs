@@ -101,7 +101,6 @@ export default class NewsDescView extends React.Component{
                 automaticallyAdjustContentInsets={false}
                 style={{backgroundColor:'#0000',flex:1}}
     	          ref={WEBVIEW_REF}
-                automaticallyAdjustContentInsets={true}
                 source={{html:'<div>'+this.state.data.content+'</div>'}}
                 scrollEnabled={true}
                 javaScriptEnabled={true}
@@ -111,9 +110,7 @@ export default class NewsDescView extends React.Component{
           :
           <Loading />
         }
-
-
-			</View>
+        </View>
 		)
 	}
 }

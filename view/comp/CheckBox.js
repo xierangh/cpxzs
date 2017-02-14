@@ -9,6 +9,7 @@ import {
   TouchableHighlight
 } from "react-native"
 
+import Utils from './../Utils'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -89,7 +90,7 @@ export default class CheckBox extends React.Component{
           <View style={styles.labelContainer}>
             <Text style={[styles.label, this.props.labelStyle]}>{this.props.label}</Text>
           </View>
-          <Icon name={source} size={16} style={styles.checkbox} color="#00B4F7" ></Icon>
+          <Icon name={source} size={16*Utils.scale} style={styles.checkbox} color="#00B4F7" ></Icon>
         </View>
       );
     }

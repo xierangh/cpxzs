@@ -5,10 +5,13 @@ import {
     View,
     StyleSheet,
     Image,
+    PixelRatio
 } from 'react-native';
 
 import styles from './../stylecpxzs'
 import Utils from './../Utils'
+
+
 
 var nextPeriodStr_g ='';
 var seconds_g = 0;
@@ -147,15 +150,15 @@ export default class NotoolTimeViewOld extends React.Component{
         </View>
         :
         <View style={{backgroundColor:'#fff',flexDirection:'row',paddingVertical:5,justifyContent:'center'}}>
-          <Image source={require('./../ico/logo_min.png')} style={{marginLeft:10,marginRight:2,width:20,height:20}} / >
+          <Image source={require('./../ico/logo_min.png')} style={{marginLeft:10,marginRight:2,width:20*Utils.scale,height:20*Utils.scale}} / >
           <Text style={{textAlign:'left',flex:1,alignSelf:'center'}}>{this.state.nextPeriodStr}期</Text>
            <View style={{flexDirection:'row'}}>
                 <Text style={{textAlign:'center',alignSelf:'center'}}>时间剩余:</Text>
-                <Text style={{width:23,fontSize:18,color:'#ea5656',alignSelf:'center'}}>{this.getHour()}</Text>
+                <Text style={{width:23*Utils.scale,fontSize:18*Utils.scale,color:'#ea5656',alignSelf:'center'}}>{this.getHour()}</Text>
                 <Text style={{textAlign:'center',alignSelf:'center'}}>时</Text>
-                <Text style={{width:23,fontSize:18,color:'#ea5656',alignSelf:'center'}}>{this.getMinute()}</Text>
+                <Text style={{width:23*Utils.scale,fontSize:18*Utils.scale,color:'#ea5656',alignSelf:'center'}}>{this.getMinute()}</Text>
                 <Text style={{textAlign:'center',alignSelf:'center'}}>分</Text>
-                <Text style={{width:23,fontSize:18,color:'#ea5656',alignSelf:'center'}}>{this.getSecond()}</Text>
+                <Text style={{width:23*Utils.scale,fontSize:18*Utils.scale,color:'#ea5656',alignSelf:'center'}}>{this.getSecond()}</Text>
                 <Text style={{textAlign:'center',alignSelf:'center'}}>秒</Text>
           </View>
         </View>

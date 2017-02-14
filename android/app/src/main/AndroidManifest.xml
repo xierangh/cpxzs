@@ -14,10 +14,10 @@
       android:name=".MainApplication"
       android:allowBackup="true"
       android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
+      android:icon="@mipmap/app_icon"
       android:theme="@style/AppTheme">
       <activity
-        android:name=".MainActivity"
+        android:name=".SplashActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
         <intent-filter>
@@ -26,6 +26,7 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
