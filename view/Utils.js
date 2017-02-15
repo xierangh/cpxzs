@@ -66,28 +66,6 @@ let Utils = {
     }
     return marg;
   },
-  getDataView:function(){
-		if(!Utils.userInfo){
-			return 0;
-		}
-		if(Utils.userInfo.tag == 'tech' || Utils.userInfo.tag == 'leader' || Utils.userInfo.tag == 'branch'){
-			return 1;
-		}
-		if(Utils.userInfo.tag == 'audit'){
-			return 2;
-		}
-	},
-	getAlertView:function(){
-		if(!Utils.userInfo){
-			return 0;
-		}
-		if(Utils.userInfo.tag == 'tech' || Utils.userInfo.tag == 'leader' || Utils.userInfo.tag == 'branch'){
-			return 1;
-		}
-		if(Utils.userInfo.tag == 'audit'){
-			return 2;
-		}
-	},
 	showAlert:function(title:string,msg:string){
 		Alert.alert(
             title,

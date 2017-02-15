@@ -151,7 +151,7 @@ export default class RegisterView extends React.Component{
                  labelStyle={{marginLeft:23}}
                  boxStyle={{width:50}}
                  onChange={(checked) => this.checkSelect(checked)} />
-            <Text onPress={()=> this.showInfo()} style={{flex:1,textAlign:'left',marginRight:23,color:'#ea5656'}}>我已阅读并接受《版权声明》和《隐私保护》</Text>
+            <Text onPress={()=> this.showInfo()} style={{flex:1,fontSize:12,textAlign:'left',marginRight:23,color:'#999'}}>我已阅读并接受《版权声明》和《隐私保护》</Text>
         </View>
         <CustomButton
             ref='loginBtn'

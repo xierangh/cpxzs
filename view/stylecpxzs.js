@@ -121,7 +121,6 @@ var stylecpxzs = StyleSheet.create({
 		flex:3,
 		backgroundColor:'#f0f0',
 		marginBottom:5,
-		fontWeight:'bold',
 		marginLeft:100,
 		alignSelf:'center',
 	},
@@ -506,6 +505,20 @@ var stylecpxzs = StyleSheet.create({
 		paddingVertical:10,
 		justifyContent:'space-around',
 		alignItems:'center',
+
+	},
+	picker_view:{
+		backgroundColor:'#fff',
+		width:64*scale,
+		alignSelf:'center',
+        marginRight:8,
+        borderRadius:12,
+        borderWidth:1,
+        borderColor:'#f00'
+	},
+	picker:{
+        width:150,
+		height:30
 	},
 
 	//table

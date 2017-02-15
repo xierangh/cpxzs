@@ -18,6 +18,7 @@ import CheckBox from './comp/CheckBox';
 import RegisterView from './RegisterView'
 import TabView from './TabView.android';
 import FortgetPasswordView from './FortgetPasswordView'
+import BackAndroidTool from './utils/BackAndroidTool'
 
 export default class LoginView extends React.Component{
 
@@ -60,16 +61,12 @@ export default class LoginView extends React.Component{
         console.log(err);
       })
 
-      BackAndroid.addEventListener('hardwareBackPress', function() {
-          if (!this.onMainScreen()) {
-              this.props.navigator.pop();
-              return true;
-          }
-          return false;
-      });
+      BackAndroidTool.addBackAndroidListener(this.props.navigator);
   }
   componentWillUnmount(){
     console.log('LoginView unmount');
+      // 移除返回键监听
+      BackAndroidTool.removeBackAndroidListener();
   }
   //login
   login(){
@@ -143,9 +140,7 @@ export default class LoginView extends React.Component{
     return (
       <View style={styles.container}>
       <StatusBar
-         backgroundColor="#f000"
          barStyle="default"
-         translucent={true}
        />
         <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20*Utils.scale,paddingVertical:10,marginTop:46*Utils.scale,color:'#333'}}>用户登录</Text>
         <View style={{alignItems:'center',marginVertical:30}}>

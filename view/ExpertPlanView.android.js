@@ -98,7 +98,7 @@ class ExpertPlanView extends React.Component {
   }
 
   onfinish(){
-
+    // this.refs.fn3_picker.onPress();
     this.onCreatePlan(1);
   }
 
@@ -428,10 +428,11 @@ class ExpertPlanView extends React.Component {
 
         <View style={styles.jpp_hide_view_fn}>
           <Text style={{marginTop:5,marginLeft:11,marginRight:5}}>方案设置</Text>
-          <View style={{backgroundColor:'#fff',marginBottom:20,width:100,flex:1,alignSelf:'center'}}>
+          <View style={styles.picker_view}>
               {this.state.wf == 'dw' &&
               <Picker
-                  selectedValue={this.state.fn1_w}
+                  style={styles.picker}
+                  selectedValue={this.state.fn1_w+''}
                   onValueChange={(itemValue) => this.setState({fn1_w:itemValue})}>
                 <Picker.Item label="个" value="1" />
                 <Picker.Item label="十" value="2" />
@@ -442,7 +443,8 @@ class ExpertPlanView extends React.Component {
               }
               {this.state.wf == 'bdw' &&
               <Picker
-                  selectedValue={this.state.fn1_w}
+                  style={styles.picker}
+                  selectedValue={this.state.fn1_w+''}
                   onValueChange={(itemValue) => this.setState({fn1_w:itemValue})}>
                 <Picker.Item label="前二" value="1" />
                 <Picker.Item label="前三" value="2" />
@@ -456,7 +458,8 @@ class ExpertPlanView extends React.Component {
               }
               {this.state.wf == 'zux' &&
               <Picker
-                  selectedValue={this.state.fn1_w}
+                  style={styles.picker}
+                  selectedValue={this.state.fn1_w+''}
                   onValueChange={(itemValue) => this.setState({fn1_w:itemValue})}>
                 <Picker.Item label="前二" value="1" />
                 <Picker.Item label="后二" value="2" />
@@ -467,7 +470,8 @@ class ExpertPlanView extends React.Component {
               }
               {this.state.wf == 'zhx' &&
               <Picker
-                  selectedValue={this.state.fn1_w}
+                  style={styles.picker}
+                  selectedValue={this.state.fn1_w+''}
                   onValueChange={(itemValue) => this.setState({fn1_w:itemValue})}>
                 <Picker.Item label="前二" value="1" />
                 <Picker.Item label="前三" value="2" />
@@ -478,11 +482,12 @@ class ExpertPlanView extends React.Component {
               }
           </View>
 
-          <View style={{backgroundColor:'#fff',marginBottom:20,width:100,flex:1}}>
+          <View style={styles.picker_view}>
 
               {this.state.wf == 'bdw' ?
                   <Picker
-                      selectedValue={this.state.fn2_m}
+                      style={styles.picker}
+                      selectedValue={this.state.fn2_m+''}
                       onValueChange={(itemValue) => this.setState({fn2_m: itemValue})}>
                     <Picker.Item label="1码" value="1" />
                     <Picker.Item label="2码" value="2" />
@@ -493,7 +498,8 @@ class ExpertPlanView extends React.Component {
                   </Picker>
                   :
                   <Picker
-                      selectedValue={this.state.fn2_m}
+                      style={styles.picker}
+                      selectedValue={this.state.fn2_m+''}
                       onValueChange={(itemValue) => this.setState({fn2_m: itemValue})}>
                     <Picker.Item label="1码" value="1" />
                     <Picker.Item label="2码" value="2" />
@@ -507,9 +513,11 @@ class ExpertPlanView extends React.Component {
                   </Picker>
               }
           </View>
-          <View style={{backgroundColor:'#fff',marginBottom:20,width:100,flex:1}}>
+          <View style={styles.picker_view}>
             <Picker
-                selectedValue={this.state.fn3_q}
+                ref="fn3_picker"
+                style={styles.picker}
+                selectedValue={this.state.fn3_q+''}
                 onValueChange={(itemValue) => this.setState({fn3_q: itemValue})}>
               <Picker.Item label="1期" value="1" />
               <Picker.Item label="2期" value="2" />

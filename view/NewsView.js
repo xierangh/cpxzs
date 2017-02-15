@@ -104,7 +104,7 @@ export default class NewsView extends React.Component{
             <Text style={{textAlign:'left',fontSize:14,color:'#1086d1',flex:1}}>{arr[0]}</Text>
             <Text style={{textAlign:'right',fontSize:14,color:'#999',flex:1}}>{arr[1]}</Text>
           </View>
-          <Text style={{textAlign:'left',fontSize:18,color:'#434343'}}>{data.title}</Text>
+          <Text style={{textAlign:'left',fontSize:16,color:'#434343'}}>{data.title}</Text>
         </View>
       </TouchableHighlight>
       )

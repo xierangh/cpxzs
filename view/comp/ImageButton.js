@@ -44,7 +44,7 @@ export default class ImageButton extends React.Component{
                 		disabled={this.state.isPress}
                     style={[styles.style_view_commit,this.props.customStyle]}
                     onPress={()=>this.onBtnPress()}>
-                    <View>
+                    <View style={{alignItems:'center'}}>
                       <View style={[styles.firstPage_kaijiang_circle]}>
                         <Image
                           style={styles.image}

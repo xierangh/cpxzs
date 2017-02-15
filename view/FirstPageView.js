@@ -8,6 +8,9 @@ import {
     View,
     Image,
     TouchableHighlight,
+    StatusBar,
+    ScrollView,
+    RefreshControl
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -15,7 +18,6 @@ import Utils from './Utils';
 import LoadingView from './comp/Loading';
 import ImageButton from './comp/ImageButton';
 import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
-import PullRefreshScrollView from 'react-native-pullrefresh-scrollview';
 
 // import SocketIO from 'react-native-swift-socketio';
 
@@ -31,53 +33,6 @@ const WS_EVENTS = [
 ];
 
 export default class FirstPageView extends React.Component{
-  _connect(){
-    const socket = new WebSocket(this.state.url);
-    // WS_EVENTS.forEach(ev => socket.addEventListener(ev, this._onSocketEvent));
-    socket.addEventListener('estimate', this._onSocketEvent);
-    socket.addEventListener('open', this._onSocketEvent);
-    socket.addEventListener('error', this._onSocketEvent);
-    console.log(socket);
-    this.setState({
-      socket,
-      socketState: socket.readyState,
-    });
-
-  };
-
-
-  _disconnect(){
-    if (!this.state.socket) {
-      return;
-    }
-    this.state.socket.close();
-  }
-
-  // Ideally this would be a MessageEvent, but Flow's definition
-  // doesn't inherit from Event, so it's 'any' for now.
-  // See https://github.com/facebook/flow/issues/1654.
-  _onSocketEvent(event: any){
-    const state: any = {
-      socketState: event.target.readyState,
-      lastSocketEvent: event.type,
-    };
-    console.log('event:'+event.type+','+event.data);
-    console.log(event);
-    if (event.type === 'message') {
-      state.lastMessage = event.data;
-    }else if(event.type == 'estimate'){
-      console.log('estimate:'+event.data);
-    }
-    // this.setState(state);
-  }
-
-  _sendText(){
-    if (!this.state.socket) {
-      return;
-    }
-    this.state.socket.send(this.state.outgoingMessage);
-    this.setState({outgoingMessage: ''});
-  }
 
   static propTypes={
       onItemPress:PropTypes.func,
@@ -159,7 +114,6 @@ export default class FirstPageView extends React.Component{
              this.setState({
                currentNumberArr:data.currentNumberArr,
                currentPeriod:data.currentPeriod,
-               loaded:true,
                // charthtml:JSON.stringify(data.details),
              });
              this.queryData(this.state.fetchurl);
@@ -169,6 +123,7 @@ export default class FirstPageView extends React.Component{
    queryData(furl:string){
       Utils.getWithParams(furl)
       .then((data)=>{
+            this.refs.PullRefresh.scrollsToTop=true;
             if(!data){
                     this.setState({
                                loaded:true,
@@ -182,7 +137,6 @@ export default class FirstPageView extends React.Component{
                 loaded:true,
                 // charthtml:JSON.stringify(data.details),
               });
-              this.refs.PullRefresh.onRefreshEnd();
         })
     }
 
@@ -245,8 +199,13 @@ export default class FirstPageView extends React.Component{
   }
   render(){
     return (
-      <View style={styles.container}>
 
+      <View style={styles.container}>
+          <StatusBar
+              backgroundColor="#f000"
+              barStyle="default"
+              translucent={true}
+          />
         <View style={styles.firstPage_title_container}>
             <Text style={styles.firstPage_title_left}>彩票小助手</Text>
             <TouchableHighlight
@@ -297,10 +256,21 @@ export default class FirstPageView extends React.Component{
       </View>
 
       <View style={styles.splitLine_l}></View>
-      <PullRefreshScrollView
+      <ScrollView
           ref="PullRefresh"
           backgroundColor={'#fff'}
-          onRefresh={()=>this.refreshMust()}
+          automaticallyAdjustContentInsets={false}
+          refreshControl={
+              <RefreshControl
+                refreshing={!this.state.loaded}
+                onRefresh={()=>this.refreshMust()}
+                tintColor="#ff0000"
+                title="下拉刷新..."
+                titleColor="#00ff00"
+                colors={['#ff0000', '#00ff00', '#0000ff']}
+                progressBackgroundColor="#ffff00"
+              />
+            }
           showsVerticalScrollIndicator={false}
       >
       <View style={{marginTop:5}}>
@@ -385,7 +355,7 @@ export default class FirstPageView extends React.Component{
         <LoadingView />
       }
 
-    </PullRefreshScrollView>
+    </ScrollView>
   </View>);
   }
 }
