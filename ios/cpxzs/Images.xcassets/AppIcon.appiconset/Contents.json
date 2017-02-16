@@ -3,11 +3,7 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-<<<<<<< Updated upstream
-      "size" : "20x20",
-=======
       "filename" : "icon-40.png",
->>>>>>> Stashed changes
       "scale" : "2x"
     },
     {
@@ -17,13 +13,10 @@
     },
     {
       "idiom" : "iphone",
-<<<<<<< Updated upstream
-=======
       "size" : "29x29",
       "scale" : "1x"
     },
     {
->>>>>>> Stashed changes
       "size" : "29x29",
       "idiom" : "iphone",
       "filename" : "icon-58.png",
