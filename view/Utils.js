@@ -11,6 +11,7 @@ import {
   PixelRatio
 } from 'react-native';
 
+import Toast from 'react-native-root-toast';
 import _ from 'lodash'
 import Storage from 'react-native-storage';
 var pxielRatio = PixelRatio.get();
@@ -67,10 +68,37 @@ let Utils = {
     return marg;
   },
 	showAlert:function(title:string,msg:string){
-		Alert.alert(
-            title,
-            msg,
-          )
+
+        let toast = Toast.show(msg, {
+            duration: Toast.durations.LONG,
+            position: Toast.positions.BOTTOM,
+            shadow: true,
+            animation: true,
+            hideOnPress: true,
+            delay: 0,
+            onShow: () => {
+                // calls on toast\`s appear animation start
+            },
+            onShown: () => {
+                // calls on toast\`s appear animation end.
+            },
+            onHide: () => {
+                // calls on toast\`s hide animation start.
+            },
+            onHidden: () => {
+                // calls on toast\`s hide animation end.
+            }
+        });
+
+// You can manually hide the Toast, or it will automatically disappear after a `duration` ms timeout.
+        setTimeout(function () {
+            Toast.hide(toast);
+        }, 1000);
+
+		// Alert.alert(
+         //    title,
+         //    msg,
+         //  )
 	},
   //设置超时
   timeout:function(ms, promise) {

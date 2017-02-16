@@ -9,8 +9,7 @@ import {
     Image,
     TouchableHighlight,
     StatusBar,
-    ScrollView,
-    RefreshControl
+
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -18,6 +17,7 @@ import Utils from './Utils';
 import LoadingView from './comp/Loading';
 import ImageButton from './comp/ImageButton';
 import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
+import PullRefreshScroll from 'react-native-pullrefresh-scrollview'
 
 // import SocketIO from 'react-native-swift-socketio';
 
@@ -256,21 +256,10 @@ export default class FirstPageView extends React.Component{
       </View>
 
       <View style={styles.splitLine_l}></View>
-      <ScrollView
+      <PullRefreshScroll
           ref="PullRefresh"
+          onRefresh={()=>this.refreshMust()}
           backgroundColor={'#fff'}
-          automaticallyAdjustContentInsets={false}
-          refreshControl={
-              <RefreshControl
-                refreshing={!this.state.loaded}
-                onRefresh={()=>this.refreshMust()}
-                tintColor="#ff0000"
-                title="下拉刷新..."
-                titleColor="#00ff00"
-                colors={['#ff0000', '#00ff00', '#0000ff']}
-                progressBackgroundColor="#ffff00"
-              />
-            }
           showsVerticalScrollIndicator={false}
       >
       <View style={{marginTop:5}}>
@@ -355,7 +344,7 @@ export default class FirstPageView extends React.Component{
         <LoadingView />
       }
 
-    </ScrollView>
+    </PullRefreshScroll>
   </View>);
   }
 }

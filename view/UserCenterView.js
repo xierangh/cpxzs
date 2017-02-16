@@ -46,7 +46,7 @@ export default class UserCenterView extends React.Component{
           >
         <View style={{height:270*Utils.scale,alignItems:'stretch',flexDirection:'row',backgroundColor:'gray'}}>
           <Image
-            source={require('./ico/user-bg.png')}
+            source={require('./ico/user_bg.png')}
             style={{flex:1,height:270*Utils.scale,resizeMode:'stretch',backgroundColor:'#fff0'}}>
             <View style={{alignItems:'center',marginTop:75*Utils.scale}}>
               <Image
@@ -83,13 +83,13 @@ export default class UserCenterView extends React.Component{
         />
         */}
         <UserRowView
-          img={require('./ico/02.png')}
+          img={require('./ico/u02.png')}
           title={'用户名'}
           titleRight={Utils.userInfo.loginName}
         />
 
         <UserRowView
-          img={require('./ico/04.png')}
+          img={require('./ico/u04.png')}
           onNext={()=>this.onClick('pwdmodify')}
           title={'修改密码'}
           titleRight={'修改登陆密码'}
