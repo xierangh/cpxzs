@@ -42,7 +42,7 @@ export default class FirstPageView extends React.Component{
 
     constructor(props){
          super(props);
-         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
          this.state={
               ds:ds,
              //datalist
@@ -140,10 +140,6 @@ export default class FirstPageView extends React.Component{
         })
     }
 
-   loadData(){
-       this.queryData(this.state.fetchurl);
-   }
-
    onBtnPress(title,data){
     //  console.log(title+','+data);
      this.props.onItemPress && this.props.onItemPress(title,data);
@@ -206,6 +202,12 @@ export default class FirstPageView extends React.Component{
               barStyle="default"
               translucent={true}
           />
+          <PullRefreshScroll
+              ref="PullRefresh"
+              onRefresh={()=>this.refreshMust()}
+              backgroundColor={'#fff'}
+              showsVerticalScrollIndicator={false}
+          >
         <View style={styles.firstPage_title_container}>
             <Text style={styles.firstPage_title_left}>彩票小助手</Text>
             <TouchableHighlight
@@ -256,12 +258,7 @@ export default class FirstPageView extends React.Component{
       </View>
 
       <View style={styles.splitLine_l}></View>
-      <PullRefreshScroll
-          ref="PullRefresh"
-          onRefresh={()=>this.refreshMust()}
-          backgroundColor={'#fff'}
-          showsVerticalScrollIndicator={false}
-      >
+
       <View style={{marginTop:5}}>
         <View style={styles.firstPage_planRow}>
           <ImageButton
@@ -323,7 +320,7 @@ export default class FirstPageView extends React.Component{
       <View style={styles.splitLine_l}></View>
 
 
-      <View style={[styles.tableHeader,styles.tableHeader_bord]} >
+      <View style={[styles.tableHeader]} >
         <Text style={[styles.histroy_item,styles.headerFont]}>期次</Text>
         <Text style={[styles.history_center_w,styles.headerFont,styles.headermgr]}>开奖号码</Text>
         <Text style={[styles.history_center,styles.headerFont,styles.headermgr]}>前三</Text>

@@ -11,13 +11,14 @@ import React,{
     NativeModules,
 } from 'react-native';
 
+import Utils from './../Utils'
 // 类
 var NativeCommonTools = NativeModules.CommonTools;
 
 export default {
     // 监听返回键事件
     addBackAndroidListener(navigator) {
-        if (Platform.OS === 'android') {
+        if (Platform.OS == 'android') {
             BackAndroid.addEventListener('hardwareBackPress',() => {
                 return this.onBackAndroid(navigator);
             });
@@ -26,7 +27,7 @@ export default {
 
     // 移除监听
     removeBackAndroidListener() {
-        if (Platform.OS === 'android') {
+        if (Platform.OS == 'android') {
             BackAndroid.removeEventListener('hardwareBackPress', () => {
             });
         }
@@ -38,6 +39,7 @@ export default {
         const routers = navigator.getCurrentRoutes();
         // 当前页面不为root页面和主界面时的处理
         const top = routers[routers.length - 1];
+        Utils.showAlert('',top.component.name);
         if (routers.length > 1 && top.component.name != 'tabView') {
 
             if (top.ignoreBack || top.component.ignoreBack) {

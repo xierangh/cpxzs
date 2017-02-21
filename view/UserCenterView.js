@@ -56,32 +56,32 @@ export default class UserCenterView extends React.Component{
               <View style={{alignItems:'center',marginTop:10}}>
                 <Text style={{color:'#fff',fontSize:20*Utils.scale}}>{Utils.userInfo.nickName}</Text>
               </View>
-              {/*
-              <View style={{marginTop:45,flexDirection:'row'}}>
+
+              <View style={{marginTop:40*Utils.scale,flexDirection:'row'}}>
                 <View style={{alignItems:'stretch',flex:1}}>
-                  <Text style={{textAlign:'center',color:'#fff',fontSize:14}}>{Utils.userInfo.registerTime.split(' ')[0]}</Text>
-                  <Text style={{textAlign:'center',marginTop:5,color:'#fff',fontSize:14}}>注册时间</Text>
+                  <Text style={{textAlign:'center',color:'#fff',fontSize:14*Utils.scale}}>{Utils.getDate(Utils.userInfo.registerTime)}</Text>
+                  <Text style={{textAlign:'center',marginTop:3*Utils.scale,color:'#fff',fontSize:14*Utils.scale}}>注册时间</Text>
                 </View>
-                <View style={{backgroundColor:'#fff',width:.5}}></View>
+                <View style={{backgroundColor:'#fff',width:.5*Utils.scale}}></View>
                 <View style={{alignItems:'stretch',flex:1}}>
-                  <Text style={{textAlign:'center',color:'#fff',fontSize:14}}>{Utils.userInfo.memberStartTime.split(' ')[0]}</Text>
-                  <Text style={{textAlign:'center',marginTop:5,color:'#fff',fontSize:14}}>开通时间</Text>
+                  <Text style={{textAlign:'center',color:'#fff',fontSize:14*Utils.scale}}>{Utils.getDate(Utils.userInfo.memberStartTime)}</Text>
+                  <Text style={{textAlign:'center',marginTop:3*Utils.scale,color:'#fff',fontSize:14*Utils.scale}}>开通时间</Text>
                 </View>
-                <View style={{backgroundColor:'#fff',width:.5}}></View>
+                <View style={{backgroundColor:'#fff',width:.5*Utils.scale}}></View>
                 <View style={{alignItems:'stretch',flex:1}}>
-                  <Text style={{textAlign:'center',color:'#fff',fontSize:14}}>{Utils.userInfo.memberEndTime.split(' ')[0]}</Text>
-                  <Text style={{textAlign:'center',marginTop:5,color:'#fff',fontSize:14}}>到期时间</Text>
+                  <Text style={{textAlign:'center',color:'#fff',fontSize:14*Utils.scale}}>{Utils.getDate(Utils.userInfo.memberEndTime)}</Text>
+                  <Text style={{textAlign:'center',marginTop:3*Utils.scale,color:'#fff',fontSize:14*Utils.scale}}>到期时间</Text>
                 </View>
               </View>
-              */}
+
             </Image>
         </View>
 
-        {/*<UserRowView
-          img={require('./ico/01.png')}
+        <UserRowView
+          img={require('./ico/u01.png')}
           title={'会员等级:'+Utils.userInfo.vipLevel}
         />
-        */}
+
         <UserRowView
           img={require('./ico/u02.png')}
           title={'用户名'}

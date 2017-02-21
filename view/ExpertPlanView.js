@@ -150,12 +150,18 @@ class ExpertPlanView extends React.Component {
     })
     Utils.post('jhfa/jhfaPlan',param)
     .then((data)=>{
-          if(!data.expressionName){
+          if(!data){
                   this.setState({
                     loaded:true
                   })
                   return;
            }
+        if(!data.expressionName){
+            this.setState({
+                loaded:true
+            })
+            return;
+        }
           //  console.log(data);
           //  console.log('queryPlan'+JSON.stringify(data));
           if (this.state.planValue) {
@@ -589,7 +595,7 @@ class ExpertPlanView extends React.Component {
         <View style={styles.splitLine}></View>
         <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
           <Text style={{fontSize:13*Utils.scale,paddingVertical:10,marginLeft:10}}>选中:</Text>
-          <Text style={{fontSize:13*Utils.scale,paddingVertical:10,color:'#f00',flex:1}}>{this.getWf_show()}>{this.getFn1_w_show()} {this.state.fn2_m}码 {this.fn3_q}期>{this.state.planValue.jhfaName}({this.state.planValue.winRate}%)</Text>
+          <Text style={{fontSize:13*Utils.scale,paddingVertical:10,color:'#ea5656',flex:1}}>{this.getWf_show()}>{this.getFn1_w_show()} {this.state.fn2_m}码 {this.fn3_q}期>{this.state.planValue.jhfaName}({this.state.planValue.winRate}%)</Text>
 
         </View>
         <View style={styles.splitLine}></View>

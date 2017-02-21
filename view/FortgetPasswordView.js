@@ -6,6 +6,7 @@ import {
     View,
     Image,
     TextInput,
+    StatusBar
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -49,6 +50,11 @@ export default class FortgetPasswordView extends React.Component{
   render(){
     return (
       <View style={styles.container}>
+      <StatusBar
+          backgroundColor="#f000"
+          barStyle="default"
+          translucent={true}
+      />
       <NavigatorTitle
          onPress={()=>this.props.navigator.pop()}
          text={'找回密码'}>

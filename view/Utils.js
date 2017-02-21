@@ -6,9 +6,11 @@
 'use strict';
 import React, {Component} from 'react';
 import {
-  Alert,
-  Dimensions,
-  PixelRatio
+    Alert,
+    Dimensions,
+    PixelRatio,
+    Platform,
+    ToastAndroid
 } from 'react-native';
 
 import Toast from 'react-native-root-toast';
@@ -23,9 +25,12 @@ if(pxielRatio >= 2){
 
 //url
 // let BASE_URL = 'http://192.168.0.211/'
-// let BASE_URL = 'http://vip.cpxzs.com/'
-let BASE_URL = 'http://www.cpxzs.com/';
-let TIME_OUT= 5000*10;
+let BASE_URL = 'http://vip.cpxzs.com/'
+// let BASE_URL = 'http://www.cpxzs.com/';
+let TIME_OUT= 1000*50;
+// if (Platform.OS == 'android'){
+//     TIME_OUT = 1000*5*5;
+// }
 
 let Utils = {
    //缩放比例
@@ -68,37 +73,37 @@ let Utils = {
     return marg;
   },
 	showAlert:function(title:string,msg:string){
+        if(Platform.OS == 'ios') {
 
-        let toast = Toast.show(msg, {
-            duration: Toast.durations.LONG,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            delay: 0,
-            onShow: () => {
-                // calls on toast\`s appear animation start
-            },
-            onShown: () => {
-                // calls on toast\`s appear animation end.
-            },
-            onHide: () => {
-                // calls on toast\`s hide animation start.
-            },
-            onHidden: () => {
-                // calls on toast\`s hide animation end.
-            }
-        });
+
+            let toast = Toast.show(msg, {
+                duration: Toast.durations.LONG,
+                position: Toast.positions.BOTTOM,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+                onShow: () => {
+                    // calls on toast\`s appear animation start
+                },
+                onShown: () => {
+                    // calls on toast\`s appear animation end.
+                },
+                onHide: () => {
+                    // calls on toast\`s hide animation start.
+                },
+                onHidden: () => {
+                    // calls on toast\`s hide animation end.
+                }
+            });
 
 // You can manually hide the Toast, or it will automatically disappear after a `duration` ms timeout.
-        setTimeout(function () {
-            Toast.hide(toast);
-        }, 1000);
-
-		// Alert.alert(
-         //    title,
-         //    msg,
-         //  )
+            setTimeout(function () {
+                Toast.hide(toast);
+            }, 1000);
+        }else{
+            ToastAndroid.show(msg, ToastAndroid.LONG);
+        }
 	},
   //设置超时
   timeout:function(ms, promise) {
@@ -197,6 +202,27 @@ let Utils = {
 	          }));
 	},
 
+    getDate(datetime){
+        if(datetime){
+            let arrdate = datetime.split(' ');
+            if(arrdate && arrdate.length>0)
+                return arrdate[0];
+        }
+        return '****-**-**'
+    },
+    getBigSmall(arr:array,farr:array){
+        var retarr=[];
+        for (var i = 0; i < arr.length; i++) {
+            for (var k = 0; k < farr.length; k++) {
+                if (arr[i].indexOf(farr[k]) >= 0) {
+                    retarr.push(arr[i]);
+                    break;
+                }
+            }
+        }
+        console.log(retarr.join(' '));
+        return retarr;
+    },
 	//deserve num behind point,保留小数点后num位小数,并4舍5入
 	formatNumber:function(value:number,num:number){
 		value = value*Math.pow(10,num);

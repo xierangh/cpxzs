@@ -107,14 +107,12 @@ var styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
   },
   checkbox: {
-    width: 16,
-    height: 16
+    width: 16*Utils.scale,
+    height: 16*Utils.scale
   },
   labelContainer: {
-    marginLeft: 2,
     marginRight: 10
   },
   label: {

@@ -209,11 +209,11 @@ export default class Notool3View extends React.Component{
     param =param + 'sumValueNum'+'='+this.arrayToStr(this.refs.hezhi.getUnSelected())+'&';
     param =param + 'sumValueKeepOrDel'+'='+keep+'&';
     //大小／奇偶／质合
-    param =param + 'bigSmallNum'+'='+this.arrayToStr(this.getBigSmall(this.refs.sddz.getSelected(),['大','小']))+'&';
+    param =param + 'bigSmallNum'+'='+this.arrayToStr(Utils.getBigSmall(this.refs.sddz.getSelected(),['大','小']))+'&';
     param =param + 'bigSmallKeepOrDel'+'='+remove+'&';
-    param =param + 'evenOddNum'+'='+this.arrayToStr(this.getBigSmall(this.refs.sddz.getSelected(),['奇','偶']))+'&';
+    param =param + 'evenOddNum'+'='+this.arrayToStr(Utils.getBigSmall(this.refs.sddz.getSelected(),['奇','偶']))+'&';
     param =param + 'evenOddKeepOrDel'+'='+remove+'&';
-    param =param + 'primeCompositeNum'+'='+this.arrayToStr(this.getBigSmall(this.refs.sddz.getSelected(),['质','合']))+'&';
+    param =param + 'primeCompositeNum'+'='+this.arrayToStr(Utils.getBigSmall(this.refs.sddz.getSelected(),['质','合']))+'&';
     param =param + 'primeCompositeKeepOrDel'+'='+remove+'&';
     //012
     param =param + 'approachNum'+'='+this.arrayToStr(this.refs.s012.getSelected())+'&';
@@ -375,8 +375,12 @@ export default class Notool3View extends React.Component{
   }
 
   copyno(){
+      if(this.state.resultSet.length <= 0){
+          Utils.showAlert('','请先生成号码')
+          return;
+      }
     Clipboard.setString(this.state.resultSet.join(' '));
-    Utils.showAlert('拷贝成功');
+    Utils.showAlert('','拷贝成功');
   }
 
   render(){

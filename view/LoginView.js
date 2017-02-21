@@ -34,6 +34,7 @@ export default class LoginView extends React.Component{
     }
   }
   componentDidMount(){
+      BackAndroidTool.addBackAndroidListener(this.props.navigator);
     console.log('LoginView componentWillMount');
     Utils.storage.load({
         key: 'userInfo',
@@ -61,7 +62,6 @@ export default class LoginView extends React.Component{
         console.log(err);
       })
 
-      BackAndroidTool.addBackAndroidListener(this.props.navigator);
   }
   componentWillUnmount(){
     console.log('LoginView unmount');
@@ -146,7 +146,7 @@ export default class LoginView extends React.Component{
         <View style={{alignItems:'center',marginVertical:30}}>
           <Image
             source={require('./ico/index_logo.png')}
-            style={{width:76*Utils.scale,height:76*Utils.scale,borderRadius:38*Utils.scale,borderWidth:3,borderColor:'#edddc6'}}/>
+            style={{width:76*Utils.scale,height:76*Utils.scale,borderRadius:38*Utils.scale,borderWidth:1,borderColor:'#edddc6'}}/>
         </View>
         <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:123*Utils.scale,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
             <View style={mystyle.rowview}>

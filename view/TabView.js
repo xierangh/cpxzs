@@ -19,7 +19,7 @@ import FirstPageView from './FirstPageView';
 import ExpertPlanView from './ExpertPlanView';
 import NoToolView from './NoToolView';
 import UserCenterView from './UserCenterView';
-import HistoryView from './HistoryView';
+import HistoryView from './firstpage/HistoryView';
 import NetWorkTool from './utils/NetWorkTool'
 import NewsView from './NewsView'
 

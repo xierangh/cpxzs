@@ -108,6 +108,10 @@ export default class Notool2View extends React.Component{
         }
         this.refs.s012.setSelected([]);
         this.refs.sddz.setSelected([]);
+
+        this.setState({
+            resultSet:[],
+        })
         break;
       default:
 
@@ -143,20 +147,6 @@ export default class Notool2View extends React.Component{
   //数组转化为字符串
   arrayToStr(arr:array){
     return arr.join(',');
-  }
-
-  getBigSmall(arr:array,farr:array){
-    var retarr=[];
-    for (var i = 0; i < arr.length; i++) {
-      for (var k = 0; k < farr.length; k++) {
-        if (arr[i].indexOf(farr[k]) >= 0) {
-          retarr.push(arr[i]);
-          break;
-        }
-      }
-    }
-    console.log(retarr.join(' '));
-    return retarr;
   }
 
   createNo(){
@@ -196,11 +186,11 @@ export default class Notool2View extends React.Component{
     param =param + 'sumValueNum'+'='+this.arrayToStr(this.refs.hezhi.getUnSelected())+'&';
     param =param + 'sumValueKeepOrDel'+'='+keep+'&';
     //大小／奇偶／质合
-    param =param + 'bigSmallNum'+'='+this.arrayToStr(this.getBigSmall(this.refs.sddz.getSelected(),['大','小']))+'&';
+    param =param + 'bigSmallNum'+'='+this.arrayToStr(Utils.getBigSmall(this.refs.sddz.getSelected(),['大','小']))+'&';
     param =param + 'bigSmallKeepOrDel'+'='+remove+'&';
-    param =param + 'evenOddNum'+'='+this.arrayToStr(this.getBigSmall(this.refs.sddz.getSelected(),['奇','偶']))+'&';
+    param =param + 'evenOddNum'+'='+this.arrayToStr(Utils.getBigSmall(this.refs.sddz.getSelected(),['奇','偶']))+'&';
     param =param + 'evenOddKeepOrDel'+'='+remove+'&';
-    param =param + 'primeCompositeNum'+'='+this.arrayToStr(this.getBigSmall(this.refs.sddz.getSelected(),['质','合']))+'&';
+    param =param + 'primeCompositeNum'+'='+this.arrayToStr(Utils.getBigSmall(this.refs.sddz.getSelected(),['质','合']))+'&';
     param =param + 'primeCompositeKeepOrDel'+'='+remove+'&';
     //012
     param =param + 'approachNum'+'='+this.arrayToStr(this.refs.s012.getSelected())+'&';
@@ -348,8 +338,12 @@ export default class Notool2View extends React.Component{
   }
 
   copyno(){
+      if(this.state.resultSet.length <= 0){
+          Utils.showAlert('','请先生成号码')
+          return;
+      }
     Clipboard.setString(this.state.resultSet.join(' '));
-    Utils.showAlert('拷贝成功');
+    Utils.showAlert('','拷贝成功');
   }
 
   render(){

@@ -110,7 +110,6 @@ var stylecpxzs = StyleSheet.create({
 		flex:3,
 		backgroundColor:'#f0f0',
 		marginBottom:5*scale,
-		fontWeight:'bold',
 		alignSelf:'center',
 	},
 	firstPage_title_left:{
@@ -514,7 +513,7 @@ var stylecpxzs = StyleSheet.create({
         marginRight:8,
         borderRadius:12,
         borderWidth:1,
-        borderColor:'#f00'
+        borderColor:'#ea5656'
 	},
 	picker:{
         width:150,
@@ -701,9 +700,10 @@ var stylecpxzs = StyleSheet.create({
 	notool_result_text:{
 		marginLeft:10,
 		marginRight:10,
+		padding:3,
 		fontSize:10,
 		borderColor:'#eee',
-		borderWidth:1,
+		borderWidth:2,
 		borderRadius:4,
 		flex:1,
 		marginVertical:5,
