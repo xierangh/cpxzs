@@ -40,8 +40,9 @@ export default class UserCenterView extends React.Component{
 
   render(){
     return (
-      <View style={[styles.container,{backgroundColor:'#eeeeee'}]}>
+      <View style={[styles.container]}>
         <ScrollView
+            style={{backgroundColor:'#eeeeee'}}
           automaticallyAdjustContentInsets={false}
           >
         <View style={{height:270*Utils.scale,alignItems:'stretch',flexDirection:'row',backgroundColor:'gray'}}>
@@ -56,7 +57,7 @@ export default class UserCenterView extends React.Component{
               <View style={{alignItems:'center',marginTop:10}}>
                 <Text style={{color:'#fff',fontSize:20*Utils.scale}}>{Utils.userInfo.nickName}</Text>
               </View>
-
+              {/*
               <View style={{marginTop:40*Utils.scale,flexDirection:'row'}}>
                 <View style={{alignItems:'stretch',flex:1}}>
                   <Text style={{textAlign:'center',color:'#fff',fontSize:14*Utils.scale}}>{Utils.getDate(Utils.userInfo.registerTime)}</Text>
@@ -73,15 +74,16 @@ export default class UserCenterView extends React.Component{
                   <Text style={{textAlign:'center',marginTop:3*Utils.scale,color:'#fff',fontSize:14*Utils.scale}}>到期时间</Text>
                 </View>
               </View>
+              */}
 
             </Image>
         </View>
-
+            {/*
         <UserRowView
           img={require('./ico/u01.png')}
           title={'会员等级:'+Utils.userInfo.vipLevel}
         />
-
+            */}
         <UserRowView
           img={require('./ico/u02.png')}
           title={'用户名'}

@@ -137,6 +137,7 @@ export default class FirstPageView extends React.Component{
                 loaded:true,
                 // charthtml:JSON.stringify(data.details),
               });
+              this.refs.PullRefresh.onRefreshEnd();
         })
     }
 
@@ -202,12 +203,7 @@ export default class FirstPageView extends React.Component{
               barStyle="default"
               translucent={true}
           />
-          <PullRefreshScroll
-              ref="PullRefresh"
-              onRefresh={()=>this.refreshMust()}
-              backgroundColor={'#fff'}
-              showsVerticalScrollIndicator={false}
-          >
+
         <View style={styles.firstPage_title_container}>
             <Text style={styles.firstPage_title_left}>彩票小助手</Text>
             <TouchableHighlight
@@ -259,6 +255,12 @@ export default class FirstPageView extends React.Component{
 
       <View style={styles.splitLine_l}></View>
 
+      <PullRefreshScroll
+          ref="PullRefresh"
+          onRefresh={()=>this.refreshMust()}
+          backgroundColor={'#fff'}
+          showsVerticalScrollIndicator={false}
+      >
       <View style={{marginTop:5}}>
         <View style={styles.firstPage_planRow}>
           <ImageButton

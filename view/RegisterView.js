@@ -6,7 +6,8 @@ import {
     View,
     Image,
     TextInput,
-    StyleSheet
+    StyleSheet,
+    Dimensions
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -96,7 +97,7 @@ export default class RegisterView extends React.Component{
   render(){
     return (
       <View style={styles.container}>
-        <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20*Utils.scale,color:'#333',paddingVertical:10,marginTop:46,marginBottom:20}}>用户注册</Text>
+        <Text style={mystyle.title}>用户注册</Text>
 
         <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:240*Utils.scale,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>
             <View style={mystyle.rowview}>
@@ -160,15 +161,44 @@ export default class RegisterView extends React.Component{
         </CustomButton>
 
 
-        <Text onPress={()=>this.props.navigator.pop()} style={{flex:1,alignSelf:'stretch',textAlign:'center',color:'#ea5656',marginTop:50,fontSize:16}}>已有账号 去登录</Text>
+        <Text onPress={()=>this.props.navigator.pop()} style={mystyle.regtext}>已有账号 去登录</Text>
       </View>
     );
   }
 }
+
+var {height, width} = Dimensions.get('window');
+
+var mvertical = 30;
+var mtop = 46;
+var mbottom = 20;
+if(height < 520){
+    mvertical=5;
+    mtop = 30;
+    mbottom = 0;
+}
+
 var mystyle = StyleSheet.create({
   rowview:{
     height:60*Utils.scale,
     flexDirection:'row',
     alignItems:'center'
-  }
+  },
+    regtext:{
+        flex:1,
+        fontSize:16*Utils.scale,
+        alignSelf:'stretch',
+        textAlign:'center',
+        color:'#ea5656',
+        marginTop:mtop*Utils.scale
+    },
+    title:{
+        textAlign:'center',
+        alignSelf:'stretch',
+        fontSize:20*Utils.scale,
+        color:'#333',
+        paddingVertical:10,
+        marginTop:mtop,
+        marginBottom:mbottom
+    }
 })

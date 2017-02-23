@@ -8,7 +8,9 @@ import {
     TextInput,
     StyleSheet,
     StatusBar,
-    BackAndroid
+    BackAndroid,
+    ToastAndroid,
+    Dimensions
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -19,6 +21,9 @@ import RegisterView from './RegisterView'
 import TabView from './TabView.android';
 import FortgetPasswordView from './FortgetPasswordView'
 import BackAndroidTool from './utils/BackAndroidTool'
+
+var lastBackPressed = 0;
+
 
 export default class LoginView extends React.Component{
 
@@ -127,12 +132,34 @@ export default class LoginView extends React.Component{
     this.setState({savepwd:!this.state.savepwd})
   }
 
+    handleBack(){
+
+      var datenow = Date.now();
+
+        var overtime = datenow - lastBackPressed;
+        console.log('lastBackPressed:'+lastBackPressed+',Date.now():'+datenow+',overtime:'+overtime);
+        // 当前页面为root页面时的处理
+        if (lastBackPressed){
+            if(overtime >= 100){
+                if(overtime < 2000){
+                    //最近2秒内按过back键，可以退出应用。
+                    BackAndroid.exitApp();
+                    return true;
+                }
+            }
+        }
+        lastBackPressed = Date.now();
+        if (overtime >= 100)
+            ToastAndroid.show('再按一次退出应用',ToastAndroid.SHORT);
+    }
+
   gotoMain(){
     //goto tabbar page
     this.props.navigator.push({
                           navigationBarHidden:true,
                           component:TabView,
-                          wrapperStyle:styles.wrapperStyle
+                          wrapperStyle:styles.wrapperStyle,
+                          handleBack:this.handleBack,
                           });
 
   }
@@ -143,7 +170,7 @@ export default class LoginView extends React.Component{
          barStyle="default"
        />
         <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20*Utils.scale,paddingVertical:10,marginTop:46*Utils.scale,color:'#333'}}>用户登录</Text>
-        <View style={{alignItems:'center',marginVertical:30}}>
+        <View style={mystyle.iconview}>
           <Image
             source={require('./ico/index_logo.png')}
             style={{width:76*Utils.scale,height:76*Utils.scale,borderRadius:38*Utils.scale,borderWidth:1,borderColor:'#edddc6'}}/>
@@ -190,7 +217,7 @@ export default class LoginView extends React.Component{
         </CustomButton>
 
 
-        <Text onPress={()=>this.goReg()} style={{flex:1,fontSize:16*Utils.scale,alignSelf:'stretch',textAlign:'center',color:'#666',marginTop:100*Utils.scale}}>去注册新用户</Text>
+        <Text onPress={()=>this.goReg()} style={mystyle.regtext}>去注册新用户</Text>
       </View>
     );
   }
@@ -214,11 +241,32 @@ export default class LoginView extends React.Component{
   }
 }
 
+var {height, width} = Dimensions.get('window');
+
+var mvertical = 30;
+var mtop = 100;
+if(height < 520){
+    mvertical=5;
+    mtop = 20;
+}
+
 var mystyle = StyleSheet.create({
   rowview:{
       height:60*Utils.scale,
       flexDirection:'row',
       alignItems:'center',
       justifyContent:'space-around',
-  }
+  },
+    iconview:{
+      alignItems:'center',
+      marginVertical:mvertical
+  },
+    regtext:{
+        flex:1,
+        fontSize:16*Utils.scale,
+        alignSelf:'stretch',
+        textAlign:'center',
+        color:'#666',
+        marginTop:mtop*Utils.scale
+    }
 })
