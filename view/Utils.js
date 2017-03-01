@@ -25,7 +25,7 @@ if(pxielRatio >= 2){
 
 //url
 // let BASE_URL = 'http://192.168.0.211/'
-let BASE_URL = 'http://vip.cpxzs.com/'
+let BASE_URL = 'http://shoujiapp.cpxzs.com/'
 // let BASE_URL = 'http://www.cpxzs.com/';
 let TIME_OUT= 1000*50;
 // if (Platform.OS == 'android'){

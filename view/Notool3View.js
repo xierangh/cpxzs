@@ -108,6 +108,10 @@ export default class Notool3View extends React.Component{
         }
         this.refs.s012.setSelected([]);
         this.refs.sddz.setSelected([]);
+        
+        this.setState({
+              resultSet:[],
+          })
         break;
       default:
 
