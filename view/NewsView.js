@@ -120,7 +120,6 @@ export default class NewsView extends React.Component{
 
           <NotoolTimeViewOld
             ref='timeview'
-            refresh={()=>this.queryTime()}
           />
 
           <View style={styles.splitLine}></View>

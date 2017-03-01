@@ -580,8 +580,8 @@ export default class Notool2View extends React.Component{
             underlayColor={'#ea565630'}
             >
             <View style={styles.notool_btn}>
-            <Text style={styles.notool_btn_text}>复制号码</Text>
-            </View>
+              <Text style={styles.notool_btn_text}>复制号码</Text>
+          </View>
           </TouchableHighlight>
           <TouchableHighlight
             onPress={()=>this.clearSelect('all')}

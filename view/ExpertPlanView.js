@@ -503,8 +503,8 @@ class ExpertPlanView extends React.Component {
                 selectedValue={this.state.fn1_w}
                 onValueChange={(index) => this.setState({fn1_w:index})}>
                 <Picker.Item label="前二" value="1" />
-                <Picker.Item label="前三" value="2" />
-                <Picker.Item label="后二" value="3" />
+                <Picker.Item label="后二" value="2" />
+                <Picker.Item label="前三" value="3" />
                 <Picker.Item label="中三" value="4" />
                 <Picker.Item label="后三" value="5" />
               </Picker>

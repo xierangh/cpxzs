@@ -75,6 +75,7 @@ export default class LoginView extends React.Component{
   }
   //login
   login(){
+      // this.refs.loginBtn.requestfocus();
     // this.gotoMain();
       var usernameTxt = this.state.username;
       var passwdTxt = this.state.passwd;
@@ -193,6 +194,7 @@ export default class LoginView extends React.Component{
               <TextInput style={styles.style_input}
                   underlineColorAndroid={'transparent'}
                   autoCorrect={false}
+                  maxLength={12}
                   onChangeText={(text) => this.setState({passwd:text})}
                   value={this.state.passwd}
                   secureTextEntry={true}
@@ -208,7 +210,7 @@ export default class LoginView extends React.Component{
                  labelStyle={{marginLeft:23}}
                  boxStyle={{width:150*Utils.scale}}
                  onChange={(checked) => this.checkSelect(checked)} />
-            <Text onPress={()=>this.goForgetView()} style={{flex:1,textAlign:'right',marginRight:23,color:'#ea5656'}}>忘记密码?</Text>
+            <Text onPress={()=>this.goForgetView()} style={{flex:1,textAlign:'right',marginRight:23,color:'#ea5656',textDecorationLine:'underline'}}>忘记密码?</Text>
         </View>
         <CustomButton
           ref='loginBtn'
@@ -267,6 +269,7 @@ var mystyle = StyleSheet.create({
         alignSelf:'stretch',
         textAlign:'center',
         color:'#666',
-        marginTop:mtop*Utils.scale
+        marginTop:mtop*Utils.scale,
+        textDecorationLine:'underline',
     }
 })

@@ -25,14 +25,20 @@ if(pxielRatio >= 2){
 
 //url
 // let BASE_URL = 'http://192.168.0.211/'
-// let BASE_URL = 'http://vip.cpxzs.com/'
-let BASE_URL = 'http://www.cpxzs.com/';
+let BASE_URL = 'http://vip.cpxzs.com/'
+// let BASE_URL = 'http://www.cpxzs.com/';
 let TIME_OUT= 1000*50;
 // if (Platform.OS == 'android'){
 //     TIME_OUT = 1000*5*5;
 // }
 
 let Utils = {
+     FONT_BIG_PLUS :24*scale,
+     FONT_BIG : 18*scale,
+     FONT_BIG_SUB : 16*scale,
+     FONT_NORMAL : 14*scale,
+     FONT_SMALL : 12*scale,
+     FONT_SMALL_S : 11*scale,
    //缩放比例
    scale:scale,
    storage : new Storage({
@@ -72,13 +78,13 @@ let Utils = {
     }
     return marg;
   },
+
 	showAlert:function(title:string,msg:string){
         if(Platform.OS == 'ios') {
 
-
             let toast = Toast.show(msg, {
                 duration: Toast.durations.LONG,
-                position: Toast.positions.BOTTOM,
+                position: Toast.positions.CENTER,
                 shadow: true,
                 animation: true,
                 hideOnPress: true,
@@ -102,7 +108,7 @@ let Utils = {
                 Toast.hide(toast);
             }, 1000);
         }else{
-            ToastAndroid.show(msg, ToastAndroid.LONG);
+            ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT,ToastAndroid.CENTER);
         }
 	},
   //设置超时

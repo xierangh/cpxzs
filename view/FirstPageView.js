@@ -283,39 +283,40 @@ export default class FirstPageView extends React.Component{
             />
 
             <ImageButton
-              iconUrl={require('./ico/rema_plan.png')}
+              iconUrl={require('./ico/rema_plan_unuse.png')}
               title={'热码计划'}
               />
           <ImageButton
-            iconUrl={require('./ico/baby_plan.png')}
+            iconUrl={require('./ico/tuibo_plan_unuse.png')}
             title={'推波计划'}
             bgcolor={'#0f0'}
             />
             <ImageButton
               onPress={()=>this.onBtnPress('做号工具','zuohao')}
-              iconUrl={require('./ico/shensheng_plan.png')}
+              iconUrl={require('./ico/zuohao.png')}
               title={'做号工具'}
               bgcolor={'#00f'}
               />
         </View>
         <View style={styles.firstPage_planRow}>
           <ImageButton
-            iconUrl={require('./ico/zusan.png')}
-            title={'倍投计算'}
-            customStyle={styles.customStyle}
+              onPress={()=>this.onBtnPress('倍投计算','beitou')}
+              iconUrl={require('./ico/zusan.png')}
+              title={'倍投计算'}
+              customStyle={styles.customStyle}
             />
           <ImageButton
-            iconUrl={require('./ico/zuxuan.png')}
+            iconUrl={require('./ico/tuibo_unuse.png')}
             title={'推波计算'}
             customStyle={styles.customStyle}
             />
             <ImageButton
-              iconUrl={require('./ico/dadi.png')}
+              iconUrl={require('./ico/dadi_unuse.png')}
               title={'大底验证'}
               customStyle={styles.customStyle}
               />
             <ImageButton
-              iconUrl={require('./ico/yilou.png')}
+              iconUrl={require('./ico/yilou_unuse.png')}
               title={'遗漏助手'}
               customStyle={styles.customStyle}
               />

@@ -69,6 +69,7 @@ export default class PasswordModifyView extends React.Component{
             <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
+                  maxLength={12}
                   onChangeText={(text) => this.setState({passwd:text})}
                   value={this.state.username}
                   autoCapitalize='none'
@@ -81,6 +82,7 @@ export default class PasswordModifyView extends React.Component{
             <View style={mystyle.rowview}>
             <TextInput style={styles.style_input}
                 autoCorrect={false}
+                maxLength={12}
                 onChangeText={(text) => this.setState({new_passwd:text})}
                 value={this.state.new_passwd}
                 autoCapitalize='none'
@@ -93,6 +95,7 @@ export default class PasswordModifyView extends React.Component{
             <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
+                  maxLength={12}
                   onChangeText={(text) => this.setState({confirm_passwd:text})}
                   value={this.state.confirm_passwd}
                   secureTextEntry={true}

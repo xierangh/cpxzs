@@ -81,6 +81,17 @@ var stylecpxzs = StyleSheet.create({
 		backgroundColor: '#EEE6',
 	},
 	//按钮
+	yellowbtn:{
+        width:68*scale,
+        height:30*scale,
+        borderRadius:4,
+        borderColor:'rgb(255,131,33)',
+        borderWidth:1,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'rgb(255,131,33)',
+        margin:3,
+    },
 	image:{
 		width:30*scale,
 		height:30*scale,
@@ -713,3 +724,4 @@ var stylecpxzs = StyleSheet.create({
 var notool_circle_size=20;
 
 module.exports = stylecpxzs;
+

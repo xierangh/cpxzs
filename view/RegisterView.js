@@ -125,6 +125,7 @@ export default class RegisterView extends React.Component{
             <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
+                  maxLength={12}
                   onChangeText={(text) => this.setState({passwd:text})}
                   value={this.state.passwd}
                   secureTextEntry={true}
@@ -136,6 +137,7 @@ export default class RegisterView extends React.Component{
             <View style={mystyle.rowview}>
               <TextInput style={styles.style_input}
                   autoCorrect={false}
+                  maxLength={12}
                   onChangeText={(text) => this.setState({confirm_password:text})}
                   value={this.state.confirm_password}
                   secureTextEntry={true}

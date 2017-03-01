@@ -20,6 +20,7 @@ import ExpertPlanView from './ExpertPlanView';
 import NoToolView from './NoToolView';
 import UserCenterView from './UserCenterView';
 import HistoryView from './firstpage/HistoryView';
+import BtCalcView from './firstpage/BtCalcView'
 import NetWorkTool from './utils/NetWorkTool'
 import NewsView from './NewsView'
 import BackAndroidTool from './utils/BackAndroidTool'
@@ -117,6 +118,10 @@ export default class tabView extends Component{
                     });
       return;
     }
+    var gotoview = HistoryView;
+    if (data == 'beitou'){
+        gotoview = BtCalcView;
+    }
    this.props.navigator.push({
                             //  leftButtonIcon:require('image!back'),
   //                                                               leftButtonTitle:'',
@@ -124,7 +129,7 @@ export default class tabView extends Component{
                             //  tintColor:'#fff',
                              navigationBarHidden:true,
                             //  title:title,
-                             component:HistoryView,
+                             component:gotoview,
                             //  passProps:{
                             //     data:data,
                             //     title:title,
