@@ -16,7 +16,7 @@ import {
 import Utils from './../Utils'
 import styles from './../stylecpxzs';
 import NavigatorTitle from './../comp/NavigatorTitle';
-import NotoolTimeViewOld from './../comp/NotoolTimeViewOld';
+import NotoolTimeViewOld from './../comp/NotoolTimeView';
 import LoadingView from './../comp/Loading'
 
 //列表数据准备

@@ -16,7 +16,7 @@ import styles from './stylecpxzs';
 import Utils from './Utils';
 import LoadingView from './comp/Loading';
 import ImageButton from './comp/ImageButton';
-import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
+import NotoolTimeView from './comp/NotoolTimeView'
 import PullRefreshScroll from 'react-native-pullrefresh-scrollview'
 
 // import SocketIO from 'react-native-swift-socketio';
@@ -244,7 +244,7 @@ export default class FirstPageView extends React.Component{
             </View>
 
             <View style={styles.splitLine_l}></View>
-            <NotoolTimeViewOld
+            <NotoolTimeView
               style={{marginTop:8}}
               ref='timeview'
               isFirstPage={true}
@@ -271,7 +271,8 @@ export default class FirstPageView extends React.Component{
             />
 
             <ImageButton
-              iconUrl={require('./ico/rema_plan_unuse.png')}
+              onPress={()=>this.onBtnPress('热码计划','rema')}
+              iconUrl={require('./ico/rema_plan.png')}
               title={'热码计划'}
               />
           <ImageButton

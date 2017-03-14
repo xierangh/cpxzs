@@ -7,32 +7,39 @@ import {
     Image,
 } from 'react-native';
 
+import Utils from './../Utils'
 import styles from './../stylecpxzs'
 import NextPeriod from './../model/NextPeriod'
 
+import {autorun} from 'mobx'
+import { observer } from 'mobx-react/native';
+
 let np = new NextPeriod();
 
+@observer
 export default class NotoolTimeView extends React.Component{
   static propTypes={
-    nextPeriodStr:React.PropTypes.string,
-    seconds:React.PropTypes.number,
     isFirstPage:React.PropTypes.bool,
     refresh:React.PropTypes.func,
   }
+
   static defaultProps={
     isFirstPage:false,
   }
+
   constructor(props) {
     super(props)
 
     this.state={
-      seconds:np.seconds,
-      nextPeriodStr:np.nextPeriodStr,
       isFirstPage:this.props.isFirstPage,
     }
-    // np.addCallback(this);
-    // console.log('NotoolTimeView create'+this.state.seconds+this.state.nextPeriodStr);
-    this.setNextPeroid(np.getNextPeroidStr(),np.getSecond());
+
+      autorun(()=>{
+          if (np.getshouldfresh){
+              this.props.refresh && this.props.refresh();
+              console.log(`shouldfresh is ${np.getshouldfresh}`)
+          }
+      })
   }
 
   componentWillUnmount() {
@@ -43,46 +50,23 @@ export default class NotoolTimeView extends React.Component{
   }
 
   setNextPeroid(nextPeriodStr:string,seconds:number){
-    // console.log('setNextPeroid'+seconds+"--"+nextPeriodStr);
-    //首先清空timer
-    this.timer && clearTimeout(this.timer);
-
-    this.setState({
-      nextPeriodStr:nextPeriodStr,
-      seconds:seconds,
-    })
-
-    this.timer = setInterval(
-      () => {
-        var nextPeriodStr = np.getNextPeroidStr()
-        var seconds = np.getSecond()
-        // if(seconds <= 0){
-        //   this.props.refresh && this.props.refresh();
-        //   console.log("this.props.refresh");
-        // }else {
-          this.setState({
-            seconds:seconds,
-            nextPeriodStr:nextPeriodStr,
-          })
-        // }
-      },
-      1000
-    );
+    np.nextPeriodStr = nextPeriodStr;
+    np.seconds = seconds;
   }
 
   getHour(){
-    var hour = this.state.seconds/3600;
+    var hour = np.seconds/3600;
     return this.formatTime(hour);
   }
 
   getMinute(){
     var hour = parseInt(this.getHour());
-    var minute = (this.state.seconds-3600*hour)/60;
+    var minute = (np.seconds-3600*hour)/60;
     return this.formatTime(minute);
   }
 
   getSecond(){
-    var second = this.state.seconds%60;
+    var second = np.seconds%60;
     second = second+'';
     if(second.length<2)
       second = '0'+second;
@@ -90,9 +74,6 @@ export default class NotoolTimeView extends React.Component{
   }
 
   formatTime(value){
-    // var hour = this.state.seconds/3600;
-    // var minute = (this.state.seconds-3600*hour)/60;
-    // var seconds = this.state.seconds%3600;
     var valueStr = value +'';
     var index = valueStr.indexOf('.');
     if(index < 0){
@@ -106,29 +87,30 @@ export default class NotoolTimeView extends React.Component{
   }
 
   render(){
+
     return (
       <View>
-      {this.state.isFirstPage?
-        <View style={styles.firstPage_kaijiang_right_3}>
-          <Text style={styles.firstPage_kaijiang_right_3_left}>距离第{this.state.nextPeriodStr}</Text>
-          <Text style={styles.firstPage_kaijiang_right_3_right}>开奖倒计时</Text>
-          <Text style={styles.firstPage_kaijiang_right_3_right_time}>{this.getHour()}:{this.getMinute()}:{this.getSecond()}</Text>
-        </View>
-        :
-        <View style={{backgroundColor:'#fff',flexDirection:'row',paddingVertical:5,justifyContent:'center'}}>
-          <Image source={require('./../ico/logo_min.png')} style={{marginLeft:10,marginRight:2,width:20,height:20}} / >
-          <Text style={{textAlign:'left',flex:1,alignSelf:'center'}}>{this.state.nextPeriodStr}</Text>
-           <View style={{flexDirection:'row'}}>
-                <Text style={{textAlign:'center',alignSelf:'center'}}>投注时间剩余:</Text>
-                <Text style={{fontSize:18,color:'#ea5656',alignSelf:'center'}}>{this.getHour()}</Text>
-                <Text style={{textAlign:'center',alignSelf:'center'}}>时</Text>
-                <Text style={{fontSize:18,color:'#ea5656',alignSelf:'center'}}>{this.getMinute()}</Text>
-                <Text style={{textAlign:'center',alignSelf:'center'}}>分</Text>
-                <Text style={{fontSize:18,color:'#ea5656',alignSelf:'center'}}>{this.getSecond()}</Text>
-                <Text style={{textAlign:'center',alignSelf:'center'}}>秒</Text>
-          </View>
-        </View>
-      }
+          {this.state.isFirstPage?
+              <View style={styles.firstPage_kaijiang_right_3}>
+                <Text style={styles.firstPage_kaijiang_right_3_left}>距离第{np.nextPeriodStr}期</Text>
+                <Text style={styles.firstPage_kaijiang_right_3_right}>开奖</Text>
+                <Text style={styles.firstPage_kaijiang_right_3_right_time}>{this.getHour()}:{this.getMinute()}:{this.getSecond()}</Text>
+              </View>
+              :
+              <View style={{backgroundColor:'#fff',flexDirection:'row',paddingVertical:5,justifyContent:'center'}}>
+                <Image source={require('./../ico/logo_min.png')} style={{marginLeft:10,marginRight:2,width:20*Utils.scale,height:20*Utils.scale}} />
+                <Text style={{textAlign:'left',flex:1,alignSelf:'center'}}>{np.nextPeriodStr}期</Text>
+                <View style={{flexDirection:'row'}}>
+                  <Text style={{textAlign:'center',alignSelf:'center'}}>时间剩余:</Text>
+                  <Text style={{width:23*Utils.scale,fontSize:18*Utils.scale,color:'#ea5656',alignSelf:'center'}}>{this.getHour()}</Text>
+                  <Text style={{textAlign:'center',alignSelf:'center'}}>时</Text>
+                  <Text style={{width:23*Utils.scale,fontSize:18*Utils.scale,color:'#ea5656',alignSelf:'center'}}>{this.getMinute()}</Text>
+                  <Text style={{textAlign:'center',alignSelf:'center'}}>分</Text>
+                  <Text style={{width:23*Utils.scale,fontSize:18*Utils.scale,color:'#ea5656',alignSelf:'center'}}>{this.getSecond()}</Text>
+                  <Text style={{textAlign:'center',alignSelf:'center'}}>秒</Text>
+                </View>
+              </View>
+          }
       </View>
 
     )

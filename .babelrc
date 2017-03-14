@@ -1,3 +1,8 @@
 {
-"presets": ["react-native"]
+  "presets": ["react-native"],
+  //启动注解
+  "plugins": [
+    "syntax-decorators",
+    "transform-decorators-legacy"
+  ]
 }

@@ -150,7 +150,7 @@ export default class NotoolTimeViewOld extends React.Component{
         </View>
         :
         <View style={{backgroundColor:'#fff',flexDirection:'row',paddingVertical:5,justifyContent:'center'}}>
-          <Image source={require('./../ico/logo_min.png')} style={{marginLeft:10,marginRight:2,width:20*Utils.scale,height:20*Utils.scale}} / >
+          <Image source={require('./../ico/logo_min.png')} style={{marginLeft:10,marginRight:2,width:20*Utils.scale,height:20*Utils.scale}} />
           <Text style={{textAlign:'left',flex:1,alignSelf:'center'}}>{this.state.nextPeriodStr}期</Text>
            <View style={{flexDirection:'row'}}>
                 <Text style={{textAlign:'center',alignSelf:'center'}}>时间剩余:</Text>

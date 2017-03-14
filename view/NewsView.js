@@ -11,7 +11,7 @@ import {
 import styles from './stylecpxzs';
 import Utils from './Utils';
 import LoadingView from './comp/Loading'
-import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
+import NotoolTimeViewOld from './comp/NotoolTimeView'
 import NavigatorTitle from './comp/NavigatorTitle'
 import NewsDescView from './NewsDescView'
 

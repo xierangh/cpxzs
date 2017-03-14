@@ -22,6 +22,7 @@ import UserCenterView from './UserCenterView';
 import HistoryView from './firstpage/HistoryView';
 import NetWorkTool from './utils/NetWorkTool'
 import NewsView from './NewsView'
+import RemaPlanView from './firstpage/RemaPlanView'
 
 
 //main view which has many tabbars
@@ -117,6 +118,10 @@ export default class tabView extends React.Component{
                     });
       return;
     }
+    var view = HistoryView;
+    if(data == 'rema'){
+        view = RemaPlanView;
+    }
    this.props.navigator.push({
                             //  leftButtonIcon:require('image!back'),
   //                                                               leftButtonTitle:'',
@@ -124,7 +129,7 @@ export default class tabView extends React.Component{
                             //  tintColor:'#fff',
                              navigationBarHidden:true,
                             //  title:title,
-                             component:HistoryView,
+                             component:view,
                             //  passProps:{
                             //     data:data,
                             //     title:title,

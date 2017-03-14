@@ -14,11 +14,9 @@ import {
 import styles from './stylecpxzs';
 import Utils from './Utils';
 import Loading from './comp/Loading'
-import JppHideView from './comp/JppHideView'
-import LoadingView from './comp/Loading';
 import PlanItemView from './comp/PlanItemView'
 import PlanSelectView from './comp/PlanSelectView'
-import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
+import NotoolTimeViewOld from './comp/NotoolTimeView'
 
 
 //列表数据准备
@@ -71,7 +69,6 @@ class ExpertPlanView extends React.Component {
     //   return;
     // }
 
-    // this.queryTime();
     //http://www.cpxzs.com/jhfa/jhfaPlan?condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&activity=&pattern=3&jhfaName=ssc020&sort=&_=1484008794282
     //http://www.cpxzs.com/jhfa/jhfaPlan?condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&jhfaName=ssc020
     // var param ='condition=zhx&jhfaPlanType=0&type=&jhfawei=1&jhfadanmaCount=8&jhfazhuiqiCount=5&times=2&bonus=195&yeildRate=20&jhfaName=ssc038';
@@ -81,21 +78,6 @@ class ExpertPlanView extends React.Component {
     this.queryPlan(param);
   }
 
-
-  queryTime(){
-    this.timer && clearTimeout(this.timer);
-
-     Utils.getWithParams('caipiaoNumber/queryNextPeriod')
-     .then((data)=>{
-           if(!data){
-              this.refs.timeview.setNextPeroid('','');
-              return;
-            }
-            //  console.log(JSON.stringify(data))
-            var seconds = parseInt(data.hour)*3600 + parseInt(data.minute)*60+parseInt(data.second);
-            this.refs.timeview.setNextPeroid(data.nextPeriodStr,seconds);
-       })
-  }
 
   onfinish(){
     // this.refs.fn3_picker.onPress();
@@ -303,7 +285,7 @@ class ExpertPlanView extends React.Component {
         showstring=['前二','后二','前三组六','中三组六','后三组六']
         break;
       case 'zhx':
-        showstring=['前二','前三','后二','中三','后三']
+        showstring=['前二','后二','前三','中三','后三']
         break;
       default:
 
@@ -327,7 +309,6 @@ class ExpertPlanView extends React.Component {
 
   refresh(){
       this.timer && clearTimeout(this.timer);
-      // this.queryTime();
       this.timer = setInterval(()=>{
         this.timer && clearTimeout(this.timer);
         this.onCreatePlan(0,this.state.planValue)
@@ -558,6 +539,7 @@ class ExpertPlanView extends React.Component {
           <View style={styles.firstPage_history}>
             <View style={styles.firstPage_history_start}></View>
             <Text style={styles.firstPage_history_left}>请选择计划</Text>
+            <Text style={{fontSize:Utils.FONT_NORMAL,color:'#ea5656',flex:2,textAlign:'right'}}>{this.state.planValue.jhfaName}(准确率:{this.state.planValue.winRate}%)</Text>
             <Image source={require('./ico/down.png')} style={{width:20*Utils.scale,height:20*Utils.scale,marginRight:20}} />
           </View>
         </TouchableHighlight>

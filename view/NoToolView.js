@@ -11,7 +11,7 @@ import {
 
 import styles from './stylecpxzs';
 import Utils from './Utils';
-import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
+import NotoolTimeView from './comp/NotoolTimeView'
 import NotoolTitleView from './comp/NotoolTitleView'
 import Notool2View from './Notool2View'
 import Notool3View from './Notool3View'
@@ -95,7 +95,7 @@ export default class NoToolView extends React.Component{
               />
         </View>
 
-        <NotoolTimeViewOld
+        <NotoolTimeView
           ref='timeview'
           refresh={()=>this.queryTime()}
         />

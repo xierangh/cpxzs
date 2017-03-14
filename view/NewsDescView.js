@@ -11,7 +11,7 @@ import {
 
 import styles from './stylecpxzs';
 import Utils from './Utils';
-import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
+import NotoolTimeViewOld from './comp/NotoolTimeView'
 import NavigatorTitle from './comp/NavigatorTitle'
 import Loading from './comp/Loading'
 

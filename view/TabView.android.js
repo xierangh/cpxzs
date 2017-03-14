@@ -21,6 +21,8 @@ import NoToolView from './NoToolView';
 import UserCenterView from './UserCenterView';
 import HistoryView from './firstpage/HistoryView';
 import BtCalcView from './firstpage/BtCalcView'
+import RemaPlanView from './firstpage/RemaPlanView'
+
 import NetWorkTool from './utils/NetWorkTool'
 import NewsView from './NewsView'
 import BackAndroidTool from './utils/BackAndroidTool'
@@ -122,6 +124,9 @@ export default class tabView extends Component{
     if (data == 'beitou'){
         gotoview = BtCalcView;
     }
+   if (data == 'rema'){
+       gotoview = RemaPlanView;
+   }
    this.props.navigator.push({
                             //  leftButtonIcon:require('image!back'),
   //                                                               leftButtonTitle:'',

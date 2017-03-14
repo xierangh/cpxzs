@@ -22,6 +22,8 @@ import TabView from './TabView.android';
 import FortgetPasswordView from './FortgetPasswordView'
 import BackAndroidTool from './utils/BackAndroidTool'
 
+import demo from './mobx/demo6'
+
 var lastBackPressed = 0;
 
 
@@ -39,6 +41,8 @@ export default class LoginView extends React.Component{
     }
   }
   componentDidMount(){
+      demo();
+
       BackAndroidTool.addBackAndroidListener(this.props.navigator);
     console.log('LoginView componentWillMount');
     Utils.storage.load({

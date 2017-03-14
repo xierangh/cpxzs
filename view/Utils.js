@@ -31,8 +31,58 @@ let TIME_OUT= 1000*50;
 // if (Platform.OS == 'android'){
 //     TIME_OUT = 1000*5*5;
 // }
+Date.prototype.format = function(fmt) {
+    var o = {
+        "M+" : this.getMonth()+1,                 //月份
+        "d+" : this.getDate(),                    //日
+        "h+" : this.getHours(),                   //小时
+        "m+" : this.getMinutes(),                 //分
+        "s+" : this.getSeconds(),                 //秒
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度
+        "S"  : this.getMilliseconds()             //毫秒
+    };
+    if(/(y+)/.test(fmt)) {
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    }
+    for(var k in o) {
+        if(new RegExp("("+ k +")").test(fmt)){
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        }
+    }
+    return fmt;
+}
+
+Date.prototype.add = function (part, value) {
+    value *= 1;
+    if (isNaN(value)) {
+        value = 0;
+    }
+    switch (part) {
+        case "y":
+            this.setFullYear(this.getFullYear() + value);
+            break;
+        case "m":
+            this.setMonth(this.getMonth() + value);
+            break;
+        case "d":
+            this.setDate(this.getDate() + value);
+            break;
+        case "h":
+            this.setHours(this.getHours() + value);
+            break;
+        case "n":
+            this.setMinutes(this.getMinutes() + value);
+            break;
+        case "s":
+            this.setSeconds(this.getSeconds() + value);
+            break;
+        default:
+
+    }
+}
 
 let Utils = {
+    version:'1.1',
      FONT_BIG_PLUS :24*scale,
      FONT_BIG : 18*scale,
      FONT_BIG_SUB : 16*scale,

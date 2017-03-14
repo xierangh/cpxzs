@@ -1,44 +1,46 @@
 
-import React from 'react'
 import Utils from './../Utils'
+import { observable,action,computed } from 'mobx';
 
 let instance = null;
-var nextPeriodStr='';
-var seconds=0;
-var callbacks=[];
 
-export default class NextPeriod extends React.Component{
+
+var oldstate=false;
+
+export default class NextPeriod {
+
+  @observable
+  nextPeriodStr='';
+
+  @observable
+  seconds=0;
+
+  @observable
+  shouldfresh=false;
+
+
+  @computed
+  get getshouldfresh(){
+      if (oldstate != this.shouldfresh){
+          oldstate = this.shouldfresh;
+          return true;
+      }
+      return false;
+  }
+
   constructor() {
-    super();
     if(!instance){
       instance = this;
       this.queryTime();
     }
-    this.state={
-      url:'192.168.0.211:9002',
-    }
     return instance;
   }
 
-  addCallback(view:object){
-    var tmp = [];
-    tmp.push(view);
-    this.callbacks= tmp;
-    // view.setNextPeroid(this.nextPeriodStr,this.seconds);
-  }
-
-  freshViews(){
-    console.log(this.callbacks.length);
-    for (var i in this.callbacks) {
-      // console.log(i);
-      this.callbacks[i].setNextPeroid(this.nextPeriodStr,this.seconds);
-    }
-  }
-
   queryTime(){
-    if (!Utils.online) {
-      return;
-    }
+    // if (!Utils.online) {
+    //   return;
+    // }
+      console.log('next peroid querytime...');
      Utils.getWithParams('caipiaoNumber/queryNextPeriod')
      .then((data)=>{
            if(!data){
@@ -50,6 +52,7 @@ export default class NextPeriod extends React.Component{
        })
   }
 
+  @action
   setNextPeroid(nps:string,sec:number){
     //首先清空timer
     this.timer && clearTimeout(this.timer);
@@ -63,6 +66,7 @@ export default class NextPeriod extends React.Component{
         this.seconds= this.seconds-1;
         if(this.seconds <= 0){
           this.queryTime();
+          this.shouldfresh = !this.shouldfresh;
           console.log("this.props.refresh");
         }
       },

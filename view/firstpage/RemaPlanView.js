@@ -1,5 +1,8 @@
-'use strict';
-import React, {Component} from 'react';
+/**
+ * 热码计划
+ */
+
+import React from 'react';
 import {
     Text,
     View,
@@ -11,13 +14,13 @@ import {
     ScrollView,
 } from 'react-native';
 
-import styles from './stylecpxzs';
-import Utils from './Utils';
-import Loading from './comp/Loading'
-import JppHideView from './comp/JppHideView'
-import PlanItemView from './comp/PlanItemView'
-import PlanSelectView from './comp/PlanSelectView'
-import NotoolTimeViewOld from './comp/NotoolTimeView'
+import styles from './../stylecpxzs';
+import Utils from './../Utils';
+import Loading from './../comp/Loading'
+import JppHideView from './../comp/JppHideView'
+import PlanItemView from './../comp/PlanItemView'
+import PlanSelectView from './../comp/PlanSelectView'
+import NotoolTimeViewOld from './../comp/NotoolTimeViewOld'
 
 
 //列表数据准备
@@ -34,7 +37,7 @@ var planitems=[
 
 var wf_arr =['','','',''];
 var cur = '';
-class ExpertPlanView extends React.Component {
+class RemaPlanView extends React.Component {
 
   static propTypes={
     loginout:React.PropTypes.func,
@@ -51,8 +54,6 @@ class ExpertPlanView extends React.Component {
       fetchurl:'loadHistoryNumber?caipioaType=cqssc&dateStr=0',//查询当天
       isWf:true,
       isFn:true,
-      isPlan:false,
-      planValue:'',
       wf:'dw',//玩法
       fn1_w:1,//位
       fn2_m:5,//码
@@ -64,6 +65,7 @@ class ExpertPlanView extends React.Component {
       times:10,
       bonus:19.5,
       fvlist:[],
+      winRate:'',
     }
   }
 
@@ -72,6 +74,7 @@ class ExpertPlanView extends React.Component {
     //   return;
     // }
 
+    // this.queryTime();
     //http://www.cpxzs.com/jhfa/jhfaPlan?condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&activity=&pattern=3&jhfaName=ssc020&sort=&_=1484008794282
     //http://www.cpxzs.com/jhfa/jhfaPlan?condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&jhfaName=ssc020
     // var param ='condition=zhx&jhfaPlanType=0&type=&jhfawei=1&jhfadanmaCount=8&jhfazhuiqiCount=5&times=2&bonus=195&yeildRate=20&jhfaName=ssc038';
@@ -82,12 +85,27 @@ class ExpertPlanView extends React.Component {
   }
 
 
+  queryTime(){
+    this.timer && clearTimeout(this.timer);
+
+     Utils.getWithParams('caipiaoNumber/queryNextPeriod')
+     .then((data)=>{
+           if(!data){
+              this.refs.timeview.setNextPeroid('','');
+              return;
+            }
+            //  console.log(JSON.stringify(data))
+            var seconds = parseInt(data.hour)*3600 + parseInt(data.minute)*60+parseInt(data.second);
+            this.refs.timeview.setNextPeroid(data.nextPeriodStr,seconds);
+       })
+  }
+
   onfinish(){
 
     this.onCreatePlan(1);
   }
 
-  onCreatePlan(isfinish:number,planValue:object){
+  onCreatePlan(isfinish:number){
     //condition,jhfaPlanType,type,jhfawei,jhfadanmaCount,jhfazhuiqiCount,times,bonus,yeildRate,jhfaName
     var param ='';
     param = param +'condition='+this.state.wf;
@@ -112,15 +130,6 @@ class ExpertPlanView extends React.Component {
     param = param +'&';
     param = param +'yeildRate='+20;
 
-    param = param +'&';
-    if (isfinish == 1) {
-      param = param +'jhfaName=';
-      this.setState({
-        planValue:'',
-      })
-    }else{
-      param = param +'jhfaName='+planValue.jhfaCode;
-    }
 
     param = param + '&activity=&pattern=3&sort=';
 
@@ -132,7 +141,7 @@ class ExpertPlanView extends React.Component {
     this.setState({
       loaded:false
     })
-    Utils.post('jhfa/jhfaPlan',param)
+    Utils.post('jhfa/hotColdJHFA',param)
     .then((data)=>{
           if(!data){
                   this.setState({
@@ -140,58 +149,20 @@ class ExpertPlanView extends React.Component {
                   })
                   return;
            }
-        if(!data.expressionName){
-            this.setState({
-                loaded:true
-            })
-            return;
-        }
           //  console.log(data);
           //  console.log('queryPlan'+JSON.stringify(data));
-          if (this.state.planValue) {
             this.setState({
-              planitems:data.expressionName,
               dataSource:ds.cloneWithRows(data.resultList),
               btjsResultList:data.btjsResultList,
               loaded:true,
               firstPlanResult:data.firstPlanResult,
               fvlist:data.fvList,
+              winRate:data.correctPercent,
             })
-          }else{
-            this.setState({
-              planitems:data.expressionName,
-              planValue:data.expressionName[0],
-              dataSource:ds.cloneWithRows(data.resultList),
-              btjsResultList:data.btjsResultList,
-              loaded:true,
-              firstPlanResult:data.firstPlanResult,
-              fvlist:data.fvList,
-            })
-          }
-
 
       })
   }
 
-  onMorePress(){
-    this.setState({
-      isWf:!this.state.isWf
-    })
-  }
-  onFnPress(){
-    this.setState({
-      isFn:!this.state.isFn
-    })
-  }
-  onPlanPress(){
-    this.setState({
-      isPlan:!this.state.isPlan
-    })
-  }
-  onPlanSelect(value){
-    this.setState({planValue:value,isPlan:false})
-    this.onCreatePlan(0,value);
-  }
 
   wfChange(index){
     var fn1_w=1;
@@ -312,9 +283,10 @@ class ExpertPlanView extends React.Component {
 
   refresh(){
       this.timer && clearTimeout(this.timer);
+      // this.queryTime();
       this.timer = setInterval(()=>{
         this.timer && clearTimeout(this.timer);
-        this.onCreatePlan(0,this.state.planValue)
+        this.onCreatePlan(0)
       },1000*60*2
       );
   }
@@ -356,7 +328,7 @@ class ExpertPlanView extends React.Component {
     return(
       <View style={styles.container}>
         <View style={styles.firstPage_title_container}>
-            <Text style={styles.firstPage_title_center}>精品计划</Text>
+            <Text style={styles.firstPage_title_center}>热码计划</Text>
         </View>
 
         <NotoolTimeViewOld
@@ -560,27 +532,10 @@ class ExpertPlanView extends React.Component {
         </View>
       }
 
-        <View style={styles.splitLine_w}></View>
-        <TouchableHighlight onPress={()=>this.onPlanPress()} underlayColor="#fff2">
-          <View style={styles.firstPage_history}>
-            <View style={styles.firstPage_history_start}></View>
-            <Text style={styles.firstPage_history_left}>请选择计划</Text>
-            <Text style={{fontSize:Utils.FONT_NORMAL,color:'#ea5656',flex:2,textAlign:'right'}}>{this.state.planValue.jhfaName}(准确率:{this.state.planValue.winRate}%)</Text>
-
-            <Image source={require('./ico/down.png')} style={{width:18*Utils.scale,height:18*Utils.scale,marginRight:20}} />
-          </View>
-        </TouchableHighlight>
-        {this.state.isPlan &&
-          <PlanSelectView
-              selected={this.state.planValue}
-              onSelected={(value)=>this.onPlanSelect(value)}
-              items={this.state.planitems}
-              />
-        }
         <View style={styles.splitLine}></View>
         <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
           <Text style={{fontSize:13*Utils.scale,paddingVertical:10,marginLeft:10}}>选中:</Text>
-          <Text style={{fontSize:13*Utils.scale,paddingVertical:10,color:'#ea5656',flex:1}}>{this.getWf_show()}>{this.getFn1_w_show()} {this.state.fn2_m}码 {this.fn3_q}期>{this.state.planValue.jhfaName}({this.state.planValue.winRate}%)</Text>
+          <Text style={{fontSize:13*Utils.scale,paddingVertical:10,color:'#ea5656',flex:1}}>{this.getWf_show()}>{this.getFn1_w_show()} {this.state.fn2_m}码 {this.fn3_q}期>(准确率:{this.state.winRate}%)</Text>
 
         </View>
         <View style={styles.splitLine}></View>
@@ -624,4 +579,4 @@ class ExpertPlanView extends React.Component {
   }
 }
 
-module.exports = ExpertPlanView;
+module.exports = RemaPlanView;

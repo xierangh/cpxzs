@@ -524,7 +524,12 @@ var stylecpxzs = StyleSheet.create({
         marginRight:8,
         borderRadius:12,
         borderWidth:1,
-        borderColor:'#ea5656'
+        borderColor:'#ea5656',
+		flex:1,
+	},
+	picker_view_height:{
+    	height:100,
+		marginTop:-50,
 	},
 	picker:{
         width:150,
@@ -720,6 +725,10 @@ var stylecpxzs = StyleSheet.create({
 		marginVertical:5,
 		// height:1000,
 	},
+    space:{
+    	backgroundColor:'#0000',
+		height:50*scale
+	}
 });
 var notool_circle_size=20;
 
