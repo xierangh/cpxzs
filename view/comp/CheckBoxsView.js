@@ -11,7 +11,6 @@ import {
 } from "react-native"
 
 import CheckBox from './CheckBox';
-import _ from 'lodash'
 
 export default class CheckBoxsView extends React.Component{
 

@@ -30,7 +30,8 @@ class NumberCircle extends React.Component{
     // console.log("checkbox接收到新参数啦 ");
     // console.log(nextProps);
     this.setState({
-      number: nextProps.number
+      number: nextProps.number,
+      isSelected:nextProps.isSelected,
     });
   }
 
@@ -44,7 +45,7 @@ class NumberCircle extends React.Component{
 
   render(){
     return (
-        <View style={this.state.isSelected?mystyle.circle_selected:mystyle.circle}>
+        <View style={mystyle.circle}>
           <Text style={this.state.isSelected?mystyle.circle_c_number_selected:mystyle.c_number}>{this.state.number}</Text>
         </View>
     )
@@ -57,42 +58,46 @@ export default class NotoolRowYiLouView extends React.Component{
     selected:React.PropTypes.array,
   }
 
-  static defaultProps={
-    selected:[],//默认不选
-  }
+  // static defaultProps={
+  //   selected:[],//默认不选
+  // }
 
   constructor(props){
     super(props)
-    this.state={
-      selected:this.props.selected,
-    }
+    // this.state={
+    //   selected:this.props.selected,
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
     // console.log("checkbox接收到新参数啦 ");
-    // console.log(nextProps);
-    this.setState({
-      selected: nextProps.selected
-    });
+    // console.log('componentWillReceiveProps...');
+    // this.setState({
+    //   selected: nextProps.selected
+    // });
   }
 
-  getSelected(){
-    return this.state.selected;
-  }
-
-  setSelected(nselected){
-    this.setState({
-      selected:nselected,
-    })
-  }
 
   render(){
+
     var rows = [];
-    for (var i in this.state.selected) {
+    var max = -1;
+    for(var i in this.props.selected){
+        if(this.props.selected[i] > max){
+            max = this.props.selected[i];
+        }
+    }
+    for (var i in this.props.selected) {
+        var isselected = false;
+        if (this.props.selected[i] == max){
+            isselected = true;
+            // console.log(`max = ${max},index=${i},value=${this.props.selected[i]}`);
+        }
       rows.push(
         <NumberCircle
           key={i}
-          number={this.state.selected[i]}
+          number={this.props.selected[i]}
+          isSelected={isselected}
         />
       );
     }
@@ -121,6 +126,11 @@ const mystyle=StyleSheet.create({
 		color:'#333',
 		textAlign:'center',
 	},
+    circle_c_number_selected:{
+        fontSize:14*Utils.scale,
+        color:'#ea5656',
+        textAlign:'center',
+    },
   circle_selected:{
 		width:circle_size,
 		height:circle_size,

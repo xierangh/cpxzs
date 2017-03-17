@@ -10,6 +10,7 @@ import {
 import Utils from './../Utils'
 import styles from './../stylecpxzs'
 import NextPeriod from './../model/NextPeriod'
+import moment from 'moment'
 
 import {autorun} from 'mobx'
 import { observer } from 'mobx-react/native';
@@ -37,7 +38,7 @@ export default class NotoolTimeView extends React.Component{
       autorun(()=>{
           if (np.getshouldfresh){
               this.props.refresh && this.props.refresh();
-              console.log(`shouldfresh is ${np.getshouldfresh}`)
+              console.log(`shouldfresh is ${np.getshouldfresh}--${moment(new Date()).format('YYYY-MM-dd HH:mm:ss')}`)
           }
       })
   }

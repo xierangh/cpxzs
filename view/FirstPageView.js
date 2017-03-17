@@ -17,7 +17,6 @@ import styles from './stylecpxzs';
 import Utils from './Utils';
 import LoadingView from './comp/Loading';
 import ImageButton from './comp/ImageButton';
-import NotoolTimeViewOld from './comp/NotoolTimeViewOld'
 import NotoolTimeView from './comp/NotoolTimeView'
 
 // import SocketIO from 'react-native-swift-socketio';
@@ -318,7 +317,7 @@ export default class FirstPageView extends React.Component{
               customStyle={styles.customStyle}
               />
             <ImageButton
-              iconUrl={require('./ico/yilou_unuse.png')}
+                iconUrl={require('./ico/yilou_unuse.png')}
               title={'遗漏助手'}
               customStyle={styles.customStyle}
               />

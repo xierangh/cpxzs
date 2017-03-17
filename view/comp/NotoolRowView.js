@@ -178,7 +178,7 @@ export default class NotoolRowView extends React.Component{
     }
 
     return (
-      <View>
+      <View style={{flex:1}}>
         <View style={{flex:1,flexDirection:'row'}}>
           {cols}
         </View>

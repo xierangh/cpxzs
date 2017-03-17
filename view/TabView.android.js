@@ -22,6 +22,7 @@ import UserCenterView from './UserCenterView';
 import HistoryView from './firstpage/HistoryView';
 import BtCalcView from './firstpage/BtCalcView'
 import RemaPlanView from './firstpage/RemaPlanView'
+import YiloutoolView from './firstpage/YiloutoolView'
 
 import NetWorkTool from './utils/NetWorkTool'
 import NewsView from './NewsView'
@@ -126,6 +127,9 @@ export default class tabView extends Component{
     }
    if (data == 'rema'){
        gotoview = RemaPlanView;
+   }
+   if (data == 'yilou'){
+       gotoview = YiloutoolView;
    }
    this.props.navigator.push({
                             //  leftButtonIcon:require('image!back'),

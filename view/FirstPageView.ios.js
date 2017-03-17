@@ -305,7 +305,7 @@ export default class FirstPageView extends React.Component{
               customStyle={styles.customStyle}
               />
             <ImageButton
-              iconUrl={require('./ico/yilou_unuse.png')}
+                iconUrl={require('./ico/yilou_unuse.png')}
               title={'遗漏助手'}
               customStyle={styles.customStyle}
               />

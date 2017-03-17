@@ -46,11 +46,7 @@ class ExpertPlanView extends React.Component {
       dataSource:ds.cloneWithRows([
       {"item":"022-024","wei":"个位","planNum":"29160","resultNumber":"9,6,1,8,1","status":true,"planName":null,"itemIndex":0,"amount":95.0,
       "caipiaoList":[{"period":20161230022,"result":"9,6,1,8,1"}],"hotColdSubList":null}]),
-      total:0,
       loaded:false,
-      fetchurl:'loadHistoryNumber?caipioaType=cqssc&dateStr=0',//查询当天
-      isWf:true,
-      isFn:true,
       isPlan:false,
       planValue:'',
       wf:'dw',//玩法
@@ -68,23 +64,13 @@ class ExpertPlanView extends React.Component {
   }
 
   componentDidMount(){
-    // if (!Utils.online) {
-    //   return;
-    // }
-
-    //http://www.cpxzs.com/jhfa/jhfaPlan?condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&activity=&pattern=3&jhfaName=ssc020&sort=&_=1484008794282
-    //http://www.cpxzs.com/jhfa/jhfaPlan?condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&jhfaName=ssc020
-    // var param ='condition=zhx&jhfaPlanType=0&type=&jhfawei=1&jhfadanmaCount=8&jhfazhuiqiCount=5&times=2&bonus=195&yeildRate=20&jhfaName=ssc038';
-    //var param = 'condition=zux&jhfaPlanType=0&type=&jhfawei=2&jhfadanmaCount=8&jhfazhuiqiCount=5&times=1&bonus=97.5&yeildRate=20&jhfaName=ssc028';
-    //var param = 'condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&jhfaName=ssc022';
-    var param = 'condition=dw&jhfaPlanType=0&type=&jhfawei=1&jhfadanmaCount=5&jhfazhuiqiCount=3&times=10&bonus=19.5&yeildRate=20';
-    this.queryPlan(param);
+      this.onCreatePlan(1);
   }
 
 
   onfinish(){
 
-    this.onCreatePlan(1);
+    this.onCreatePlan(0,this.state.planValue);
   }
 
   onCreatePlan(isfinish:number,planValue:object){
@@ -115,9 +101,9 @@ class ExpertPlanView extends React.Component {
     param = param +'&';
     if (isfinish == 1) {
       param = param +'jhfaName=';
-      this.setState({
-        planValue:'',
-      })
+      // this.setState({
+      //   planValue:'',
+      // })
     }else{
       param = param +'jhfaName='+planValue.jhfaCode;
     }
@@ -146,11 +132,19 @@ class ExpertPlanView extends React.Component {
             })
             return;
         }
-          //  console.log(data);
+           console.log(this.state.planValue);
           //  console.log('queryPlan'+JSON.stringify(data));
           if (this.state.planValue) {
+            var index = 0;
+            for(var i in data.expressionName){
+              if(this.state.planValue.jhfaCode == data.expressionName[i].jhfaCode){
+                  index = i;
+                  break;
+              }
+            }
             this.setState({
               planitems:data.expressionName,
+                planValue:data.expressionName[index],
               dataSource:ds.cloneWithRows(data.resultList),
               btjsResultList:data.btjsResultList,
               loaded:true,
@@ -173,16 +167,6 @@ class ExpertPlanView extends React.Component {
       })
   }
 
-  onMorePress(){
-    this.setState({
-      isWf:!this.state.isWf
-    })
-  }
-  onFnPress(){
-    this.setState({
-      isFn:!this.state.isFn
-    })
-  }
   onPlanPress(){
     this.setState({
       isPlan:!this.state.isPlan
@@ -375,7 +359,6 @@ class ExpertPlanView extends React.Component {
             <Text style={styles.firstPage_history_left}>请选择玩法</Text>
           </View>
         </TouchableHighlight>
-        {this.state.isWf &&
           <View style={styles.jpp_hide_view}>
           <TouchableHighlight
             underlayColor={'#ea565630'}
@@ -406,7 +389,7 @@ class ExpertPlanView extends React.Component {
             </View>
           </TouchableHighlight>
           </View>
-        }
+
         <View style={styles.splitLine_w}></View>
         <TouchableHighlight
           underlayColor="#fff2">
@@ -415,7 +398,6 @@ class ExpertPlanView extends React.Component {
             <Text style={styles.firstPage_history_left}>请设置玩法方案</Text>
           </View>
         </TouchableHighlight>
-        {this.state.isFn &&
             <View style={styles.jpp_hide_view_fn}>
               <Text style={{marginTop:5,marginLeft:11,marginRight:5}}>方案设置</Text>
               <JppHideView
@@ -440,7 +422,7 @@ class ExpertPlanView extends React.Component {
                   </View>
               </TouchableHighlight>
           </View>
-        }
+
 
         {this.state.showPicker==1 &&
           <View style={{backgroundColor:'#fff',marginBottom:20}}>

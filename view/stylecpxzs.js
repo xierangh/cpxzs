@@ -72,6 +72,11 @@ var stylecpxzs = StyleSheet.create({
 		height: 1*scale,
 		backgroundColor: SPLIT_LINE,
 	},
+    splitLine_vertical: {
+		width:1*scale,
+        backgroundColor: SPLIT_LINE,
+		alignSelf:'stretch',
+    },
 	splitLine_w: {
 		height: 3*scale,
 		backgroundColor: '#eee',

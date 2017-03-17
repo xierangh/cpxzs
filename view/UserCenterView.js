@@ -110,7 +110,7 @@ export default class UserCenterView extends React.Component{
           title={'修改密码'}
           titleRight={'修改登陆密码'}
         />
-
+            {/*
         <View style={styles.splitLine_ww}></View>
         <UserRowView
           img={require('./ico/u03.png')}
@@ -139,7 +139,7 @@ export default class UserCenterView extends React.Component{
           title={'团队管理'}
           titleRight={''}
         />
-            {/*
+
         <View style={styles.splitLine_ww}></View>
         <UserRowView
           img={require('./ico/u08.png')}
@@ -153,14 +153,14 @@ export default class UserCenterView extends React.Component{
           title={'留言建议'}
           titleRight={'复制链接给好友赢奖励'}
         />
-         */}
+
         <UserRowView
           img={require('./ico/u10.png')}
           onNext={()=>this.updateVersion()}
           title={'更新版本'}
           titleRight={'当前已是最新版本'}
         />
-
+             */}
 
         <CustomButton
           ref='loginoutBtn'
