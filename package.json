@@ -24,7 +24,7 @@
     "react-native-smart-app-event-listener-enhance": "^1.1.1",
     "react-native-storage": "^0.0.16",
     "react-native-tab-navigator": "^0.3.3",
-    "react-native-vector-icons": "^3.0.0",
+    "react-native-vector-icons": "^4.0.0",
     "react-timer-mixin": "^0.13.3",
     "rn-calendars": "^0.1.3"
   },
