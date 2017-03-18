@@ -36,9 +36,9 @@ export default class NotoolTimeView extends React.Component{
     }
 
       autorun(()=>{
-          if (np.getshouldfresh){
+          if (np.shouldfresh){
               this.props.refresh && this.props.refresh();
-              console.log(`shouldfresh is ${np.getshouldfresh}--${moment(new Date()).format('YYYY-MM-dd HH:mm:ss')}`)
+              console.log(`shouldfresh is ${np.shouldfresh}--${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}`)
           }
       })
   }

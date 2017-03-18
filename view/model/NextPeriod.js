@@ -2,12 +2,14 @@
 import Utils from './../Utils'
 import { observable,action,computed } from 'mobx';
 
+import TimerEnhance from 'react-native-smart-timer-enhance'
+
 let instance = null;
 
 
 var oldstate=false;
 
-export default class NextPeriod {
+class NextPeriod {
 
   @observable
   nextPeriodStr='';
@@ -18,15 +20,6 @@ export default class NextPeriod {
   @observable
   shouldfresh=false;
 
-
-  @computed
-  get getshouldfresh(){
-      if (oldstate != this.shouldfresh){
-          oldstate = this.shouldfresh;
-          return true;
-      }
-      return false;
-  }
 
   constructor() {
     if(!instance){
@@ -53,24 +46,32 @@ export default class NextPeriod {
   }
 
   @action
+  ontimer(){
+      this.seconds= this.seconds-1;
+      if(this.seconds <= 0){
+          this.timer && clearInterval(this.timer);
+          this.queryTime();
+          this.shouldfresh = true;
+          //100ms后修改回去
+          setTimeout(()=>{
+              this.shouldfresh = false;
+          },100)
+          console.log("this.props.refresh");
+          Utils.showAlert('','this.props.refresh');
+      }
+  }
+
+  @action
   setNextPeroid(nps:string,sec:number){
     //首先清空timer
-    this.timer && clearTimeout(this.timer);
+    this.timer && clearInterval(this.timer);
 
     this.nextPeriodStr = nps;
     this.seconds = sec;
     console.log(this.nextPeriodStr+"****"+this.seconds);
 
-    this.timer = setInterval(
-      () => {
-        this.seconds= this.seconds-1;
-        if(this.seconds <= 0){
-          this.queryTime();
-          this.shouldfresh = !this.shouldfresh;
-          console.log("this.props.refresh");
-        }
-      },
-      1000
-    );
+    this.timer = setInterval(() => this.ontimer(), 1000);
   }
 }
+
+export default TimerEnhance(NextPeriod)

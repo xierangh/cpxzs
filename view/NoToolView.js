@@ -48,23 +48,12 @@ export default class NoToolView extends React.Component{
   }
 
   componentDidMount(){
-    // this.queryTime();
+    this.queryOmission();
   }
 
-  queryTime(){
-    this.timer && clearTimeout(this.timer);
-
-     Utils.getWithParams('caipiaoNumber/queryNextPeriod')
-     .then((data)=>{
-           if(!data){
-               this.refs.timeview.setNextPeroid('','');
-               return;
-            }
-            //  console.log(JSON.stringify(data))
-            var seconds = parseInt(data.hour)*3600 + parseInt(data.minute)*60+parseInt(data.second);
-            this.refs.timeview.setNextPeroid(data.nextPeriodStr,seconds);
-            this.queryOmission();
-       })
+  onRefresh(){
+      this.timer && clearTimeout(this.timer);
+      this.timer = setTimeout(()=>this.queryOmission(),1000*60*2);
   }
 
   queryOmission(){
@@ -97,7 +86,7 @@ export default class NoToolView extends React.Component{
 
         <NotoolTimeView
           ref='timeview'
-          refresh={()=>this.queryTime()}
+          refresh={()=>this.onRefresh()}
         />
 
         {this.state.zhgjType == 2 &&

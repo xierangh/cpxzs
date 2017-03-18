@@ -34,7 +34,9 @@ var planitems=[
 
 var wf_arr =['','','',''];
 var cur = '';
+
 class ExpertPlanView extends React.Component {
+
 
   static propTypes={
     loginout:React.PropTypes.func,
@@ -43,23 +45,23 @@ class ExpertPlanView extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      dataSource:ds.cloneWithRows([
+        dataSource:ds.cloneWithRows([
       {"item":"022-024","wei":"个位","planNum":"29160","resultNumber":"9,6,1,8,1","status":true,"planName":null,"itemIndex":0,"amount":95.0,
       "caipiaoList":[{"period":20161230022,"result":"9,6,1,8,1"}],"hotColdSubList":null}]),
-      loaded:false,
-      isPlan:false,
-      planValue:'',
-      wf:'dw',//玩法
-      fn1_w:1,//位
-      fn2_m:5,//码
-      fn3_q:3,//期
-      showPicker:0,//0-不显示 1-位 2-码 3-期
-      planitems:planitems,
-      btjsResultList:[],
-      firstPlanResult:'',
-      times:10,
-      bonus:19.5,
-      fvlist:[],
+        loaded:false,
+        isPlan:false,
+        planValue:'',
+        wf:'dw',//玩法
+        fn1_w:1,//位
+        fn2_m:5,//码
+        fn3_q:3,//期
+        showPicker:0,//0-不显示 1-位 2-码 3-期
+        planitems:planitems,
+        btjsResultList:[],
+        firstPlanResult:'',
+        times:10,
+        bonus:19.5,
+        fvlist:[],
     }
   }
 
@@ -227,6 +229,13 @@ class ExpertPlanView extends React.Component {
       times:times,
       bonus:bonus,
     })
+
+
+      this.timerquery = setTimeout(()=>{
+          this.timerquery && clearTimeout(this.timerquery);
+          this.onCreatePlan(0,this.state.planValue)
+      },100
+      );
   }
 
   showPicker(index:number){
@@ -275,7 +284,6 @@ class ExpertPlanView extends React.Component {
         showstring=['前二','后二','前三','中三','后三']
         break;
       default:
-
     }
     if(index > showstring.length){
       index = showstring.length;
@@ -296,7 +304,7 @@ class ExpertPlanView extends React.Component {
 
   refresh(){
       this.timer && clearTimeout(this.timer);
-      this.timer = setInterval(()=>{
+      this.timer = setTimeout(()=>{
         this.timer && clearTimeout(this.timer);
         this.onCreatePlan(0,this.state.planValue)
       },1000*60*2

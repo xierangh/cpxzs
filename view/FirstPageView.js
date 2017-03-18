@@ -75,8 +75,7 @@ export default class FirstPageView extends React.Component{
   refresh(){
       this.timer && clearTimeout(this.timer);
     // this.queryTime();
-      this.timer = setInterval(()=>{
-          this.timer && clearTimeout(this.timer);
+      this.timer = setTimeout(()=>{
           this.queryCurrentPeriod();
       },1000*60*2
       );
@@ -88,7 +87,7 @@ export default class FirstPageView extends React.Component{
      Utils.getWithParams('caipiaoNumber/queryNextPeriod')
      .then((data)=>{
            if(!data){
-              this.refs.timeview.setNextPeroid('','');
+              // this.refs.timeview.setNextPeroid('','');
               return;
             }
             //  console.log(JSON.stringify(data))

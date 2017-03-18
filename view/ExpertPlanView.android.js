@@ -221,7 +221,12 @@ class ExpertPlanView extends React.Component {
       fn3_q:fn3_q,
       times:times,
       bonus:bonus,
-    })
+  })
+      this.timerquery = setTimeout(()=>{
+              this.timerquery && clearTimeout(this.timerquery);
+              this.onCreatePlan(0,this.state.planValue)
+          },100
+      );
   }
 
 
@@ -286,7 +291,7 @@ class ExpertPlanView extends React.Component {
 
   refresh(){
       this.timer && clearTimeout(this.timer);
-      this.timer = setInterval(()=>{
+      this.timer = setTimeout(()=>{
         this.timer && clearTimeout(this.timer);
         this.onCreatePlan(0,this.state.planValue)
       },1000*60*2

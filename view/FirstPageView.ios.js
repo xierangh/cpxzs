@@ -75,7 +75,7 @@ export default class FirstPageView extends React.Component{
   refresh(){
       this.timer && clearTimeout(this.timer);
     // this.queryTime();
-      this.timer = setInterval(()=>{
+      this.timer = setTimeout(()=>{
           this.timer && clearTimeout(this.timer);
           this.queryCurrentPeriod();
       },1000*60*2

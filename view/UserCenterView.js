@@ -153,14 +153,14 @@ export default class UserCenterView extends React.Component{
           title={'留言建议'}
           titleRight={'复制链接给好友赢奖励'}
         />
-
+             */}
         <UserRowView
           img={require('./ico/u10.png')}
           onNext={()=>this.updateVersion()}
-          title={'更新版本'}
-          titleRight={'当前已是最新版本'}
+          title={'当前版本'}
+          titleRight={'1.0.1'}
         />
-             */}
+
 
         <CustomButton
           ref='loginoutBtn'
