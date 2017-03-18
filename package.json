@@ -17,6 +17,7 @@
     "react-native": "^0.41.2",
     "react-native-calendar": "^0.10.0",
     "react-native-ios-charts": "^0.2.3",
+    "react-native-modal-dropdown": "^0.4.1",
     "react-native-pullrefresh-scrollview": "^1.1.0",
     "react-native-root-toast": "^1.0.3",
     "react-native-scrolling-menu": "^0.1.1",

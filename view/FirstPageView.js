@@ -282,8 +282,7 @@ export default class FirstPageView extends React.Component{
             />
 
             <ImageButton
-              onPress={()=>this.onBtnPress('热码计划','rema')}
-              iconUrl={require('./ico/rema_plan.png')}
+              iconUrl={require('./ico/rema_plan_unuse.png')}
               title={'热码计划'}
               />
           <ImageButton

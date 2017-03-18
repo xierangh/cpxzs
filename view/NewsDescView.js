@@ -62,21 +62,6 @@ export default class NewsDescView extends React.Component{
         })
     }
 
-    queryTime(){
-      this.timer && clearTimeout(this.timer);
-
-       Utils.getWithParams('caipiaoNumber/queryNextPeriod')
-       .then((data)=>{
-             if(!data){
-                 this.refs.timeview.setNextPeroid('','');
-                 return;
-              }
-              //  console.log(JSON.stringify(data))
-              var seconds = parseInt(data.hour)*3600 + parseInt(data.minute)*60+parseInt(data.second);
-              this.refs.timeview.setNextPeroid(data.nextPeriodStr,seconds);
-         })
-    }
-
 	render(){
 		return (
 			<View style={styles.container}>
@@ -85,10 +70,7 @@ export default class NewsDescView extends React.Component{
          text={'公告详情'}>
       </NavigatorTitle>
 
-      <NotoolTimeViewOld
-        ref='timeview'
-        refresh={()=>this.queryTime()}
-      />
+      <NotoolTimeViewOld />
 
       <View style={styles.splitLine}></View>
 

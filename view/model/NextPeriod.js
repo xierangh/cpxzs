@@ -57,7 +57,6 @@ class NextPeriod {
               this.shouldfresh = false;
           },100)
           console.log("this.props.refresh");
-          Utils.showAlert('','this.props.refresh');
       }
   }
 

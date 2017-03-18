@@ -118,9 +118,7 @@ export default class NewsView extends React.Component{
            text={'公告'}>
         </NavigatorTitle>
 
-          <NotoolTimeViewOld
-            ref='timeview'
-          />
+          <NotoolTimeViewOld />
 
           <View style={styles.splitLine}></View>
           {this.state.loaded ?

@@ -19,8 +19,10 @@ import Utils from './../Utils';
 import Loading from './../comp/Loading'
 import JppHideView from './../comp/JppHideView'
 import PlanItemView from './../comp/PlanItemView'
-import PlanSelectView from './../comp/PlanSelectView'
-import NotoolTimeViewOld from './../comp/NotoolTimeViewOld'
+import NotoolTimeViewOld from './../comp/NotoolTimeView'
+import NavigatorTitle from './../comp/NavigatorTitle'
+
+import ModalDropdown from 'react-native-modal-dropdown';
 
 
 //列表数据准备
@@ -70,39 +72,12 @@ class RemaPlanView extends React.Component {
   }
 
   componentDidMount(){
-    // if (!Utils.online) {
-    //   return;
-    // }
-
-    // this.queryTime();
-    //http://www.cpxzs.com/jhfa/jhfaPlan?condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&activity=&pattern=3&jhfaName=ssc020&sort=&_=1484008794282
-    //http://www.cpxzs.com/jhfa/jhfaPlan?condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&jhfaName=ssc020
-    // var param ='condition=zhx&jhfaPlanType=0&type=&jhfawei=1&jhfadanmaCount=8&jhfazhuiqiCount=5&times=2&bonus=195&yeildRate=20&jhfaName=ssc038';
-    //var param = 'condition=zux&jhfaPlanType=0&type=&jhfawei=2&jhfadanmaCount=8&jhfazhuiqiCount=5&times=1&bonus=97.5&yeildRate=20&jhfaName=ssc028';
-    //var param = 'condition=bdw&jhfaPlanType=0&type=&jhfawei=4&jhfadanmaCount=2&jhfazhuiqiCount=3&times=2&bonus=1950&yeildRate=20&jhfaName=ssc022';
     var param = 'condition=dw&jhfaPlanType=0&type=&jhfawei=1&jhfadanmaCount=5&jhfazhuiqiCount=3&times=10&bonus=19.5&yeildRate=20';
     this.queryPlan(param);
   }
 
-
-  queryTime(){
-    this.timer && clearTimeout(this.timer);
-
-     Utils.getWithParams('caipiaoNumber/queryNextPeriod')
-     .then((data)=>{
-           if(!data){
-              this.refs.timeview.setNextPeroid('','');
-              return;
-            }
-            //  console.log(JSON.stringify(data))
-            var seconds = parseInt(data.hour)*3600 + parseInt(data.minute)*60+parseInt(data.second);
-            this.refs.timeview.setNextPeroid(data.nextPeriodStr,seconds);
-       })
-  }
-
   onfinish(){
-
-    this.onCreatePlan(1);
+      this.onCreatePlan(0);
   }
 
   onCreatePlan(isfinish:number){
@@ -120,8 +95,6 @@ class RemaPlanView extends React.Component {
     param = param +'jhfadanmaCount='+this.state.fn2_m;
     param = param +'&';
     param = param +'jhfazhuiqiCount='+this.state.fn3_q;
-
-
 
     param = param +'&';
     param = param +'times='+this.state.times;
@@ -214,6 +187,12 @@ class RemaPlanView extends React.Component {
       times:times,
       bonus:bonus,
     })
+
+      this.timerquery = setTimeout(()=>{
+              this.timerquery && clearTimeout(this.timerquery);
+              this.onCreatePlan(0)
+          },100
+      );
   }
 
   showPicker(index:number){
@@ -284,7 +263,7 @@ class RemaPlanView extends React.Component {
   refresh(){
       this.timer && clearTimeout(this.timer);
       // this.queryTime();
-      this.timer = setInterval(()=>{
+      this.timer = setTimeout(()=>{
         this.timer && clearTimeout(this.timer);
         this.onCreatePlan(0)
       },1000*60*2
@@ -327,9 +306,10 @@ class RemaPlanView extends React.Component {
   render(){
     return(
       <View style={styles.container}>
-        <View style={styles.firstPage_title_container}>
-            <Text style={styles.firstPage_title_center}>热码计划</Text>
-        </View>
+        <NavigatorTitle
+            onPress={()=>this.props.navigator.pop()}
+            text={'热码计划'}>
+        </NavigatorTitle>
 
         <NotoolTimeViewOld
             ref='timeview'
@@ -390,10 +370,51 @@ class RemaPlanView extends React.Component {
         {this.state.isFn &&
             <View style={styles.jpp_hide_view_fn}>
               <Text style={{marginTop:5,marginLeft:11,marginRight:5}}>方案设置</Text>
-              <JppHideView
-                title={this.getFn1_w_show()}
-                onClick={()=>this.showPicker(1)}
-              />
+              <View style={styles.picker_view}>
+                  {this.state.wf == 'dw' &&
+                  <ModalDropdown
+                      defaultValue={'个位'}
+                      options={['个位','十位','百位','千位','万位']}
+                      onSelect={(index,value)=>this.setState({fn1_w:index+1})}
+                  />
+                  }
+                  {this.state.wf == 'bdw' &&
+                  <Picker
+                      selectedValue={this.state.fn1_w}
+                      onValueChange={(index) => this.setState({fn1_w:index})}>
+                    <Picker.Item label="前二" value="1" />
+                    <Picker.Item label="前三" value="2" />
+                    <Picker.Item label="后二" value="3" />
+                    <Picker.Item label="后三" value="4" />
+                    <Picker.Item label="五星" value="5" />
+                    <Picker.Item label="中三" value="6" />
+                    <Picker.Item label="前四" value="7" />
+                    <Picker.Item label="后四" value="8" />
+                  </Picker>
+                  }
+                  {this.state.wf == 'zux' &&
+                  <Picker
+                      selectedValue={this.state.fn1_w}
+                      onValueChange={(index) => this.setState({fn1_w:index})}>
+                    <Picker.Item label="前二" value="1" />
+                    <Picker.Item label="后二" value="2" />
+                    <Picker.Item label="前三组六" value="3" />
+                    <Picker.Item label="中三组六" value="4" />
+                    <Picker.Item label="后三祖六" value="5" />
+                  </Picker>
+                  }
+                  {this.state.wf == 'zhx' &&
+                  <Picker
+                      selectedValue={this.state.fn1_w}
+                      onValueChange={(index) => this.setState({fn1_w:index})}>
+                    <Picker.Item label="前二" value="1" />
+                    <Picker.Item label="后二" value="2" />
+                    <Picker.Item label="前三" value="3" />
+                    <Picker.Item label="中三" value="4" />
+                    <Picker.Item label="后三" value="5" />
+                  </Picker>
+                  }
+              </View>
               <JppHideView
                 title={this.state.fn2_m+''}
                 title_const={'码'}
@@ -414,61 +435,6 @@ class RemaPlanView extends React.Component {
           </View>
         }
 
-        {this.state.showPicker==1 &&
-          <View style={{backgroundColor:'#fff',marginBottom:20}}>
-
-            {this.state.wf == 'dw' &&
-              <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn1_w:index})}>
-                  <Picker.Item label="个" value="1" />
-                  <Picker.Item label="十" value="2" />
-                  <Picker.Item label="百" value="3" />
-                  <Picker.Item label="千" value="4" />
-                  <Picker.Item label="万" value="5" />
-              </Picker>
-            }
-            {this.state.wf == 'bdw' &&
-              <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn1_w:index})}>
-                  <Picker.Item label="前二" value="1" />
-                  <Picker.Item label="前三" value="2" />
-                  <Picker.Item label="后二" value="3" />
-                  <Picker.Item label="后三" value="4" />
-                  <Picker.Item label="五星" value="5" />
-                  <Picker.Item label="中三" value="6" />
-                  <Picker.Item label="前四" value="7" />
-                  <Picker.Item label="后四" value="8" />
-              </Picker>
-            }
-            {this.state.wf == 'zux' &&
-              <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn1_w:index})}>
-                <Picker.Item label="前二" value="1" />
-                <Picker.Item label="后二" value="2" />
-                <Picker.Item label="前三组六" value="3" />
-                <Picker.Item label="中三组六" value="4" />
-                <Picker.Item label="后三祖六" value="5" />
-              </Picker>
-            }
-            {this.state.wf == 'zhx' &&
-              <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn1_w:index})}>
-                <Picker.Item label="前二" value="1" />
-                <Picker.Item label="后二" value="2" />
-                <Picker.Item label="前三" value="3" />
-                <Picker.Item label="中三" value="4" />
-                <Picker.Item label="后三" value="5" />
-              </Picker>
-            }
-            <TouchableHighlight onPress={()=>{this.showPicker(0)}} underlayColor="#fff2">
-                <Text style={{alignSelf:'flex-end',width:100,textAlign:'center',color:'#000'}}>关闭</Text>
-            </TouchableHighlight>
-          </View>
-        }
 
         {this.state.showPicker==2 &&
           <View style={{backgroundColor:'#fff',marginBottom:20}}>
