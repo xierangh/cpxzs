@@ -74,6 +74,12 @@ export default class ButtonRowView extends React.Component{
     console.log('ButtonRowView create');
   }
 
+    componentWillReceiveProps(next){
+        this.setState({
+            items:next.items
+        })
+    }
+
   getSelected(){
     return this.state.selected;
   }

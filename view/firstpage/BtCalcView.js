@@ -263,20 +263,17 @@ const  mystyle = StyleSheet.create({
         flex:1,
         flexDirection:'row',
         alignItems:'center',
-        marginHorizontal:10,
     },
     style_input: {
-        paddingLeft:10,
-        paddingRight:10,
-        height: 25*Utils.scale,
+        height: 30*Utils.scale,
         fontSize:Utils.FONT_NORMAL,
         color:'#929292',
         flex: 1,
-        alignSelf:'center',
         textAlign:'center',
         borderWidth:1,
         borderColor:'#ccc',
         borderRadius:4,
+        paddingVertical:0,
     },
 
     //row style

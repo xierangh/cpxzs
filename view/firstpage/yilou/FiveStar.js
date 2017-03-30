@@ -1,5 +1,5 @@
 /**
- * 二星遗漏
+ * 五星遗漏
  */
 import React from 'react'
 import {
@@ -22,11 +22,10 @@ import YilouModel from './YilouModel'
 let model = new YilouModel();
 
 var items_types=[
-    {name:'前二遗漏',value:1,wei:'wanQian',abc:'a,b',type:2,hezhi:'firstTwoSum',danma:'twoStarDanMaPrev',danshiwei:['万','千']},
-    {name:'后二遗漏',value:2,wei:'shiGe',abc:'d,e',type:2,hezhi:'lastTwoSum',danma:'twoStarDanMaLast',danshiwei:['十','个']},
+    {name:'前二遗漏',value:1,wei:'number',abc:'a,b,c,d,e',type:5,hezhi:'lastFiveSum',danma:'fiveStarDanMa',danshiwei:['万','千','百','十','个']}
 ]
 
-export default class TwoStar extends React.Component{
+export default class FiveStar extends React.Component{
     static propTypes={
         items:React.PropTypes.array
     }
@@ -46,14 +45,6 @@ export default class TwoStar extends React.Component{
         model.setOmissonType(value);
     }
 
-
-    onSelectedtype(value){
-        this.setState({
-            subType:value,
-        })
-        model.setSubType(value);
-    }
-
     render(){
         return(
             <View style={mystyle.row_bottom}>
@@ -64,13 +55,7 @@ export default class TwoStar extends React.Component{
                         items={this.state.items}
                     />
                 </View>
-                <View style={mystyle.menu}>
-                    <ButtonRowView
-                        selected={this.state.subType}
-                        onSelected={(value)=>this.onSelectedtype(value)}
-                        items={this.state.items_types}
-                    />
-                </View>
+
                 <View style={styles.splitLine}></View>
                 <View style={mystyle.allview}>
                     {this.state.omissonType.value == 1 &&

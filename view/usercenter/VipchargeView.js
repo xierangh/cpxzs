@@ -20,12 +20,28 @@ import Utils from './../Utils'
 import styles from './../stylecpxzs'
 import CustomButton from './../comp/CustomButton'
 import NavigatorTitle from './../comp/NavigatorTitle'
+import ModalPicker from './../picker/ModalPicker'
 import moment from 'moment'
 
 import AppEventListenerEnhance from 'react-native-smart-app-event-listener-enhance'
 // import Button from 'react-native-smart-button'
 import AliPay from 'react-native-smart-alipay'
 
+
+const vipdata=[
+    { key: 4, section: true, label: '试用VIP' },
+    { key: 2, label: 'VIP' },
+    { key: 3, label: 'SVIP' },
+    { key: 5, label: '共享VIP' },
+]
+
+const monthdata=[
+    { key: 1, section: true, label: '一个月[9.5折]' },
+    { key: 2, label: '二个月[9.5折]' },
+    { key: 3, label: '三个月[9.5折]' },
+    { key: 6, label: '六个月[9.5折]' },
+    { key: 12, label: '十二个月[9.5折]' },
+];
 class VipchargeView extends React.Component{
     constructor(props){
         super(props)
@@ -40,8 +56,8 @@ class VipchargeView extends React.Component{
         var timestr = this.timeformat(time);
         time.add(3,'d');
         this.state={
-            vip:'4',
-            month:1,
+            vip:vipdata[0],
+            month:monthdata[0],
             pay:28.5,
             timestart:timestr,
             timeend:this.timeformat(time),
@@ -166,13 +182,13 @@ class VipchargeView extends React.Component{
         var param = '';
         param = param + 'rechargeAmount=' + this.state.pay;
         param = param + '&';
-        param = param + 'vipType=' + this.state.vip;
+        param = param + 'vipType=' + this.state.vip.key;
         param = param + '&';
-        param = param + 'monthCount=' + this.state.month;
+        param = param + 'monthCount=' + this.state.month.key;
         param = param + '&';
-        param = param + 'startTime=' + this.state.vip;
+        param = param + 'startTime=' + this.state.timestart;
         param = param + '&';
-        param = param + 'endTime=' + this.state.vip;
+        param = param + 'endTime=' + this.state.timeend;
         param = param + '&';
         param = param + 'payType=' + this.state.payway;
 
@@ -185,19 +201,20 @@ class VipchargeView extends React.Component{
         this._getAlipayParams();
     }
 
-    vipchange(index){
+    vipchange(option){
+        var index = option.key;
         var paymonth = this.state.paymonth;
         switch (index){
-            case '4':
+            case 4:
                 paymonth = 28.5;
                 break;
-            case '2':
+            case 2:
                 paymonth = 95.00;
                 break;
-            case '3':
+            case 3:
                 paymonth = 190.00;
                 break;
-            case '5':
+            case 5:
                 paymonth = 200.00;
                 break;
         }
@@ -213,13 +230,13 @@ class VipchargeView extends React.Component{
         if(index == '4'){
             time.add(3,'d');
         }else{
-            time.add(this.state.month,'M');
+            time.add(this.state.month.key,'M');
         }
 
         this.setState({
             paymonth:paymonth,
-            vip: index,
-            pay:index == '4' ? 28.5 : paymonth*this.state.month,
+            vip: option,
+            pay:index == '4' ? 28.5 : paymonth*this.state.month.key,
             timestart:timestr,
             timeend:this.timeformat(time),
         });
@@ -229,7 +246,8 @@ class VipchargeView extends React.Component{
         return time.format('YYYY-MM-DD');
     }
 
-    monthchange(index){
+    monthchange(option){
+        var index = option.key;
         var endtimestr = Utils.userInfo.memberEndTime;
         var time = null;
         if (!endtimestr){
@@ -240,7 +258,7 @@ class VipchargeView extends React.Component{
         var timestr = this.timeformat(time);
         time.add(index,'M');
         this.setState({
-            month: index,
+            month: option,
             pay:index*this.state.paymonth,
             timestart:timestr,
             timeend:this.timeformat(time),
@@ -260,32 +278,25 @@ class VipchargeView extends React.Component{
 
             <View style={mystyle.row}>
                 <Text style={mystyle.text}>请选择充值会员类型</Text>
-                <Picker
-                    style={styles.picker_view}
-                    selectedValue={this.state.vip}
-                    onValueChange={(index) => this.vipchange(index)}>
-                    <Picker.Item label="试用VIP" value="4" />
-                    <Picker.Item label="VIP" value="2" />
-                    <Picker.Item label="SVIP" value="3" />
-                    <Picker.Item label="共享VIP" value="5" />
-                </Picker>
+                <View style={styles.picker_view}>
+                    <ModalPicker
+                        data={vipdata}
+                        initValue={this.state.vip.label}
+                        onChange={(option)=>{ this.vipchange(option);}} />
+                </View>
             </View>
             <View style={styles.splitLine}></View>
             <View style={mystyle.row}>
                 <Text style={mystyle.text}>请选择充值会员时长</Text>
-                {this.state.vip=='4' ?
+                {this.state.vip.key==4 ?
                     <Text style={mystyle.text}>3天[9.5折]</Text>
                     :
-                    <Picker
-                        style={styles.picker_view}
-                        selectedValue={this.state.month}
-                        onValueChange={(value) => this.monthchange(value)}>
-                        <Picker.Item label="一个月[9.5折]" value="1" />
-                        <Picker.Item label="二个月[9.5折]" value="2" />
-                        <Picker.Item label="三个月[9.5折]" value="3" />
-                        <Picker.Item label="六个月[9.5折]" value="6" />
-                        <Picker.Item label="十二个月[9.5折]" value="12" />
-                    </Picker>
+                    <View style={styles.picker_view}>
+                        <ModalPicker
+                            data={monthdata}
+                            initValue={this.state.month.label}
+                            onChange={(option)=>{ this.monthchange(option);}} />
+                    </View>
                 }
             </View>
             <View style={styles.splitLine}></View>

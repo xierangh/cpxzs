@@ -1,5 +1,5 @@
 /**
- * 二星遗漏
+ * 四星遗漏
  */
 import React from 'react'
 import {
@@ -22,11 +22,11 @@ import YilouModel from './YilouModel'
 let model = new YilouModel();
 
 var items_types=[
-    {name:'前二遗漏',value:1,wei:'wanQian',abc:'a,b',type:2,hezhi:'firstTwoSum',danma:'twoStarDanMaPrev',danshiwei:['万','千']},
-    {name:'后二遗漏',value:2,wei:'shiGe',abc:'d,e',type:2,hezhi:'lastTwoSum',danma:'twoStarDanMaLast',danshiwei:['十','个']},
+    {name:'前四遗漏',value:1,wei:'wanQianBaiShi',abc:'a,b,c,d',type:4,hezhi:'firstFourSum',danma:'fourStarDanMaPrev',danshiwei:['万','千','百','十']},
+    {name:'后四遗漏',value:2,wei:'qianBaiShiGe',abc:'b,c,d,e',type:4,hezhi:'lastFourSum',danma:'fourStarDanMaLast',danshiwei:['千','百','十','个']},
 ]
 
-export default class TwoStar extends React.Component{
+export default class FourStar extends React.Component{
     static propTypes={
         items:React.PropTypes.array
     }

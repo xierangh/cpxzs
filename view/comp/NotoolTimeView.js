@@ -53,6 +53,12 @@ export default class NotoolTimeView extends React.Component{
   setNextPeroid(nextPeriodStr:string,seconds:number){
     np.nextPeriodStr = nextPeriodStr;
     np.seconds = seconds;
+    np.shouldfresh = true;
+
+    //100ms后修改回去
+    setTimeout(()=>{
+      np.shouldfresh = false;
+    },100);
   }
 
   getHour(){

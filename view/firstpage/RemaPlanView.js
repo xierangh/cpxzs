@@ -24,6 +24,9 @@ import NavigatorTitle from './../comp/NavigatorTitle'
 
 import ModalDropdown from 'react-native-modal-dropdown';
 
+// import ModalPicker from 'react-native-modal-picker'
+
+import ModalPicker from './../picker/ModalPicker'
 
 //列表数据准备
 var ds = new ListView.DataSource({rowHasChanged: function(r1, r2):bool{
@@ -39,6 +42,82 @@ var planitems=[
 
 var wf_arr =['','','',''];
 var cur = '';
+
+
+const dwdata = [
+    { key: 1, section: true, label: '个位' },
+    { key: 2, label: '十位' },
+    { key: 3, label: '百位' },
+    { key: 4, label: '千位' },
+    { key: 5, label: '万位' },
+];
+
+const bdwdata=[
+    { key: 1, section: true, label: '前二' },
+    { key: 2, label: '前三' },
+    { key: 3, label: '后二' },
+    { key: 4, label: '后三' },
+    { key: 5, label: '五星' },
+    { key: 6, label: '中三' },
+    { key: 7, label: '前四' },
+    { key: 8, label: '后四' },
+]
+
+const zuxdata=[
+    { key: 1, section: true, label: '前二' },
+    { key: 2, label: '后二' },
+    { key: 3, label: '前三组六' },
+    { key: 4, label: '中三组六' },
+    { key: 5, label: '后三组六' },
+]
+
+const zhxdata=[
+    { key: 1, section: true, label: '前二' },
+    { key: 2, label: '后二' },
+    { key: 3, label: '前三' },
+    { key: 4, label: '中三' },
+    { key: 5, label: '后三' },
+]
+
+const bdwdata_m=[
+    { key: 1, section: true, label: '1码' },
+    { key: 2, label: '2码' },
+    { key: 3, label: '3码' },
+    { key: 4, label: '4码' },
+    { key: 5, label: '5码' },
+    { key: 6, label: '6码' },
+]
+
+const data_m=[
+    { key: 1, section: true, label: '1码' },
+    { key: 2, label: '2码' },
+    { key: 3, label: '3码' },
+    { key: 4, label: '4码' },
+    { key: 5, label: '5码' },
+    { key: 6, label: '6码' },
+    { key: 7, label: '7码' },
+    { key: 8, label: '8码' },
+    { key: 9, label: '9码' },
+]
+
+const data_q=[
+    { key: 1, section: true, label: '1期' },
+    { key: 2, label: '2期' },
+    { key: 3, label: '3期' },
+    { key: 4, label: '4期' },
+    { key: 5, label: '5期' },
+    { key: 6, label: '6期' },
+    { key: 7, label: '7期' },
+    { key: 8, label: '8期' },
+    { key: 9, label: '9期' },
+    { key: 10, label: '10期' },
+    { key: 11, label: '11期' },
+    { key: 12, label: '12期' },
+    { key: 13, label: '13期' },
+    { key: 14, label: '14期' },
+    { key: 15, label: '15期' },
+]
+
 class RemaPlanView extends React.Component {
 
   static propTypes={
@@ -372,59 +451,52 @@ class RemaPlanView extends React.Component {
               <Text style={{marginTop:5,marginLeft:11,marginRight:5}}>方案设置</Text>
               <View style={styles.picker_view}>
                   {this.state.wf == 'dw' &&
-                  <ModalDropdown
-                      defaultValue={'个位'}
-                      options={['个位','十位','百位','千位','万位']}
-                      onSelect={(index,value)=>this.setState({fn1_w:index+1})}
-                  />
+                  <ModalPicker
+                      data={dwdata}
+                      initValue={dwdata[this.state.fn1_w-1].label}
+                      onChange={(option)=>{ this.setState({fn1_w:option.key}); }} />
                   }
+
                   {this.state.wf == 'bdw' &&
-                  <Picker
-                      selectedValue={this.state.fn1_w}
-                      onValueChange={(index) => this.setState({fn1_w:index})}>
-                    <Picker.Item label="前二" value="1" />
-                    <Picker.Item label="前三" value="2" />
-                    <Picker.Item label="后二" value="3" />
-                    <Picker.Item label="后三" value="4" />
-                    <Picker.Item label="五星" value="5" />
-                    <Picker.Item label="中三" value="6" />
-                    <Picker.Item label="前四" value="7" />
-                    <Picker.Item label="后四" value="8" />
-                  </Picker>
+                  <ModalPicker
+                      data={bdwdata}
+                      initValue={bdwdata[this.state.fn1_w-1].label}
+                      onChange={(option)=>{ this.setState({fn1_w:option.key}); }} />
+
                   }
                   {this.state.wf == 'zux' &&
-                  <Picker
-                      selectedValue={this.state.fn1_w}
-                      onValueChange={(index) => this.setState({fn1_w:index})}>
-                    <Picker.Item label="前二" value="1" />
-                    <Picker.Item label="后二" value="2" />
-                    <Picker.Item label="前三组六" value="3" />
-                    <Picker.Item label="中三组六" value="4" />
-                    <Picker.Item label="后三祖六" value="5" />
-                  </Picker>
+                  <ModalPicker
+                      data={zuxdata}
+                      initValue={zuxdata[this.state.fn1_w-1].label}
+                      onChange={(option)=>{ this.setState({fn1_w:option.key}); }} />
                   }
                   {this.state.wf == 'zhx' &&
-                  <Picker
-                      selectedValue={this.state.fn1_w}
-                      onValueChange={(index) => this.setState({fn1_w:index})}>
-                    <Picker.Item label="前二" value="1" />
-                    <Picker.Item label="后二" value="2" />
-                    <Picker.Item label="前三" value="3" />
-                    <Picker.Item label="中三" value="4" />
-                    <Picker.Item label="后三" value="5" />
-                  </Picker>
+                  <ModalPicker
+                      data={zhxdata}
+                      initValue={zhxdata[this.state.fn1_w-1].label}
+                      onChange={(option)=>{ this.setState({fn1_w:option.key}); }} />
                   }
               </View>
-              <JppHideView
-                title={this.state.fn2_m+''}
-                title_const={'码'}
-                onClick={()=>this.showPicker(2)}
-              />
-              <JppHideView
-                title={this.state.fn3_q+''}
-                title_const={'期'}
-                onClick={()=>this.showPicker(3)}
-              />
+              <View style={styles.picker_view}>
+                  {this.state.wf == 'bdw' ?
+                      <ModalPicker
+                          data={bdwdata_m}
+                          initValue={bdwdata_m[this.state.fn2_m-1].label}
+                          onChange={(option)=>{ this.setState({fn2_m:option.key}); }} />
+                      :
+                      <ModalPicker
+                          data={data_m}
+                          initValue={data_m[this.state.fn2_m-1].label}
+                          onChange={(option)=>{ this.setState({fn2_m:option.key}); }} />
+                  }
+              </View>
+              <View style={styles.picker_view}>
+                <ModalPicker
+                    data={data_q}
+                    initValue={data_q[this.state.fn3_q-1].label}
+                    onChange={(option)=>{ this.setState({fn3_q:option.key}); }} />
+              </View>
+
               <TouchableHighlight
                 underlayColor={'#ea565630'}
                 onPress={() => this.onfinish()}>
@@ -434,69 +506,6 @@ class RemaPlanView extends React.Component {
               </TouchableHighlight>
           </View>
         }
-
-
-        {this.state.showPicker==2 &&
-          <View style={{backgroundColor:'#fff',marginBottom:20}}>
-
-            {this.state.wf == 'bdw' ?
-              <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn2_m: index})}>
-                <Picker.Item label="1码" value="1" />
-                <Picker.Item label="2码" value="2" />
-                <Picker.Item label="3码" value="3" />
-                <Picker.Item label="4码" value="4" />
-                <Picker.Item label="5码" value="5" />
-                <Picker.Item label="6码" value="6" />
-              </Picker>
-              :
-              <Picker
-                selectedValue={this.state.fn1_w}
-                onValueChange={(index) => this.setState({fn2_m: index})}>
-                <Picker.Item label="1码" value="1" />
-                <Picker.Item label="2码" value="2" />
-                <Picker.Item label="3码" value="3" />
-                <Picker.Item label="4码" value="4" />
-                <Picker.Item label="5码" value="5" />
-                <Picker.Item label="6码" value="6" />
-                <Picker.Item label="7码" value="7" />
-                <Picker.Item label="8码" value="8" />
-                <Picker.Item label="9码" value="9" />
-              </Picker>
-            }
-            <TouchableHighlight onPress={()=>{this.showPicker(0)}} underlayColor="#fff2">
-              <Text style={{alignSelf:'flex-end',width:100,textAlign:'center',color:'#000'}}>关闭</Text>
-            </TouchableHighlight>
-        </View>
-      }
-
-      {this.state.showPicker==3 &&
-        <View style={{backgroundColor:'#fff',marginBottom:20}}>
-            <Picker
-              selectedValue={this.state.fn1_q}
-              onValueChange={(index) => this.setState({fn3_q: index})}>
-              <Picker.Item label="1期" value="1" />
-              <Picker.Item label="2期" value="2" />
-              <Picker.Item label="3期" value="3" />
-              <Picker.Item label="4期" value="4" />
-              <Picker.Item label="5期" value="5" />
-              <Picker.Item label="6期" value="6" />
-              <Picker.Item label="7期" value="7" />
-              <Picker.Item label="8期" value="8" />
-              <Picker.Item label="9期" value="9" />
-              <Picker.Item label="10期" value="10" />
-              <Picker.Item label="11期" value="11" />
-              <Picker.Item label="12期" value="12" />
-              <Picker.Item label="13期" value="13" />
-              <Picker.Item label="14期" value="14" />
-              <Picker.Item label="15期" value="15" />
-            </Picker>
-            <TouchableHighlight onPress={()=>{this.showPicker(0)}} underlayColor="#fff2">
-              <Text style={{alignSelf:'flex-end',width:100,textAlign:'center',color:'#000'}}>关闭</Text>
-            </TouchableHighlight>
-        </View>
-      }
 
         <View style={styles.splitLine}></View>
         <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>

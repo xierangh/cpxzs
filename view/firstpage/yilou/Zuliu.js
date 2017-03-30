@@ -1,5 +1,5 @@
 /**
- * 二星遗漏
+ * 组六遗漏
  */
 import React from 'react'
 import {
@@ -11,9 +11,6 @@ import {
 import styles from './../../stylecpxzs'
 import ButtonRowView from './../../comp/ButtonRowView';
 
-import DanshiOmission from './DanshiOmission'
-import FushiOmission from './FushiOmission'
-import HezhiOmission from './HezhiOmission'
 import DanmaOmission from './DanmaOmission'
 
 import Yilouresult from './Yilouresult'
@@ -22,11 +19,12 @@ import YilouModel from './YilouModel'
 let model = new YilouModel();
 
 var items_types=[
-    {name:'前二遗漏',value:1,wei:'wanQian',abc:'a,b',type:2,hezhi:'firstTwoSum',danma:'twoStarDanMaPrev',danshiwei:['万','千']},
-    {name:'后二遗漏',value:2,wei:'shiGe',abc:'d,e',type:2,hezhi:'lastTwoSum',danma:'twoStarDanMaLast',danshiwei:['十','个']},
+    {name:'前三',value:1,danma:'patternSixPrev'},
+    {name:'中三',value:2,danma:'patternSixMid'},
+    {name:'后三',value:3,danma:'patternSixLast'},
 ]
 
-export default class TwoStar extends React.Component{
+export default class Zuliu extends React.Component{
     static propTypes={
         items:React.PropTypes.array
     }
@@ -38,14 +36,9 @@ export default class TwoStar extends React.Component{
             items_types:items_types,
             subType:items_types[0],
         }
+        model.omissonType = this.props.items[0];
         model.subType = items_types[0];
     }
-
-    onSelected(value){
-        this.setState({omissonType:value})
-        model.setOmissonType(value);
-    }
-
 
     onSelectedtype(value){
         this.setState({
@@ -59,41 +52,15 @@ export default class TwoStar extends React.Component{
             <View style={mystyle.row_bottom}>
                 <View style={mystyle.menu}>
                     <ButtonRowView
-                        selected={this.state.omissonType}
-                        onSelected={(value)=>this.onSelected(value)}
-                        items={this.state.items}
-                    />
-                </View>
-                <View style={mystyle.menu}>
-                    <ButtonRowView
                         selected={this.state.subType}
                         onSelected={(value)=>this.onSelectedtype(value)}
                         items={this.state.items_types}
                     />
                 </View>
+
                 <View style={styles.splitLine}></View>
                 <View style={mystyle.allview}>
-                    {this.state.omissonType.value == 1 &&
-                    <DanshiOmission
-                        selected={this.state.subType.danshiwei}
-                    />
-                    }
-                    {this.state.omissonType.value == 2 &&
-                    <FushiOmission
-                        selected={this.state.subType.danshiwei}
-                    />
-                    }
-                    {this.state.omissonType.value == 3 &&
-                    <HezhiOmission
-                        selected={this.state.subType.danshiwei}
-                    />
-                    }
-                    {this.state.omissonType.value == 4 &&
-                    <DanmaOmission
-                        selected={this.state.danshiwei}
-                    />
-                    }
-
+                    <DanmaOmission least="请至少选择三个数字" number={3}/>
                     <Yilouresult />
                 </View>
             </View>

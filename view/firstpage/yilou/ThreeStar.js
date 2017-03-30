@@ -1,5 +1,5 @@
 /**
- * 二星遗漏
+ * 三星遗漏
  */
 import React from 'react'
 import {
@@ -22,14 +22,19 @@ import YilouModel from './YilouModel'
 let model = new YilouModel();
 
 var items_types=[
-    {name:'前二遗漏',value:1,wei:'wanQian',abc:'a,b',type:2,hezhi:'firstTwoSum',danma:'twoStarDanMaPrev',danshiwei:['万','千']},
-    {name:'后二遗漏',value:2,wei:'shiGe',abc:'d,e',type:2,hezhi:'lastTwoSum',danma:'twoStarDanMaLast',danshiwei:['十','个']},
-]
-
+    {name:'前三遗漏',value:1,wei:'wanQianBai',abc:'a,b,c',type:3,hezhi:'firstThreeSum',danma:'threeStarDanMaPrev',danshiwei:['万','千','百']},
+    {name:'后三遗漏',value:2,wei:'baiShiGe',abc:'c,d,e',type:3,hezhi:'lastThreeSum',danma:'threeStarDanMaLast',danshiwei:['百','十','个']},
+    ];
+var items_types_danma=[
+    {name:'前三遗漏',value:1,wei:'wanQianBai',abc:'a,b,c',type:3,hezhi:'firstThreeSum',danma:'threeStarDanMaPrev',danshiwei:['万','千','百']},
+    {name:'后三遗漏',value:2,wei:'baiShiGe',abc:'c,d,e',type:3,hezhi:'lastThreeSum',danma:'threeStarDanMaLast',danshiwei:['百','十','个']},
+    {name:'中三遗漏',value:3,danma:'threeStarDanMaMid'},
+    ];
 export default class TwoStar extends React.Component{
     static propTypes={
         items:React.PropTypes.array
     }
+
     constructor(props){
         super(props)
         this.state={
@@ -42,7 +47,19 @@ export default class TwoStar extends React.Component{
     }
 
     onSelected(value){
-        this.setState({omissonType:value})
+        if (value.value == 4){
+            this.setState({
+                items_types:items_types_danma,
+                subType:items_types_danma[0],
+                omissonType:value
+            })
+        }else{
+            this.setState({
+                items_types:items_types,
+                subType:items_types[0],
+                omissonType:value
+            })
+        }
         model.setOmissonType(value);
     }
 

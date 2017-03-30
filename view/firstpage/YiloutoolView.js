@@ -12,20 +12,31 @@ import {
     ScrollView
 } from 'react-native';
 
-import Utils from './../Utils'
 import styles from './../stylecpxzs';
 import NavigatorTitle from './../comp/NavigatorTitle';
 import NotoolTimeViewOld from './../comp/NotoolTimeView';
 import ButtonRowView from './../comp/ButtonRowView';
 import Yiloudwd from './yilou/Yiloudwd'
 import TwoStar from './yilou/TwoStar'
+import ThreeStar from './yilou/ThreeStar'
+import FourStar from './yilou/FourStar'
+import FiveStar from './yilou/FiveStar'
+
+import Zuliu from './yilou/Zuliu'
+import Zusan from './yilou/Zusan'
 
 
 
-//列表数据准备
-var ds = new ListView.DataSource({rowHasChanged: function(r1, r2):bool{
-    return (r1 !== r2);
-}})  // assumes immutable objects
+var yilou_items=[
+    {name:'单式遗漏',value:1,url:'omission/omissionHistoryQuery'},
+    {name:'复式遗漏',value:2,url:'omission/compoundOmissionQuery'},//type:2&numberArr:2,4,;,2,3,4&wei:a,b&cond:wanQian&count:
+    {name:'和值遗漏',value:3,url:'omission/sumValueOmission'},//type=firstTwoSum&numberArr=2,4,8&count=
+    {name:'胆码遗漏',value:4,url:'omission/danMaOmission'},//type=twoStarDanMaPrev&numberArr=4,6,7,8&count=
+    ];
+
+var yilou_pattern=[
+    {name:'组选',value:1,url:'omission/patternOmission'},
+];
 
 export default class YiloutoolView extends React.Component{
 
@@ -53,16 +64,19 @@ export default class YiloutoolView extends React.Component{
     getShowView(){
         switch (this.state.selectedValue.value){
             case 1:
+                return <Zusan items={yilou_pattern}/>
             case 2:
-                return <View></View>
+                return <Zuliu items={yilou_pattern}/>
             case 3:
                 return <Yiloudwd />
             case 4:
-                return <TwoStar />
+                return <TwoStar items={yilou_items} />
             case 5:
+                return <ThreeStar items={yilou_items} />
             case 6:
+                return <FourStar items={yilou_items}/>
             case 7:
-                return <View></View>
+                return <FiveStar items={yilou_items}/>
         }
     }
 

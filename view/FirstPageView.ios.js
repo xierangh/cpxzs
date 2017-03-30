@@ -271,7 +271,8 @@ export default class FirstPageView extends React.Component{
             />
 
             <ImageButton
-              iconUrl={require('./ico/rema_plan_unuse.png')}
+                onPress={()=>this.onBtnPress('','rema')}
+              iconUrl={require('./ico/rema_plan.png')}
               title={'热码计划'}
               />
           <ImageButton
@@ -304,7 +305,8 @@ export default class FirstPageView extends React.Component{
               customStyle={styles.customStyle}
               />
             <ImageButton
-                iconUrl={require('./ico/yilou_unuse.png')}
+                onPress={()=>this.onBtnPress('','yilou')}
+                iconUrl={require('./ico/yilou.png')}
               title={'遗漏助手'}
               customStyle={styles.customStyle}
               />

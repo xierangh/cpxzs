@@ -16,6 +16,8 @@ import TuanduiView from './usercenter/TuanduiView'
 import VipchargeView from './usercenter/VipchargeView'
 import CustomButton from './comp/CustomButton'
 
+import Pgyer from 'react-native-pgyer'
+
 
 
 export default class UserCenterView extends React.Component{
@@ -40,12 +42,21 @@ export default class UserCenterView extends React.Component{
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
       //todo. 查询最新版本号
+      Pgyer.updateVersion();
+  }
+  componentDidMount(){
+      // Utils.showAlert('',`newversion:${Pgyer.getVersion()}`)
   }
 
   updateVersion(){
     //跳转到webview
+      if(!Pgyer.getVersion()){
+          Utils.showAlert('','没有新版本，不需要更新');
+          return;
+      }
+      Pgyer.download();
   }
 
   loginout(){
@@ -110,14 +121,6 @@ export default class UserCenterView extends React.Component{
           title={'修改密码'}
           titleRight={'修改登陆密码'}
         />
-            {/*
-        <View style={styles.splitLine_ww}></View>
-        <UserRowView
-          img={require('./ico/u03.png')}
-          onNext={()=>this.onClick('')}
-          title={'绑定账号'}
-          titleRight={'绑定您的支付账号'}
-        />
 
         <View style={styles.splitLine_ww}></View>
         <UserRowView
@@ -126,6 +129,15 @@ export default class UserCenterView extends React.Component{
           title={'账户充值'}
           titleRight={''}
         />
+        {/*
+
+         <View style={styles.splitLine_ww}></View>
+         <UserRowView
+             img={require('./ico/u03.png')}
+             onNext={()=>this.onClick('')}
+             title={'绑定账号'}
+             titleRight={'绑定您的支付账号'}
+             />
 
         <UserRowView
           img={require('./ico/u06.png')}

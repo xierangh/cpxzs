@@ -538,7 +538,9 @@ var stylecpxzs = StyleSheet.create({
 	},
 	picker:{
         width:150,
-		height:30
+		height:30,
+		alignItems:'stretch',
+		justifyContent:'space-around'
 	},
 
 	//table

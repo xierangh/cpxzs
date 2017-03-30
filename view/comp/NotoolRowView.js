@@ -1,6 +1,5 @@
 //做号工具中一行数字
 
-'use strict';
 import React, {Component} from 'react';
 import {
     Text,
@@ -11,64 +10,7 @@ import {
 } from 'react-native';
 
 import _ from 'lodash'
-import Utils from './../Utils'
-
-
-
-class NumberCircle extends React.Component{
-  static propTypes={
-    number:React.PropTypes.number,
-    isSelected:React.PropTypes.bool,
-    onPress:React.PropTypes.func,
-  }
-
-  static defaultProps = {
-    number:0,
-    isSelected:false,
-  }
-
-  constructor(props) {
-    super(props)
-    this.state={
-      number:this.props.number,
-      isSelected:this.props.isSelected,
-    }
-  }
-
-  setIsSelected(selected:bool){
-    this.setState({
-      isSelected:selected,
-    })
-  }
-
-  getSelected(){
-    return this.state.isSelected;
-  }
-
-  onClick(){
-    this.setState({
-      isSelected:!this.state.isSelected,
-    })
-    this.props.onPress && this.props.onPress(this.state.number,!this.state.isSelected)
-  }
-
-  render(){
-    return (
-      <TouchableHighlight
-        underlayColor={'#fff2'}
-        onPress={()=>this.onClick()}>
-        <Image
-            resizeMode={'contain'}
-            source={this.state.isSelected?require('./../ico/zhgj_selected.png'):require('./../ico/zhgj_default.png')}
-            style={mystyle.circle}>
-          <View >
-            <Text style={this.state.isSelected?mystyle.c_number_selected:mystyle.c_number}>{this.state.number}</Text>
-          </View>
-        </Image>
-      </TouchableHighlight>
-    )
-  }
-}
+import NumberCircle from './NumberCircle'
 
 
 export default class NotoolRowView extends React.Component{
@@ -150,6 +92,8 @@ export default class NotoolRowView extends React.Component{
     var cols = [];
     var cols2 = [];
     var cols3 = [];
+    var cols4 = [];
+    var cols5 = [];
     for (var i = 0; i < this.state.maxNum; i++) {
       var isSelected = _.includes(this.state.selected,i);
       var refstr = 'nc'+i;
@@ -173,6 +117,14 @@ export default class NotoolRowView extends React.Component{
         cols3.push(
           nc
         );
+      }else if(i >= 30 && i < 40){
+          cols4.push(
+              nc
+          );
+      }else if(i >= 40 && i < 50){
+          cols5.push(
+              nc
+          );
       }
 
     }
@@ -188,30 +140,14 @@ export default class NotoolRowView extends React.Component{
         <View style={{flex:1,flexDirection:'row'}}>
           {cols3}
         </View>
+        <View style={{flex:1,flexDirection:'row'}}>
+            {cols4}
+        </View>
+        <View style={{flex:1,flexDirection:'row'}}>
+            {cols5}
+        </View>
       </View>
     )
   }
 }
 
-var circle_size=26*Utils.scale;
-var marg = Utils.getNotoolMargin();
-// console.log(height);
-const mystyle=StyleSheet.create({
-	circle:{
-		width:circle_size,
-		height:circle_size,
-		alignItems:'center',
-		justifyContent:'center',
-		margin:marg,
-	},
-	c_number:{
-		fontSize:14*Utils.scale,
-		color:'#333',
-		textAlign:'center',
-	},
-	c_number_selected:{
-		fontSize:14*Utils.scale,
-		color:'#fff',
-		textAlign:'center',
-	},
-});
