@@ -140,7 +140,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-wx')
     compile project(':react-native-pgyer')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])

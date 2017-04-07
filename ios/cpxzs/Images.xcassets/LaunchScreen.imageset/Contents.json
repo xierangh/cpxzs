@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "LaunchScreen.jpg",
+      "filename" : "splash.png",
       "scale" : "1x"
     },
     {
