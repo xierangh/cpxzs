@@ -533,7 +533,7 @@ var stylecpxzs = StyleSheet.create({
 		width:64*scale,
 		alignSelf:'center',
         marginRight:8,
-        borderRadius:20,
+        borderRadius:4,
         borderWidth:.6,
         borderColor:'#ea5656',
 		flex:1,

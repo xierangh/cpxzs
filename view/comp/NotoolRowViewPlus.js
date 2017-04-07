@@ -264,7 +264,7 @@ const mystyle=StyleSheet.create({
     title: {
         color: '#ea5656',
         fontSize: Utils.FONT_BIG_SUB,
-        marginTop:3
+        marginTop:5*Utils.scale
     },
     numbtnview:{
         marginLeft:10

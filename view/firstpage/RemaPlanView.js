@@ -103,11 +103,11 @@ const bdwdata_m = [
 ]
 
 const data_m = [
-    {key: 1, section: true, label: '1码'},
+    {key: 1, label: '1码'},
     {key: 2, label: '2码'},
     {key: 3, label: '3码'},
     {key: 4, label: '4码'},
-    {key: 5, label: '5码'},
+    {key: 5, section: true, label: '5码'},
     {key: 6, label: '6码'},
     {key: 7, label: '7码'},
     {key: 8, label: '8码'},
@@ -115,9 +115,9 @@ const data_m = [
 ]
 
 const data_q = [
-    {key: 1, section: true, label: '1期'},
+    {key: 1, label: '1期'},
     {key: 2, label: '2期'},
-    {key: 3, label: '3期'},
+    {key: 3, section: true, label: '3期'},
     {key: 4, label: '4期'},
     {key: 5, label: '5期'},
     {key: 6, label: '6期'},
