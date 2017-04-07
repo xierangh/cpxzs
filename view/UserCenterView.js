@@ -5,6 +5,7 @@ import {
     View,
     Image,
     ScrollView,
+    Platform,
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -13,10 +14,9 @@ import UserRowView from './comp/UserRowView'
 import PasswordModifyView from './usercenter/PasswordModifyView'
 import TuiGuangView from './usercenter/TuiGuangView'
 import TuanduiView from './usercenter/TuanduiView'
-import VipchargeView from './usercenter/VipchargeView'
+// import VipchargeView from './usercenter/VipchargeView'
+import VipchargeView2 from './usercenter/VipchargeView2'
 import CustomButton from './comp/CustomButton'
-
-import Pgyer from 'react-native-pgyer'
 
 
 
@@ -38,25 +38,8 @@ export default class UserCenterView extends React.Component{
       this.props.onClick && this.props.onClick(TuanduiView);
     }
     if (type == 'VipchargeView') {
-        this.props.onClick && this.props.onClick(VipchargeView);
+        this.props.onClick && this.props.onClick(VipchargeView2);
     }
-  }
-
-  componentWillMount(){
-      //todo. 查询最新版本号
-      Pgyer.updateVersion();
-  }
-  componentDidMount(){
-      // Utils.showAlert('',`newversion:${Pgyer.getVersion()}`)
-  }
-
-  updateVersion(){
-    //跳转到webview
-      if(!Pgyer.getVersion()){
-          Utils.showAlert('','没有新版本，不需要更新');
-          return;
-      }
-      Pgyer.download();
   }
 
   loginout(){
@@ -168,9 +151,8 @@ export default class UserCenterView extends React.Component{
              */}
         <UserRowView
           img={require('./ico/u10.png')}
-          onNext={()=>this.updateVersion()}
           title={'当前版本'}
-          titleRight={'1.0.1'}
+          titleRight={'1.0.2'}
         />
 
 

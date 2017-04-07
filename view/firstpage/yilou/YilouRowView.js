@@ -35,7 +35,7 @@ export default class YilouRowView extends React.Component{
 
     render(){
         return (
-            <View>
+            <View style={{marginTop:5}}>
                 <View style={mystyle.row}>
                     <Text style={mystyle.row_text_tool}>{this.props.title}</Text>
                     <NotoolRowView
@@ -55,7 +55,7 @@ export default class YilouRowView extends React.Component{
                 </View>
                 <View style={mystyle.row}>
                     <Text style={mystyle.row_text_cold}>当前{this.props.title}冷号为:<Text style={mystyle.text_selected}>{this.getMaxIndex()}</Text></Text>
-                    <Text style={mystyle.row_text_cold}>当前{this.props.title}走势为:<Text style={mystyle.text_selected}>{this.getMaxIndex()>4?'大':'小'} {this.getMaxIndex()%2==0?'双':'单'}</Text></Text>
+                    {/*<Text style={mystyle.row_text_cold}>当前{this.props.title}走势为:<Text style={mystyle.text_selected}>{this.getMaxIndex()>4?'大':'小'} {this.getMaxIndex()%2==0?'双':'单'}</Text></Text>*/}
                 </View>
             </View>
         )

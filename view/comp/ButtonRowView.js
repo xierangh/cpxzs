@@ -142,21 +142,21 @@ export default class ButtonRowView extends React.Component{
 const mystyle=StyleSheet.create({
     row:{
         flex:1,
-        height:30,
+        height:40,
     },
     content:{
-      paddingVertical:3
+      paddingVertical:4
     },
     col:{
-        alignItems:'center',
+        alignItems:'stretch',
         marginHorizontal:5,
         justifyContent:'space-around',
-        paddingVertical:3,
+        paddingVertical:5,
         paddingHorizontal:5,
     },
     col_selected:{
         backgroundColor:'#ea5656',
-        borderRadius:4,
+        borderRadius:6,
     },
     name:{
       fontSize:14*Utils.scale,

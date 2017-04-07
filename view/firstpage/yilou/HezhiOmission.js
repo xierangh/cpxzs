@@ -51,17 +51,18 @@ export default class HezhiOmission extends React.Component{
     render(){
         var maxnum = this.props.selected.length*9;
         return(
-            <View>
+            <View style={{marginTop:10}}>
                 <NotoolRowView
+                    style={{marginLeft:10}}
                     ref="hezhi"
                     maxNum={maxnum}
                 />
 
                 <View style={mystyle.row}>
-                    <Text style={mystyle.textinfo}>使用方法:从上面号码中选择一个或者多个进行遗漏统计</Text>
+                    <Text style={mystyle.textinfo}>从上面号码中选择一个或者多个进行遗漏统计</Text>
 
                     <Button
-                        textStyle={{textAlign:'center',color:'#fff',fontSize:Utils.FONT_NORMAL}}
+                        textStyle={{textAlign:'center',color:'#fff',fontSize:Utils.FONT_NORMAL_SUB,fontWeight:'normal'}}
                         style={{backgroundColor:'#ffaf48',borderRadius:3,width:66,height:30,borderWidth:1,borderColor:'#ffaf48',justifyContent:'center',marginLeft:1,marginTop:1}}
                         onPress={() => this.onPress()}>遗漏统计</Button>
                 </View>

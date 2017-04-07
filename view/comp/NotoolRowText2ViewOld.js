@@ -146,7 +146,7 @@ export default class NotoolRowText2ViewOld extends React.Component{
     }
 
     return (
-      <View>
+      <View style={{paddingVertical:5}}>
         <View style={{flex:1,flexDirection:'row'}}>
           {cols}
         </View>

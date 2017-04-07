@@ -191,7 +191,7 @@ export default class BtCalcView extends React.Component{
                         <TextInput style={mystyle.style_input}
                                    underlineColorAndroid={'transparent'}
                                    autoCorrect={false}
-                                   onChangeText={(text) => this.setState({bouns:text})}
+                                   onChangeText={(text) => this.setState({bonus:text})}
                                    value={this.state.bonus}
                                    keyboardType='numeric'
                                    placeholderTextColor='#929292'></TextInput>

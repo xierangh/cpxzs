@@ -90,17 +90,17 @@ export default class DanshiOmission extends React.Component{
                 title={titlestr}
                 key={i}
             />);
-            cols.push(<View style={styles.splitLine}></View>);
+            cols.push(<View style={styles.splitLine_l}></View>);
         }
         return(
             <View>
                 {cols}
 
                 <View style={mystyle.row}>
-                    <Text style={mystyle.textinfo}>使用方法:从十位、个位选取一个或多个号码或者使用右边全、大、小、单、双按钮进行选号</Text>
+                    <Text style={mystyle.textinfo}>从十位、个位选取一个或多个号码或者使用右边全、大、小、单、双按钮进行选号</Text>
 
                     <Button
-                        textStyle={{textAlign:'center',color:'#fff',fontSize:Utils.FONT_NORMAL}}
+                        textStyle={{textAlign:'center',color:'#fff',fontSize:Utils.FONT_NORMAL_SUB,fontWeight:'normal'}}
                         style={{backgroundColor:'#ffaf48',borderRadius:3,width:66,height:30,borderWidth:1,borderColor:'#ffaf48',justifyContent:'center',marginLeft:1,marginTop:1}}
                         onPress={() => this.onPress()}>遗漏统计</Button>
                 </View>

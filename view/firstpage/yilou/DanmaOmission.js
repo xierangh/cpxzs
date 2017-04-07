@@ -66,10 +66,10 @@ export default class DanmaOmission extends React.Component{
                 />
 
                 <View style={mystyle.row}>
-                    <Text style={mystyle.textinfo}>使用方法:从号码选取一个或多个号码或者使用右边全、大、小、单、双按钮进行选号</Text>
+                    <Text style={mystyle.textinfo}>从号码选取一个或多个号码或者使用右边全、大、小、单、双按钮进行选号</Text>
 
                     <Button
-                        textStyle={{textAlign:'center',color:'#fff',fontSize:Utils.FONT_NORMAL}}
+                        textStyle={{textAlign:'center',color:'#fff',fontSize:Utils.FONT_NORMAL_SUB,fontWeight:'normal'}}
                         style={{backgroundColor:'#ffaf48',borderRadius:3,width:66,height:30,borderWidth:1,borderColor:'#ffaf48',justifyContent:'center',marginLeft:1,marginTop:1}}
                         onPress={() => this.onPress()}>遗漏统计</Button>
                 </View>
@@ -83,6 +83,7 @@ const  mystyle = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         paddingVertical:3,
+        marginRight:10
     },
     icon_text_selected:{
         backgroundColor:'rgb(255,131,33)',

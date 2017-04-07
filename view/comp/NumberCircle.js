@@ -50,14 +50,10 @@ export  default class NumberCircle extends React.Component{
             <TouchableHighlight
                 underlayColor={'#fff2'}
                 onPress={()=>this.onClick()}>
-                <Image
-                    resizeMode={'contain'}
-                    source={this.state.isSelected?require('./../ico/zhgj_selected.png'):require('./../ico/zhgj_default.png')}
-                    style={mystyle.circle}>
-                    <View >
+
+                    <View style={this.state.isSelected?mystyle.circle_selected:mystyle.circle_view}>
                         <Text style={this.state.isSelected?mystyle.c_number_selected:mystyle.c_number}>{this.state.number}</Text>
                     </View>
-                </Image>
             </TouchableHighlight>
         )
     }
@@ -74,13 +70,35 @@ const mystyle=StyleSheet.create({
         justifyContent:'center',
         margin:marg,
     },
+    circle_selected:{
+        width:circle_size,
+        height:circle_size,
+        alignItems:'center',
+        justifyContent:'center',
+        margin:marg,
+        borderWidth:.3,
+        borderColor:'#ea5656',
+        borderRadius:circle_size/2,
+        backgroundColor:'#ea5656'
+    },
+    circle_view:{
+        width:circle_size,
+        height:circle_size,
+        alignItems:'center',
+        justifyContent:'center',
+        margin:marg,
+        borderWidth:.3,
+        borderColor:'#666',
+        borderRadius:circle_size/2,
+        backgroundColor:'#fff'
+    },
     c_number:{
         fontSize:14*Utils.scale,
         color:'#333',
         textAlign:'center',
     },
     c_number_selected:{
-        fontSize:14*Utils.scale,
+        fontSize:13*Utils.scale,
         color:'#fff',
         textAlign:'center',
     },

@@ -67,7 +67,7 @@ export default class DanshiOmission extends React.Component{
 
     render(){
         return(
-            <View>
+            <View style={{marginTop:5}}>
                 <View style={mystyle.row}>
                     <Text style={mystyle.text_yilou}>遗漏位</Text>
                     {this.getitems()}
@@ -90,7 +90,7 @@ export default class DanshiOmission extends React.Component{
                     <Text style={mystyle.textinfo}>每注号码之间请用一个空格或英文逗号或英文分号隔开(输入的号码会自动排序并去除不合格号码)</Text>
 
                     <Button
-                        textStyle={{textAlign:'center',color:'#fff',fontSize:Utils.FONT_NORMAL}}
+                        textStyle={{textAlign:'center',color:'#fff',fontSize:Utils.FONT_NORMAL_SUB,fontWeight:'normal'}}
                         style={{backgroundColor:'#ffaf48',borderRadius:3,width:66,height:30,borderWidth:1,borderColor:'#ffaf48',justifyContent:'center',marginLeft:1,marginTop:1}}
                         onPress={() => this.onPress()}>遗漏统计</Button>
                 </View>
@@ -104,13 +104,14 @@ const  mystyle = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         paddingVertical:3,
+        marginBottom:5,
     },
     icon_text_selected:{
         backgroundColor:'rgb(255,131,33)',
         padding:3,
         borderWidth:.5,
         borderRadius:4,
-        borderColor:'#666',
+        borderColor:'rgb(255,131,33)',
         fontSize:Utils.FONT_SMALL,
         color:'#fff',
         marginHorizontal:3,
@@ -120,7 +121,7 @@ const  mystyle = StyleSheet.create({
         padding:3,
         borderWidth:.5,
         borderRadius:4,
-        borderColor:'#ccc',
+        borderColor:'#333',
         fontSize:Utils.FONT_SMALL,
         marginHorizontal:3,
     },

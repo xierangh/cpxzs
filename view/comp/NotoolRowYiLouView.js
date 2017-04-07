@@ -122,12 +122,12 @@ const mystyle=StyleSheet.create({
 		marginHorizontal:marg,
 	},
 	c_number:{
-		fontSize:14*Utils.scale,
+		fontSize:Utils.FONT_SMALL,
 		color:'#333',
 		textAlign:'center',
 	},
     circle_c_number_selected:{
-        fontSize:14*Utils.scale,
+        fontSize:Utils.FONT_SMALL,
         color:'#ea5656',
         textAlign:'center',
     },

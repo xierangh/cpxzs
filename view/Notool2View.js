@@ -399,7 +399,7 @@ export default class Notool2View extends React.Component{
             </View>
           </TouchableHighlight>
         </View>
-        <View style={{flexDirection:'row'}}>
+        <View style={{flexDirection:'row',paddingTop:5}}>
             <Text style={styles.notool_text_left}>胆码:</Text>
             <NotoolRowView
               ref={'dm'}
@@ -407,7 +407,7 @@ export default class Notool2View extends React.Component{
               />
         </View>
 
-        <View style={{flexDirection:'row'}}>
+        <View style={{flexDirection:'row',paddingBottom:5}}>
             <Text style={styles.notool_text_left}>至少出胆数:</Text>
             <CheckBoxsView
               rowstyle={{marginTop:12}}
@@ -436,7 +436,7 @@ export default class Notool2View extends React.Component{
         </View>
         */}
 
-        <View style={styles.splitLine}></View>
+
         <View style={styles.notool_sub_title}>
           <View style={styles.notool_sub_title_start}></View>
           <Text style={styles.notool_sub_title_left}>杀定位</Text>
@@ -450,7 +450,7 @@ export default class Notool2View extends React.Component{
           </TouchableHighlight>
         </View>
 
-        <View style={styles.notool_row}>
+        <View style={[styles.notool_row,{paddingTop:5}]}>
             <Text style={styles.notool_text_left}>十位</Text>
             <NotoolRowView
               ref='sdw4'
@@ -469,14 +469,13 @@ export default class Notool2View extends React.Component{
               ref='sdw5'
               />
         </View>
-        <View style={styles.notool_row}>
+        <View style={[styles.notool_row,{paddingBottom:5}]}>
             <Text style={styles.notool_text_left_yilou}>遗漏</Text>
             <NotoolRowYiLouView
               selected={this.state.omession.aCurrOmission.countList}
               />
         </View>
 
-        <View style={styles.splitLine}></View>
         <View style={styles.notool_sub_title}>
           <View style={styles.notool_sub_title_start}></View>
           <Text style={styles.notool_sub_title_left}>杀和尾/跨度/和值</Text>
@@ -489,19 +488,19 @@ export default class Notool2View extends React.Component{
             </View>
           </TouchableHighlight>
         </View>
-        <View style={{flexDirection:'row'}}>
+        <View style={{flexDirection:'row',paddingTop:5,paddingBottom:3}}>
             <Text style={styles.notool_text_left}>和尾</Text>
             <NotoolRowView
               ref={'hewei'}
               />
         </View>
-        <View style={{flexDirection:'row'}}>
+        <View style={{flexDirection:'row',paddingBottom:3}}>
             <Text style={styles.notool_text_left}>跨度</Text>
             <NotoolRowView
               ref={'kuadu'}
               />
         </View>
-        <View style={{flexDirection:'row'}}>
+        <View style={{flexDirection:'row',paddingBottom:5}}>
             <Text style={styles.notool_text_left}>和值</Text>
             <NotoolRowView
               ref={'hezhi'}
@@ -509,7 +508,6 @@ export default class Notool2View extends React.Component{
               />
         </View>
 
-        <View style={styles.splitLine}></View>
         <View style={styles.notool_sub_title}>
           <View style={styles.notool_sub_title_start}></View>
           <Text style={styles.notool_sub_title_left}>杀012路</Text>
@@ -529,7 +527,6 @@ export default class Notool2View extends React.Component{
               />
         </View>
 
-        <View style={styles.splitLine}></View>
         <View style={styles.notool_sub_title}>
           <View style={styles.notool_sub_title_start}></View>
           <Text style={styles.notool_sub_title_left}>杀大小/单双/质合</Text>

@@ -29,7 +29,7 @@ let FONT_SMALL_S = 11*scale;
 
 let underlayColor = '#fff3';
 let title_color = '#fff';
-let title_color_bg = 'rgba(234, 86, 86,1.0)';
+let title_color_bg = 'rgba(234, 86, 86,1.0)';//d53e37
 //表格背景，表头背景，行背景
 let TABLE_BACK_COLOR = '#0000';
 let TABLE_TEXT_COLOR = '#333';
@@ -65,7 +65,7 @@ var stylecpxzs = StyleSheet.create({
 		backgroundColor: '#ccc',
 	},
 	splitLine_l: {
-		height: .5*2/pxielRatio,
+		height: .5*scale,
 		backgroundColor: SPLIT_LINE,
 	},
 	splitLine: {
@@ -287,8 +287,8 @@ var stylecpxzs = StyleSheet.create({
 		paddingVertical: 6,
 	},
 	headerFont: {
-		fontWeight: 'bold',
 		color:TABLE_TEXT_COLOR,
+		fontSize:FONT_NORMAL
 	},
 	textcolorFont: {
 		color:TABLE_TEXT_COLOR,
@@ -496,39 +496,45 @@ var stylecpxzs = StyleSheet.create({
 
 	//jingpinplan
 	jpp_hide_view:{
-		backgroundColor:'#EEE',
+		backgroundColor:'#fff',
 		flexDirection:'row',
 		justifyContent:'space-around',
 	},
 	jpp_hide_view_btn:{
-    	marginVertical:5,
-		padding:5,
-		justifyContent:'center',
-		alignItems:'center',
+		justifyContent:'space-between',
+		alignItems:'stretch',
 	},
     jpp_hide_view_btn_selected:{
-		borderWidth:1,
-		borderColor:'#ea5656',
-		borderRadius:5,
+
     },
     jpp_hide_view_btn_text:{
-		color:'#ea5656'
+        flex:1,
+		marginVertical:5
 	},
+    jpp_hide_view_btn_text_selected:{
+        color:'#ea5656'
+    },
+	jpp_hide_view_under:{
+    	width:40*scale,
+		height:3,
+		borderRadius:1.5,
+		backgroundColor:'#ea5656',
+		alignSelf:'center'
+    },
 	jpp_hide_view_fn:{
-		backgroundColor:'#EEE',
+		backgroundColor:'#fff',
 		flexDirection:'row',
 		paddingVertical:10,
 		justifyContent:'space-around',
 		alignItems:'center',
-
 	},
 	picker_view:{
 		backgroundColor:'#fff',
 		width:64*scale,
 		alignSelf:'center',
         marginRight:8,
-        borderRadius:12,
-        borderWidth:1,
+        borderRadius:20,
+        borderWidth:.6,
         borderColor:'#ea5656',
 		flex:1,
 	},
@@ -687,12 +693,12 @@ var stylecpxzs = StyleSheet.create({
 		textAlign:'center',
 	},
 	notool_text_left:{
-		marginTop:12,
+		marginTop:9,
 		marginLeft:10,
 		fontSize:FONT_SMALL,
 	},
 	notool_text_left_yilou:{
-		marginTop:7,
+		marginTop:5,
 		marginLeft:10,
 		fontSize:FONT_SMALL,
 	},

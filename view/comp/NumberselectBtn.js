@@ -51,10 +51,8 @@ export  default class NumberselectBtn extends React.Component{
                 underlayColor={'#fff2'}
                 onPress={()=>this.onClick()}>
                 <View
-                    style={[mystyle.circle,this.state.isSelected&&mystyle.circle_selected]}>
-                    <View >
+                    style={this.state.isSelected?mystyle.circle_selected:mystyle.circle}>
                         <Text style={this.state.isSelected?mystyle.c_number_selected:mystyle.c_number}>{this.state.text}</Text>
-                    </View>
                 </View>
             </TouchableHighlight>
         )
@@ -70,12 +68,20 @@ const mystyle=StyleSheet.create({
         height:circle_size,
         alignItems:'center',
         justifyContent:'center',
-        margin:marg,
+        margin:marg+2,
         borderWidth:1,
         borderRadius:4,
+        borderColor:'#666'
     },
-    circle_selcted:{
-      borderColor:'#ea5656',
+    circle_selected:{
+        width:circle_size,
+        height:circle_size,
+        alignItems:'center',
+        justifyContent:'center',
+        margin:marg+2,
+        borderWidth:1,
+        borderRadius:4,
+        borderColor:'#ea5656',
     },
     c_number:{
         fontSize:14*Utils.scale,

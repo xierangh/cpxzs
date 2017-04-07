@@ -81,6 +81,6 @@ const  mystyle = StyleSheet.create({
         marginBottom:30,
     },
     menu:{
-        height:30,
+        height:40,
     }
 });

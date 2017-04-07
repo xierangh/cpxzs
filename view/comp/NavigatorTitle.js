@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 import Utils from './../Utils'
-let title_color_bg = 'rgba(238, 83, 88,1.0)';
+let title_color_bg = 'rgba(238, 83, 88,1.0)';//d53e37
 
 export default class NavigatorTitle extends Component{
   static propTypes={

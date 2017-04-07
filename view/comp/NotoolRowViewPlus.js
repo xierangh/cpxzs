@@ -83,21 +83,57 @@ export default class NotoolRowViewPlus extends React.Component{
       switch (type){
           case 'all':
             this.setSelected([0,1,2,3,4,5,6,7,8,9]);
+            this.refs.all.setIsSelected(true);
+            this.refs.big.setIsSelected(false);
+            this.refs.small.setIsSelected(false);
+            this.refs.odd.setIsSelected(false);
+            this.refs.even.setIsSelected(false);
+            this.refs.clear.setIsSelected(false);
             break;
           case 'big':
               this.setSelected([5,6,7,8,9]);
+              this.refs.all.setIsSelected(false);
+              this.refs.big.setIsSelected(true);
+              this.refs.small.setIsSelected(false);
+              this.refs.odd.setIsSelected(false);
+              this.refs.even.setIsSelected(false);
+              this.refs.clear.setIsSelected(false);
               break;
           case 'small':
               this.setSelected([0,1,2,3,4]);
+              this.refs.all.setIsSelected(false);
+              this.refs.big.setIsSelected(false);
+              this.refs.small.setIsSelected(true);
+              this.refs.odd.setIsSelected(false);
+              this.refs.even.setIsSelected(false);
+              this.refs.clear.setIsSelected(false);
               break;
           case 'odd':
               this.setSelected([1,3,5,7,9]);
+              this.refs.all.setIsSelected(false);
+              this.refs.big.setIsSelected(false);
+              this.refs.small.setIsSelected(false);
+              this.refs.odd.setIsSelected(true);
+              this.refs.even.setIsSelected(false);
+              this.refs.clear.setIsSelected(false);
               break;
           case 'even':
               this.setSelected([0,2,4,6,8]);
+              this.refs.all.setIsSelected(false);
+              this.refs.big.setIsSelected(false);
+              this.refs.small.setIsSelected(false);
+              this.refs.odd.setIsSelected(false);
+              this.refs.even.setIsSelected(true);
+              this.refs.clear.setIsSelected(false);
               break;
           case 'clear':
               this.setSelected([]);
+              this.refs.all.setIsSelected(false);
+              this.refs.big.setIsSelected(false);
+              this.refs.small.setIsSelected(false);
+              this.refs.odd.setIsSelected(false);
+              this.refs.even.setIsSelected(false);
+              this.refs.clear.setIsSelected(false);
               break;
       }
     }
@@ -205,7 +241,10 @@ export default class NotoolRowViewPlus extends React.Component{
 
     return (
       <View style={mystyle.row}>
-        <Text style={mystyle.title}>{this.props.title}</Text>
+          <View style={{alignSelf:'stretch',marginRight:10}}>
+              <Text style={mystyle.title}>{this.props.title}</Text>
+              <View style={mystyle.jpp_hide_view_under}></View>
+          </View>
           {this.getNumberView()}
           <View style={mystyle.numbtnview}>
               {this.getNumberbtnView()}
@@ -215,17 +254,26 @@ export default class NotoolRowViewPlus extends React.Component{
   }
 }
 const mystyle=StyleSheet.create({
-  row:{
-      flex:1,
-      flexDirection:'row',
-      alignItems:'center',
-      marginRight:10
-  },
-  title:{
-    color:'#ea5656',
-    fontSize:Utils.FONT_BIG_SUB,
-  },
+    row:{
+          flex:1,
+          flexDirection:'row',
+          alignItems:'center',
+          marginRight:10,
+          marginVertical:2,
+    },
+    title: {
+        color: '#ea5656',
+        fontSize: Utils.FONT_BIG_SUB,
+        marginTop:3
+    },
     numbtnview:{
-    marginLeft:10
-    }
+        marginLeft:10
+    },
+    jpp_hide_view_under:{
+        width:32,
+        height:3,
+        borderRadius:1.5,
+        backgroundColor:'#ea5656',
+        alignSelf:'center'
+    },
 })

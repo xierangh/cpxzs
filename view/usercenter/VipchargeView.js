@@ -21,12 +21,12 @@ import styles from './../stylecpxzs'
 import CustomButton from './../comp/CustomButton'
 import NavigatorTitle from './../comp/NavigatorTitle'
 import ModalPicker from './../picker/ModalPicker'
+import AliPayView from './AliPayView'
 import moment from 'moment'
 
 import AppEventListenerEnhance from 'react-native-smart-app-event-listener-enhance'
 // import Button from 'react-native-smart-button'
-import AliPay from 'react-native-smart-alipay'
-
+import * as WechatAPI from 'react-native-wx';
 
 const vipdata=[
     { key: 4, section: true, label: '试用VIP' },
@@ -63,7 +63,7 @@ class VipchargeView extends React.Component{
             timeend:this.timeformat(time),
             paymonth:28.50,
             payway:1,//1-支付宝,2-微信
-            url:'',
+            paysetting:{},
         }
 
         this._xhr = null;
@@ -71,104 +71,19 @@ class VipchargeView extends React.Component{
     }
 
     componentWillMount () {
-        this.addAppEventListener(
-            NativeAppEventEmitter.addListener('alipay.mobile.securitypay.pay.onPaymentResult', (result)=>{
-                //console.log(`result -> `)
-                //console.log(result)
-                console.log(`result.resultStatus = ${result.resultStatus}`)
-                console.log(`result.memo = ${result.memo}`)
-                console.log(`result.result = ${result.result}`)
-                this._button_alipay.setState({
-                    loading: false,
-                })
-                Utils.showAlert(
-                    '',
-                    `${result.resultStatus == 9000 ? '支付成功' : '支付失败'} `
-                )
-            }) //alipay
-        )
+
+        this.getPaysetting();
     }
 
-    _getAlipayParams() {
-        this._button_alipay.setState({
-            loading: true,
-        })
-
-        //http请求服务获取支付参数及RSA数字签名信息
-        this._xhr && this._xhr.abort()
-
-        var xhr = this._xhr || new XMLHttpRequest()
-        this._xhr = xhr
-
-        xhr.onerror = ()=> {
-            this._button_alipay.setState({
-                loading: false,
-            })
-            console.log(`状态码: ${xhr.status}, 错误信息: ${xhr.responseText}`);
-            Utils.showAlert(
-                '请求出错',
-                `状态码: ${xhr.status}, 错误信息: ${xhr.responseText}`
-            )
-        }
-
-        xhr.ontimeout = () => {
-            this._button_alipay.setState({
-                loading: false,
-            })
-            Utils.showAlert(
-                '',
-                '请求超时'
-            )
-        }
-
-        //TODO.
-        //let server_api_url = '获取支付宝参数信息的服务器接口url地址'
-        //let params = '提交的参数, 例如订单号信息'
-        //let appScheme = 'ios对应URL Types中的URL Schemes的值, 会影响支付成功后是否能正确的返回app'
-        let server_api_url = 'http://f154876m19.imwork.net:16374/nAdvanceOrder/payAli'  //内部测试地址, 需自行修改
-        let params = 'oid=3428a92f55bff7920155c2e4cc790060' //提交参数, 需自行修改
-        let appScheme = 'reactnativecomponent'
-
-        xhr.open('POST', server_api_url)
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-        xhr.onload = () => {
-            if (xhr.status !== 200) {
-                this._button_alipay.setState({
-                    isPress: false,
+    getPaysetting(){
+        Utils.getWithParams('order/appLoadUserPayData','')
+            .then((data)=>{
+                console.log(JSON.stringify(data));
+                this.setState({
+                    paysetting:data,
+                    pay:data['trialVipCosts']*data['trialVipDiscount']/10.0,
                 })
-                Utils.showAlert(
-                    '请求失败',
-                    `HTTP状态码: ${xhr.status}`
-                )
-                return
-            }
-            if (!xhr.responseText) {
-                this._button_alipay.setState({
-                    isPress: false,
-                })
-                Utils.showAlert(
-                    '请求失败',
-                    '没有返回信息'
-                )
-                return
-            }
-            let responseJSON = JSON.parse(xhr.responseText)
-            let orderText = decodeURIComponent(responseJSON.result)
-            console.log(`响应信息: ${xhr.responseText}`)
-            /*
-             * 服务端获取支付宝SDK快捷支付功能所需参数字串示例(对应下面的orderText)
-             * partner="2088021133166364"&seller_id="koa@sh-defan.net"&out_trade_no="160707414842102"&subject="到途订单-160707414842102"&body="营养快线水果酸奶饮品（椰子味）,500ml,4;正宗凉茶,310ML,4;原味味奶茶,80g,6;"&total_fee="0.01"&notify_url="http://f154876m19.imwork.net:16374/pay/paymentCompletion"&service="mobile.securitypay.pay"&payment_type="1"&_input_charset="utf-8"&it_b_pay="-644885m"&return_url="m.alipay.com"&sign="iW5aK2dEsIj8nGg%2BEOOlMcyL081oX%2F2zHNcoJRrlO3qWmoVkXJM%2B2cHH9rSDyGYAeKxRD%2BYwrZK3H3QYb%2Fxi6Jl%2BxJVcvguluXbKvmpKjuuBv2gcOyqtydUMHwpdAVN%2BTwbQ6Zt8LU9xLweua7n%2FLuTFdjyePwf5Zb72r21v5dw%3D"&sign_type="RSA"
-             */
-            console.log(`获取支付宝参数成功, decodeURIComponent -> orderText = ${orderText}`);
-            AliPay.payOrder({
-                orderText,
-                appScheme,
-            });
-
-        }
-
-        xhr.timeout = 30000
-        xhr.send(params)
+            })
     }
 
     reCharge() {
@@ -178,7 +93,6 @@ class VipchargeView extends React.Component{
         // startTime:2017-03-28
         // endTime:2017-03-31
         // payType:1
-        var url = 'http://shoujiapp.cpxzs.com/order?'
         var param = '';
         param = param + 'rechargeAmount=' + this.state.pay;
         param = param + '&';
@@ -192,37 +106,81 @@ class VipchargeView extends React.Component{
         param = param + '&';
         param = param + 'payType=' + this.state.payway;
 
-        url = url + param;
-
-        // Linking.openURL(url)
-        // .catch((err)=>{
-        //     console.log('An error occurred', err);
-        // });
-        this._getAlipayParams();
+        Utils.post('order/doOrder',param)
+            .then((data)=>{
+                console.log(JSON.stringify(data));
+                // Linking.openURL(data.buildHtmlResult)
+                // .catch((err)=>{
+                //     console.log('An error occurred', err);
+                // });
+                if (this.state.payway == 1)
+                    this.alipay(data['buildHtmlResult']);
+                if (this.state.payway == 2)
+                    this.wxpay(data['wxpay']);
+                this._button_alipay.setPressed(false);
+            })
+        // this._getAlipayParams();
     }
 
+    wxpay(data){
+        WechatAPI.pay(data);
+    }
+    alipay(data){
+        var orderText = decodeURIComponent(data);
+        console.log(orderText);
+        // var appscheme = this.state.paysetting['payDispatcherDomain'];
+        // AliPay.payOrder({
+        //     orderText,
+        //     appscheme
+        // });
+        var html = `<script src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script><div>${orderText}</div>`+
+                `<script>$('#alipaysubmit').submit();</script>`;
+        this.props.navigator.push({
+            navigationBarHidden:true,
+            component:AliPayView,
+            passProps:{
+                form:html
+            }
+        });
+    }
+
+    setVipselect(index){
+        for (var i in vipdata){
+            if(vipdata[i].key == index){
+                vipdata[i].section = true;
+            }else {
+                vipdata[i].section = false;
+            }
+        }
+    }
     vipchange(option){
         var index = option.key;
         var paymonth = this.state.paymonth;
+        var discount =this.state.paysetting['vipDiscount']
         switch (index){
             case 4:
-                paymonth = 28.5;
+                paymonth = this.state.paysetting['trialVipCosts'];
+                discount =this.state.paysetting['trialVipDiscount'];
                 break;
             case 2:
-                paymonth = 95.00;
+                paymonth = this.state.paysetting['vipCosts'];
+                discount =this.state.paysetting['vipDiscount'];
                 break;
             case 3:
-                paymonth = 190.00;
+                paymonth = this.state.paysetting['svipCosts'];
+                discount =this.state.paysetting['svipDiscount'];
                 break;
             case 5:
-                paymonth = 200.00;
+                paymonth = this.state.paysetting['shareVipCosts'];
+                discount =this.state.paysetting['shareVipDiscount'];
                 break;
         }
+        this.setVipselect(index);
         // Utils.showAlert('',paymonth+'');
         var endtimestr = Utils.userInfo.memberEndTime;
         var time = null;
         if (!endtimestr){
-            time = moment();
+            time = moment(this.state.paysetting['nowTime'],'YYYY-MM-DD');
         }else{
             time = moment(endtimestr,'YYYY-MM-DD HH:mm:ss');
         }
@@ -236,7 +194,7 @@ class VipchargeView extends React.Component{
         this.setState({
             paymonth:paymonth,
             vip: option,
-            pay:index == '4' ? 28.5 : paymonth*this.state.month.key,
+            pay:index == '4' ? this.state.paysetting['trialVipCosts']*this.state.paysetting['trialVipDiscount']/10.0 : paymonth*this.state.month.key*discount/10.0,
             timestart:timestr,
             timeend:this.timeformat(time),
         });
@@ -246,8 +204,20 @@ class VipchargeView extends React.Component{
         return time.format('YYYY-MM-DD');
     }
 
+    setMonthselect(index){
+        for (var i in monthdata){
+            if(monthdata[i].key == index){
+                monthdata[i].section = true;
+            }else {
+                monthdata[i].section = false;
+            }
+        }
+    }
+
     monthchange(option){
         var index = option.key;
+        this.setMonthselect(index);
+
         var endtimestr = Utils.userInfo.memberEndTime;
         var time = null;
         if (!endtimestr){

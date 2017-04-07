@@ -40,7 +40,13 @@ class YilouModel{
         this.result=result_empty;
     }
 
+    @action
+    setResultEmpty(){
+        this.result=result_empty;
+    }
+
     doquery(params){
+        this.result=result_empty;
         Utils.getWithParams(this.omissonType.url,params)
             .then((data)=>{
                 if(!data){

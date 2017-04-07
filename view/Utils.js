@@ -87,6 +87,7 @@ let Utils = {
      FONT_BIG : 18*scale,
      FONT_BIG_SUB : 16*scale,
      FONT_NORMAL : 14*scale,
+     FONT_NORMAL_SUB : 13*scale,
      FONT_SMALL : 12*scale,
      FONT_SMALL_S : 11*scale,
    //缩放比例
@@ -320,6 +321,16 @@ let Utils = {
 		return _.orderBy(array,sortValue,sortType);
 	},
 	lodash:_,
+    //data是对应的map数组
+    setPickerSelect:function(data,index){
+        for (var i in data){
+            if(data[i].key == index){
+                data[i].section = true;
+            }else {
+                data[i].section = false;
+            }
+        }
+    },
 };
 
 module.exports = Utils;

@@ -24,6 +24,7 @@ import FiveStar from './yilou/FiveStar'
 
 import Zuliu from './yilou/Zuliu'
 import Zusan from './yilou/Zusan'
+import YilouModel from './yilou/YilouModel'
 
 
 
@@ -37,6 +38,7 @@ var yilou_items=[
 var yilou_pattern=[
     {name:'组选',value:1,url:'omission/patternOmission'},
 ];
+let model = new YilouModel();
 
 export default class YiloutoolView extends React.Component{
 
@@ -53,12 +55,13 @@ export default class YiloutoolView extends React.Component{
                 {name:'四星',value:6},
                 {name:'五星',value:7},
             ],
-            selectedValue:{name:'二星',value:4},
+            selectedValue:{name:'定位胆',value:3},
         }
     }
 
     onSelected(value){
         this.setState({selectedValue:value})
+        model.setResultEmpty();
     }
 
     getShowView(){
@@ -93,7 +96,7 @@ export default class YiloutoolView extends React.Component{
                     ref='timeview'
                 />
                 <View style={styles.splitLine}></View>
-                <View style={{height:30}}>
+                <View style={{height:40}}>
                     <ButtonRowView
                         selected={this.state.selectedValue}
                         onSelected={(value)=>this.onSelected(value)}
@@ -101,7 +104,7 @@ export default class YiloutoolView extends React.Component{
                     />
                 </View>
 
-                <View style={styles.splitLine}></View>
+                <View style={styles.splitLine_l}></View>
                 <ScrollView
                     automaticallyAdjustContentInsets={false}>
                     {this.getShowView()}

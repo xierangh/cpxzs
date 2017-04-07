@@ -104,7 +104,7 @@ export default class NotoolTimeView extends React.Component{
                 <Text style={styles.firstPage_kaijiang_right_3_right_time}>{this.getHour()}:{this.getMinute()}:{this.getSecond()}</Text>
               </View>
               :
-              <View style={{backgroundColor:'#fff',flexDirection:'row',paddingVertical:5,justifyContent:'center'}}>
+              <View style={{backgroundColor:'#fff',flexDirection:'row',paddingVertical:5,alignItems:'center',justifyContent:'space-around'}}>
                 <Image source={require('./../ico/logo_min.png')} style={{marginLeft:10,marginRight:2,width:20*Utils.scale,height:20*Utils.scale}} />
                 <Text style={{textAlign:'left',flex:1,alignSelf:'center'}}>{np.nextPeriodStr}期</Text>
                 <View style={{flexDirection:'row'}}>

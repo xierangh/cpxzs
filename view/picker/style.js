@@ -6,7 +6,7 @@ const {height, width} = Dimensions.get('window');
 
 const PADDING = 8;
 const BORDER_RADIUS = 5;
-const FONT_SIZE = 16;
+const FONT_SIZE = 14;
 const HIGHLIGHT_COLOR = 'rgba(0,118,255,0.9)';
 const OPTION_CONTAINER_HEIGHT = 400;
 
@@ -34,7 +34,7 @@ export default StyleSheet.create({
 
     selectStyle: {
         flex: 1,
-        padding: 5,
+        padding: 2,
     },
 
     selectTextStyle: {
