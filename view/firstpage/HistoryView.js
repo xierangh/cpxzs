@@ -25,6 +25,19 @@ var ds = new ListView.DataSource({rowHasChanged: function(r1, r2):bool{
                                  }})  // assumes immutable objects
 var customDayHeadings = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
+//{"data":[{"period":"20170703001","number":"4,2,4,2,2","time":null,"pattern":"组三"},
+// {"period":"20170703002","number":"6,4,6,6,5","time":null,"pattern":"组三"},
+// {"period":"20170703003","number":"5,3,8,1,2","time":null,"pattern":"组六"},
+// {"period":"20170703004","number":"8,8,1,2,5","time":null,"pattern":"组六"},
+// {"period":"20170703005","number":"9,3,1,5,8","time":null,"pattern":"组六"},
+// {"period":"20170703006","number":"4,5,0,4,2","time":null,"pattern":"组六"},
+// {"period":"20170703007","number":"0,2,8,0,2","time":null,"pattern":"组六"},
+// {"period":"20170703008","number":"5,6,7,7,0","time":null,"pattern":"组三"},
+// {"period":"20170703009","number":"9,4,7,9,7","time":null,"pattern":"组三"},
+// {"period":"20170703010","number":"0,5,6,8,7","time":null,"pattern":"组六"},
+// {"period":"20170703011","number":"4,6,9,6,7","time":null,"pattern":"组六"},
+// {"period":"20170703012","number":"3,0,3,3,2","time":null,"pattern":"组三"},
+// {"period":"20170703013","number":"5,0,7,0,0","time":null,"pattern":"组三"},{"period":"20170703014","number":"0,5,8,5,9","time":null,"pattern":"组六"},{"period":"20170703015","number":"3,7,6,2,2","time":null,"pattern":"组三"},{"period":"20170703016","number":"2,4,5,1,7","time":null,"pattern":"组六"},{"period":"20170703017","number":"1,9,4,0,9","time":null,"pattern":"组六"},{"period":"20170703018","number":"6,1,2,8,8","time":null,"pattern":"组三"},{"period":"20170703019","number":"0,5,5,6,7","time":null,"pattern":"组六"},{"period":"20170703020","number":"2,6,2,9,2","time":null,"pattern":"组三"},{"period":"20170703021","number":"5,1,0,9,0","time":null,"pattern":"组三"},{"period":"20170703022","number":"3,4,7,6,4","time":null,"pattern":"组六"},{"period":"20170703023","number":"8,6,8,3,2","time":null,"pattern":"组六"},{"period":"20170703024","number":"4,5,8,2,9","time":null,"pattern":"组六"},{"period":"20170703025","number":"9,8,1,8,8","time":null,"pattern":"组三"},{"period":"20170703026","number":"3,4,2,9,8","time":null,"pattern":"组六"},{"period":"20170703027","number":"8,1,0,6,4","time":null,"pattern":"组六"},{"period":"20170703028","number":"8,6,7,9,9","time":null,"pattern":"组三"},{"period":"20170703029","number":"8,4,7,5,0","time":null,"pattern":"组六"},{"period":"20170703030","number":"7,6,5,0,9","time":null,"pattern":"组六"},{"period":"20170703031","number":"8,6,6,8,8","time":null,"pattern":"组三"},{"period":"20170703032","number":"7,1,8,4,7","time":null,"pattern":"组六"},{"period":"20170703033","number":"9,4,7,5,5","time":null,"pattern":"组三"},{"period":"20170703034","number":"0,0,0,7,1","time":null,"pattern":"组六"},{"period":"20170703035","number":"3,1,3,3,6","time":null,"pattern":"组三"},{"period":"20170703036","number":"8,6,4,7,1","time":null,"pattern":"组六"},{"period":"20170703037","number":"4,1,6,9,8","time":null,"pattern":"组六"},{"period":"20170703038","number":"0,1,6,2,2","time":null,"pattern":"组三"},{"period":"20170703039","number":"4,2,2,8,7","time":null,"pattern":"组六"},{"period":"20170703040","number":"3,6,2,4,1","time":null,"pattern":"组六"},{"period":"20170703041","number":"7,8,8,0,0","time":null,"pattern":"组三"},{"period":"20170703042","number":"5,4,8,0,8","time":null,"pattern":"组三"},{"period":"20170703043","number":"3,6,9,1,1","time":null,"pattern":"组三"},{"period":"20170703044","number":"4,0,9,9,6","time":null,"pattern":"组三"},{"period":"20170703045","number":"3,3,0,4,5","time":null,"pattern":"组六"},{"period":"20170703046","number":"1,5,5,3,4","time":null,"pattern":"组六"}],"success":true}
 export default class HistoryView extends React.Component{
     constructor(props){
       super(props)

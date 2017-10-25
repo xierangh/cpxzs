@@ -183,7 +183,7 @@ export default class LoginView extends React.Component{
         <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20*Utils.scale,paddingVertical:10,marginTop:46*Utils.scale,color:'#333'}}>用户登录</Text>
         <View style={mystyle.iconview}>
           <Image
-            source={require('./ico/index_logo.png')}
+            source={require('./ico/icon.png')}
             style={{width:76*Utils.scale,height:76*Utils.scale,borderRadius:38*Utils.scale,borderWidth:1,borderColor:'#edddc6'}}/>
         </View>
         <View style={{marginLeft:23,marginRight:23,borderRadius:10,height:123*Utils.scale,alignSelf:'stretch',borderWidth:1,borderColor:'#dcdcdc'}}>

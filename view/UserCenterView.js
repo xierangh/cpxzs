@@ -59,7 +59,7 @@ export default class UserCenterView extends React.Component{
             style={{flex:1,height:270*Utils.scale,resizeMode:'stretch',backgroundColor:'#fff0'}}>
             <View style={{alignItems:'center',marginTop:75*Utils.scale}}>
               <Image
-                  source={require('./ico/index_logo.png')}
+                  source={require('./ico/icon.png')}
                   style={{width:76*Utils.scale,height:76*Utils.scale,borderRadius:38*Utils.scale,borderWidth:3,borderColor:'#fff'}}/>
               </View>
               <View style={{alignItems:'center',marginTop:10}}>
