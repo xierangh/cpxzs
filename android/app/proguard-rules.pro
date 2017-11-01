@@ -58,6 +58,12 @@
 -keep interface okhttp3.** { *; }
 -dontwarn okhttp3.**
 
+-keep class com.pgyersdk.** { *; }
+-keep interface com.pgyersdk.** { *; }
+-dontwarn okhttp3.**
+-dontwarn com.reactnativecomponent.**
+-dontwarn android.text.**
+
 # okio
 
 -keep class sun.misc.Unsafe { *; }
