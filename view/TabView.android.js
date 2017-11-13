@@ -27,6 +27,8 @@ import YiloutoolView from './firstpage/YiloutoolView'
 import NetWorkTool from './utils/NetWorkTool'
 import NewsView from './NewsView'
 import BackAndroidTool from './utils/BackAndroidTool'
+import ContactUs from './firstpage/ContactUs'
+
 
 //main view which has many tabbars
 export default class tabView extends Component{
@@ -154,9 +156,10 @@ export default class tabView extends Component{
                               // tintColor:'#fff',
                               navigationBarHidden:true,
                               title:'',
-                              component:NewsView,
+                              component:ContactUs,
     });
   }
+
   loginout(){
     this.props.navigator.pop();
   }
@@ -168,7 +171,7 @@ export default class tabView extends Component{
      onNewsPress={()=>this.onNewsPress()}
      />;
     var epview = <ExpertPlanView
-      loginout={()=>this.loginout()}
+        onClick={(component)=>this.onClick(component)}
       />;
     var ntview = <NoToolView />;
     var ucview = <UserCenterView

@@ -18,6 +18,8 @@ import PlanItemView from './comp/PlanItemView'
 import PlanSelectView from './comp/PlanSelectView'
 import NotoolTimeViewOld from './comp/NotoolTimeView'
 import ModalPicker from './picker/ModalPicker'
+import VipchargeView2 from './usercenter/VipchargeView2'
+
 
 
 const dwdata=[
@@ -108,7 +110,7 @@ var cur = '';
 class ExpertPlanView extends React.Component {
 
     static propTypes={
-        loginout:React.PropTypes.func,
+        onClick:React.PropTypes.func,
     }
 
     constructor(props) {
@@ -415,6 +417,10 @@ class ExpertPlanView extends React.Component {
         return fprView;
     }
 
+    gotoVip(){
+        this.props.onClick && this.props.onClick(VipchargeView2)
+    }
+
     render(){
         return(
             <View style={styles.container}>
@@ -564,10 +570,15 @@ class ExpertPlanView extends React.Component {
                     <View style={{flex:4}}>
                         {this.getFirstPlanResultView()}
                     </View>
-                    <View style={{marginLeft:5,flexDirection:'row',justifyContent:'space-around',flex:3}}>
-                      <Text style={{flex:2,marginLeft:10,alignSelf:'center',textAlign:'left',color:'#f00',fontSize:12*Utils.scale}}>{this.state.firstPlanResult?this.formatPlanNumber(this.state.firstPlanResult):'请开通会员'}</Text>
-                      <Text style={{flex:1,alignSelf:'center',textAlign:'left',color:'#f00',marginRight:5,fontSize:12*Utils.scale}}>投注中...</Text>
-                    </View>
+
+                      <View style={{marginLeft:5,justifyContent:'space-around',flex:3}}>
+                          <TouchableHighlight onPress={()=>this.gotoVip()} underlayColor="#fff2">
+                              <View style={{flexDirection:'row',justifyContent:'space-around',flex:3}}>
+                                  <Text style={{flex:2,marginLeft:10,alignSelf:'center',textAlign:'left',color:'#f00',fontSize:12*Utils.scale}}>{this.state.firstPlanResult ? this.formatPlanNumber(this.state.firstPlanResult) : '请开通会员'}</Text>
+                                  <Text style={{flex:1,alignSelf:'center',textAlign:'left',color:'#f00',marginRight:5,fontSize:12*Utils.scale}}>投注中...</Text>
+                              </View>
+                         </TouchableHighlight>
+                      </View>
                   </View>
                   }
                 <View style={styles.splitLine}></View>

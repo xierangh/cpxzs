@@ -23,7 +23,7 @@ import TabView from './TabView.android';
 import FortgetPasswordView from './FortgetPasswordView'
 import BackAndroidTool from './utils/BackAndroidTool'
 
-import Pgyer from 'react-native-pgyer'
+// import Pgyer from 'react-native-pgyer'
 
 import demo from './mobx/demo6'
 
@@ -44,7 +44,7 @@ export default class LoginView extends React.Component{
     }
   }
   componentDidMount(){
-      Pgyer.updateVersion();
+      // Pgyer.updateVersion();
       // demo();
 
       BackAndroidTool.addBackAndroidListener(this.props.navigator);
@@ -77,9 +77,9 @@ export default class LoginView extends React.Component{
 
   }
   componentWillUnmount(){
-      if(Platform.OS == 'ios')
-          Pgyer.bindAppId('64913afcd997d3485804cace997ddf32');
-    console.log('LoginView unmount');
+      // if(Platform.OS == 'ios')
+      //     Pgyer.bindAppId('64913afcd997d3485804cace997ddf32');
+      console.log('LoginView unmount');
       // 移除返回键监听
       BackAndroidTool.removeBackAndroidListener();
   }

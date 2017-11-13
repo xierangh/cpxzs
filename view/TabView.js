@@ -23,6 +23,7 @@ import HistoryView from './firstpage/HistoryView';
 import NetWorkTool from './utils/NetWorkTool'
 import NewsView from './NewsView'
 import RemaPlanView from './firstpage/RemaPlanView'
+import ContactUs from './firstpage/ContactUs'
 
 
 //main view which has many tabbars
@@ -145,7 +146,7 @@ export default class tabView extends React.Component{
                               // tintColor:'#fff',
                               navigationBarHidden:true,
                               title:'',
-                              component:NewsView,
+                              component:ContactUs,
     });
   }
   loginout(){
@@ -185,7 +186,7 @@ export default class tabView extends React.Component{
                           });
             }}>
             <ExpertPlanView
-              loginout={()=>this.loginout()}
+                onClick={(component)=>this.onClick(component)}
               />
         </TabBarIOS.Item>
         <TabBarIOS.Item

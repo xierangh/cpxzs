@@ -211,7 +211,7 @@ export default class FirstPageView extends React.Component{
                 style={styles.firstPage_title_right_tl}
                 onPress={()=>this.goGonggao()}
                 >
-                <Text style={styles.firstPage_title_right}>公告</Text>
+                <Text style={styles.firstPage_title_right}>联系我们</Text>
             </TouchableHighlight>
         </View>
         <View style={styles.firstPage_kaijiang}>

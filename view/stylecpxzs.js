@@ -140,7 +140,7 @@ var stylecpxzs = StyleSheet.create({
 		alignSelf:'center',
 	},
 	firstPage_title_right:{
-		fontSize:FONT_BIG_SUB,
+		fontSize:FONT_NORMAL,
 		color:title_color,
 		textAlign:'right',
 	},
