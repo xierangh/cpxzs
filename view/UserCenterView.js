@@ -6,6 +6,7 @@ import {
     Image,
     ScrollView,
     Platform,
+    StatusBar
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -25,6 +26,7 @@ export default class UserCenterView extends React.Component{
   static propTypes={
     onClick:React.PropTypes.func,
     loginout:React.PropTypes.func,
+    login:React.PropTypes.func,
   }
 
   onClick(type:string){
@@ -43,12 +45,26 @@ export default class UserCenterView extends React.Component{
   }
 
   loginout(){
-    this.props.loginout && this.props.loginout();
+      this.props.loginout && this.props.loginout();
+      this.refs.loginoutBtn.setPressed(false)
+      Utils.userInfo={}
+      Utils.isLogin = false
+  }
+
+  login(){
+    this.props.login && this.props.login();
+    this.refs.loginoutBtn.setPressed(false)
   }
 
   render(){
+
     return (
-      <View style={[styles.container]}>
+      <View style={styles.container}>
+          <StatusBar
+              backgroundColor="#f000"
+              barStyle="default"
+              translucent={true}
+          />
         <ScrollView
             style={{backgroundColor:'#eeeeee',paddingBottom:50}}
             automaticallyAdjustContentInsets={false}
@@ -86,33 +102,52 @@ export default class UserCenterView extends React.Component{
 
             </Image>
         </View>
+            {Utils.isLogin == false ?
+                <View>
 
-        <UserRowView
-          img={require('./ico/u01.png')}
-          title={'会员等级:'+Utils.userInfo.vipLevel}
-        />
 
-        <UserRowView
-          img={require('./ico/u02.png')}
-          title={'用户名'}
-          titleRight={Utils.userInfo.loginName}
-        />
 
-        <UserRowView
-          img={require('./ico/u04.png')}
-          onNext={()=>this.onClick('pwdmodify')}
-          title={'修改密码'}
-          titleRight={'修改登陆密码'}
-        />
+                    <UserRowView
+                        img={require('./ico/u02.png')}
+                        title={'用户名'}
+                    />
+                    <UserRowView
+                        img={require('./ico/u04.png')}
+                        title={'修改密码'}
+                    />
+                </View>
+
+                :
+                <View>
+
+                    <UserRowView
+                        img={require('./ico/u02.png')}
+                        title={'用户名'}
+                        titleRight={Utils.userInfo.loginName}
+                    />
+                    <UserRowView
+                        img={require('./ico/u04.png')}
+                        onNext={()=>this.onClick('pwdmodify')}
+                        title={'修改密码'}
+                        titleRight={'修改登陆密码'}
+                    />
+                </View>
+            }
+
 
         <View style={styles.splitLine_ww}></View>
+            {/*
+             <UserRowView
+             img={require('./ico/u01.png')}
+             title={'会员等级'}
+             />
         <UserRowView
           img={require('./ico/u05.png')}
           onNext={()=>this.onClick('VipchargeView')}
           title={'账户充值'}
           titleRight={''}
         />
-        {/*
+
 
          <View style={styles.splitLine_ww}></View>
          <UserRowView
@@ -149,6 +184,7 @@ export default class UserCenterView extends React.Component{
           titleRight={'复制链接给好友赢奖励'}
         />
              */}
+
         <UserRowView
           img={require('./ico/u10.png')}
           title={'当前版本'}
@@ -156,11 +192,22 @@ export default class UserCenterView extends React.Component{
         />
 
 
-        <CustomButton
-          ref='loginoutBtn'
-          onPress={()=>this.loginout()}
-          text={'注销'}>
-        </CustomButton>
+            {Utils.isLogin == false ?
+                <CustomButton
+                    ref='loginoutBtn'
+                    onPress={()=>this.login()}
+                    text={'登录'}>
+                </CustomButton>
+                :
+                <CustomButton
+                    ref='loginoutBtn'
+                    onPress={()=>this.loginout()}
+                    text={'注销'}>
+                </CustomButton>
+            }
+
+
+
         <View style={styles.space}></View>
         </ScrollView>
       </View>

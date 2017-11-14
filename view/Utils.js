@@ -82,7 +82,7 @@ Date.prototype.add = function (part, value) {
 }
 
 let Utils = {
-    version:'1.1',
+    version:'1.0.2',
      FONT_BIG_PLUS :24*scale,
      FONT_BIG : 18*scale,
      FONT_BIG_SUB : 16*scale,
@@ -105,15 +105,13 @@ let Utils = {
       //同步方法的具体说明会在后文提到
     }
   }),
-  userpwd:{},
+  userpwd:{username:''},
   online:false,
   //当前view
   currentView:'',
   LeftMoveToBackLength:100,
 	isLogin:false,
-	userInfo:{"nickName":"自由国度顶顶顶顶顶1","memberEndTime":"2019-02-13 00:00:00","vipLevel":"SVIP会员",
-  "memberStartTime":"2017-01-13 00:00:00","gradeImgUrl":"http://upload.xinzhixu.net/4554565/4679d8c2f64b420f9b1d3d4229ea3c2c.png",
-  "registerTime":"2016-07-05 14:33:39","loginName":"634810586@qq.com"},
+	userInfo:{},
 
   getNotoolMargin(){
     var {height, width} = Dimensions.get('window');
@@ -223,9 +221,9 @@ let Utils = {
             Utils.showAlert('警告',msg);
           }else {
             Utils.showAlert('警告',msg);
-            return null;
           }
-         })
+            return null;
+    })
   },
   cookie:'',
 	//post

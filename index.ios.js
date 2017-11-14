@@ -46,7 +46,8 @@ export default class cpxzs extends React.Component{
     }
  //define main page's tabs
  render() {
-  var view = Utils.isLogin ? TabView : LoginView;
+  // var view = Utils.isLogin ? TabView : LoginView;
+  var view = TabView ;
   return(
          <NavigatorIOS
          	   ref='mainTab'

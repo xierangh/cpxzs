@@ -6,7 +6,8 @@ import {
     View,
     Image,
     TextInput,
-    StyleSheet
+    StyleSheet,
+    StatusBar
 } from 'react-native';
 
 import styles from './../stylecpxzs';
@@ -61,6 +62,11 @@ export default class PasswordModifyView extends React.Component{
   render(){
     return (
       <View style={styles.container}>
+          <StatusBar
+              backgroundColor="#f000"
+              barStyle="default"
+              translucent={true}
+          />
       <NavigatorTitle
          onPress={()=>this.props.navigator.pop()}
          text={'修改密码'}>

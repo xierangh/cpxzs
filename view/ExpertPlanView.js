@@ -18,7 +18,8 @@ import PlanItemView from './comp/PlanItemView'
 import PlanSelectView from './comp/PlanSelectView'
 import NotoolTimeViewOld from './comp/NotoolTimeView'
 import ModalPicker from './picker/ModalPicker'
-import VipchargeView2 from './usercenter/VipchargeView2'
+// import VipchargeView2 from './usercenter/VipchargeView2'
+import VipchargeView2 from './firstpage/ContactUs'
 
 
 

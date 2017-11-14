@@ -18,6 +18,7 @@ import styles from './stylecpxzs';
 import Utils from './Utils';
 import CustomButton from './comp/CustomButton';
 import CheckBox from './comp/CheckBox';
+import NavigatorTitle from './comp/NavigatorTitle';
 import RegisterView from './RegisterView'
 import TabView from './TabView.android';
 import FortgetPasswordView from './FortgetPasswordView'
@@ -166,22 +167,32 @@ export default class LoginView extends React.Component{
 
   gotoMain(){
     //goto tabbar page
-    this.props.navigator.push({
-                          navigationBarHidden:true,
-                          component:TabView,
-                          wrapperStyle:styles.wrapperStyle,
-                          handleBack:this.handleBack,
-                          });
+    // this.props.navigator.push({
+    //                       navigationBarHidden:true,
+    //                       component:TabView,
+    //                       wrapperStyle:styles.wrapperStyle,
+    //                       handleBack:this.handleBack,
+    //                       });
 
+      this.props.navigator.pop();
   }
+
   render(){
     return (
       <View style={styles.container}>
-      <StatusBar
-         barStyle="default"
-       />
-        <Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20*Utils.scale,paddingVertical:10,marginTop:46*Utils.scale,color:'#333'}}>用户登录</Text>
-        <View style={mystyle.iconview}>
+
+          <StatusBar
+              backgroundColor="#f000"
+              barStyle="default"
+              translucent={true}
+          />
+          <NavigatorTitle
+              onPress={()=>this.props.navigator.pop()}
+              text={'用户登录'}>
+          </NavigatorTitle>
+        {/*<Text style={{textAlign:'center',alignSelf:'stretch',fontSize:20*Utils.scale,paddingVertical:10,marginTop:46*Utils.scale,color:'#333'}}>用户登录</Text>
+      */}
+      <View style={mystyle.iconview}>
           <Image
             source={require('./ico/icon.png')}
             style={{width:76*Utils.scale,height:76*Utils.scale,borderRadius:38*Utils.scale,borderWidth:1,borderColor:'#edddc6'}}/>

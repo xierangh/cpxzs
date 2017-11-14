@@ -18,6 +18,7 @@ import Utils from './Utils'
 import FirstPageView from './FirstPageView';
 import ExpertPlanView from './ExpertPlanView';
 import NoToolView from './NoToolView';
+import LoginView from './LoginView';
 import UserCenterView from './UserCenterView';
 import HistoryView from './firstpage/HistoryView';
 import NetWorkTool from './utils/NetWorkTool'
@@ -140,17 +141,22 @@ export default class tabView extends React.Component{
 
   onNewsPress(){
     this.props.navigator.push({
-                              // leftButtonIcon:require('image!back'),
-   //leftButtonTitle:'',
-                              // onLeftButtonPress:() => this.props.navigator.pop(),
-                              // tintColor:'#fff',
                               navigationBarHidden:true,
                               title:'',
                               component:ContactUs,
     });
   }
   loginout(){
-    this.props.navigator.pop();
+    // this.props.navigator.pop();
+      this.login();
+  }
+
+  login(){
+      this.props.navigator.push({
+          navigationBarHidden:true,
+          title:'',
+          component:LoginView,
+      });
   }
   //define main page's tabs
   render() {
@@ -214,6 +220,7 @@ export default class tabView extends React.Component{
             <UserCenterView
               onClick={(component)=>this.onClick(component)}
               loginout={()=>this.loginout()}
+              login={()=>this.login()}
               />
         </TabBarIOS.Item>
         </TabBarIOS>

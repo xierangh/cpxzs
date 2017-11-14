@@ -9,7 +9,8 @@ import React, {Component} from 'react';
 import {
     Text,
     View,
-    Image
+    Image,
+    StatusBar
 } from 'react-native';
 
 import TabNavigator from 'react-native-tab-navigator';
@@ -18,6 +19,7 @@ import Utils from './Utils'
 import FirstPageView from './FirstPageView';
 import ExpertPlanView from './ExpertPlanView';
 import NoToolView from './NoToolView';
+import LoginView from './LoginView';
 import UserCenterView from './UserCenterView';
 import HistoryView from './firstpage/HistoryView';
 import BtCalcView from './firstpage/BtCalcView'
@@ -160,9 +162,18 @@ export default class tabView extends Component{
     });
   }
 
-  loginout(){
-    this.props.navigator.pop();
-  }
+    loginout(){
+        // this.props.navigator.pop();
+        this.login();
+    }
+
+    login(){
+        this.props.navigator.push({
+            navigationBarHidden:true,
+            title:'',
+            component:LoginView,
+        });
+    }
 
  render(){
    var fbview = <FirstPageView
@@ -177,9 +188,11 @@ export default class tabView extends Component{
     var ucview = <UserCenterView
       onClick={(component)=>this.onClick(component)}
       loginout={()=>this.loginout()}
+      login={()=>this.login()}
       />;
    return(
     <TabNavigator>
+
      <TabNavigator.Item
         selected={this.state.selectedTab === 'fbTab'}
         selectedTitleStyle={styles.selectedTitleStyle}
