@@ -15,7 +15,7 @@ import {
 
 import LoginView from './view/LoginView';
 import codePush from "react-native-code-push";
-// import TabView from './TabView.android';
+import TabView from './view/TabView.android';
 
 export default class cpxzs extends Component {
     componentDidMount(){
@@ -45,7 +45,7 @@ export default class cpxzs extends Component {
     return (
       <Navigator
         style={{flex:1}}
-        initialRoute={{component: LoginView}}
+        initialRoute={{component: TabView}}
         configureScene={this.configureScene}
         renderScene={this.renderScene}/>
     );
