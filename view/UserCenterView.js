@@ -104,17 +104,6 @@ export default class UserCenterView extends React.Component{
         </View>
             {Utils.isLogin == false ?
                 <View>
-
-
-
-                    <UserRowView
-                        img={require('./ico/u02.png')}
-                        title={'用户名'}
-                    />
-                    <UserRowView
-                        img={require('./ico/u04.png')}
-                        title={'修改密码'}
-                    />
                 </View>
 
                 :

@@ -12,6 +12,7 @@ import {
 
 import TabView from './view/TabView.android';
 import LoginView from './view/LoginView';
+import intro from './view/intro';
 import Utils from './view/Utils';
 import styles from './view/stylecpxzs'
 import codePush from "react-native-code-push";
@@ -47,7 +48,7 @@ export default class cpxzs extends React.Component{
  //define main page's tabs
  render() {
   // var view = Utils.isLogin ? TabView : LoginView;
-  var view = TabView ;
+  var view = intro ;
   return(
          <NavigatorIOS
          	   ref='mainTab'

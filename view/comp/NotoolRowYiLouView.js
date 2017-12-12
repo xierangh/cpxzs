@@ -1,4 +1,7 @@
-//做号工具-遗漏
+/**
+ * 做号工具-遗漏
+ */
+
 
 'use strict';
 import React, {Component} from 'react';

@@ -7,7 +7,8 @@ import {
     Image,
     TextInput,
     StyleSheet,
-    Dimensions
+    Dimensions,
+    Platform
 } from 'react-native';
 
 import styles from './stylecpxzs';
@@ -63,6 +64,8 @@ export default class RegisterView extends React.Component{
     param = param +'pass='+passwdTxt;
     param = param +'&';
     param = param +'confirm_password='+passwdTxt;
+    param = param +'&';
+    param = param +'registerSrc='+Platform.OS;
 
     // console.log('params:'+parameter);
     Utils.post('userAccount/register',param)

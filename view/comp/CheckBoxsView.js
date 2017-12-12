@@ -1,5 +1,7 @@
+/**
+ * CheckBox 单选 行
+ */
 
-//CheckBox 单选 行
 
 'use strict';
 

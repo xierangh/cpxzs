@@ -16,8 +16,11 @@ import {
 import LoginView from './view/LoginView';
 import codePush from "react-native-code-push";
 import TabView from './view/TabView.android';
+import intro from './view/intro';
 
-export default class cpxzs extends Component {
+let codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL };
+
+class cpxzs extends Component {
     componentDidMount(){
         //设置电池／时间
         //StatusBarIOS.setStyle('light-content');
@@ -45,7 +48,7 @@ export default class cpxzs extends Component {
     return (
       <Navigator
         style={{flex:1}}
-        initialRoute={{component: TabView}}
+        initialRoute={{component: intro}}
         configureScene={this.configureScene}
         renderScene={this.renderScene}/>
     );
@@ -74,5 +77,5 @@ export default class cpxzs extends Component {
    return <route.component navigator={navigator}  {...route.passProps} />;
  }
 }
-
+cpxzs = codePush(codePushOptions)(cpxzs);
 AppRegistry.registerComponent('cpxzs', () => cpxzs);

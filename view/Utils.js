@@ -128,6 +128,11 @@ let Utils = {
     return marg;
   },
 
+    getWindowWidth(){
+        var {height, width} = Dimensions.get('window');
+        return width;
+    },
+
 	showAlert:function(title:string,msg:string){
         if(Platform.OS == 'ios') {
 
@@ -208,7 +213,7 @@ let Utils = {
           }else{
               Utils.showAlert('错误提示','系统错误');
           }
-          return '';
+          return null;
           })
     .catch((error)=>{
            //TODO.
@@ -286,10 +291,10 @@ let Utils = {
 	    var valueStr = value +'';
 	    var index = valueStr.indexOf('.');
 	    if(index < 0){
-	    		return valueStr+'.00';
+            return valueStr+'.00';
 	    }else{
-        valueStr+="0";
-      }
+            valueStr+="0";
+        }
 	    index = index < valueStr.length ? index+num+1: valueStr.length;
 	    return valueStr.substring(0,index);
 	},

@@ -1,3 +1,6 @@
+/**
+ * 二星做号工具
+ */
 'use strict';
 import React, {Component} from 'react';
 import {

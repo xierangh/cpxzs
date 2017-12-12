@@ -1,6 +1,13 @@
 package com.cpxzs;
 
 import com.facebook.react.ReactActivity;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.shell.MainReactPackage;
+import com.microsoft.codepush.react.CodePush;
+import com.oblador.vectoricons.VectorIconsPackage;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends ReactActivity {
 
@@ -12,4 +19,5 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "cpxzs";
     }
+
 }

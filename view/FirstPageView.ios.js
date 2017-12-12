@@ -205,7 +205,7 @@ export default class FirstPageView extends React.Component{
           />
 
         <View style={styles.firstPage_title_container}>
-            <Text style={styles.firstPage_title_left}>彩票小助手</Text>
+            <Text style={styles.firstPage_title_left}>好运时时彩小助手</Text>
             <TouchableHighlight
                 underlayColor={'#ea565620'}
                 style={styles.firstPage_title_right_tl}
@@ -340,7 +340,7 @@ export default class FirstPageView extends React.Component{
             renderRow={(rowdata)=>this.renderRow(rowdata)}
             enableEmptySections={true}
             automaticallyAdjustContentInsets={false}
-            renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => <View key={sectionID,rowID} style={styles.splitLine_l}></View>}
+            renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => <View key={rowID} style={styles.splitLine_l}></View>}
             />
         :
         <LoadingView />

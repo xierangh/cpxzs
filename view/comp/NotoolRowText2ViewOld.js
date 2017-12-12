@@ -110,10 +110,8 @@ export default class NotoolRowText2ViewOld extends React.Component{
   }
 
   render(){
+    var rows = [];
     var cols = [];
-    var cols2 = [];
-    var cols3 = [];
-    var cols4 = [];
     for (var i = 0; i < this.state.items.length; i++) {
       var item = this.state.items[i];
       var isSelected = _.includes(this.state.selected,item);
@@ -125,40 +123,26 @@ export default class NotoolRowText2ViewOld extends React.Component{
                   number={item}
                   onPress={(number,status)=>this.onPress(number,status)}
                 />;
-      if(i < 7){
         cols.push(
-        nc
-        );
-      }else if(i >= 7 && i < 14){
-        cols2.push(
           nc
         );
-      }else if(i >= 14 && i < 21){
-        cols3.push(
-          nc
-        );
-      }else if(i >= 21 && i < 28){
-        cols4.push(
-          nc
-        );
-      }
-
+        if(cols.length == 7){
+            rows.push(<View style={{flex:1,flexDirection:'row'}}>
+                {cols}
+            </View>)
+            cols = [];
+        }
+    }
+    if(cols.length > 0){
+        rows.push(<View style={{flex:1,flexDirection:'row'}}>
+            {cols}
+        </View>)
+        cols = [];
     }
 
     return (
       <View style={{paddingVertical:5}}>
-        <View style={{flex:1,flexDirection:'row'}}>
-          {cols}
-        </View>
-        <View style={{flex:1,flexDirection:'row'}}>
-          {cols2}
-        </View>
-        <View style={{flex:1,flexDirection:'row'}}>
-          {cols3}
-        </View>
-        <View style={{flex:1,flexDirection:'row'}}>
-          {cols4}
-        </View>
+          {rows}
       </View>
     )
   }

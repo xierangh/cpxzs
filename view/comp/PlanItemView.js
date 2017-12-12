@@ -1,7 +1,8 @@
+/**
+ * 精品计划--
+ */
 
-//精品计划--
 'use strict';
-
 import React from 'react';
 import {
     Text,

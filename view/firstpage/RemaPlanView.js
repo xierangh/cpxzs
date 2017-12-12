@@ -227,8 +227,11 @@ class RemaPlanView extends React.Component {
                 }
                 //  console.log(data);
                 //  console.log('queryPlan'+JSON.stringify(data));
+                var resultList = [];
+                if(data.resultList)
+                    resultList = data.resultList;
                 this.setState({
-                    dataSource: ds.cloneWithRows(data.resultList),
+                    dataSource: ds.cloneWithRows(resultList),
                     btjsResultList: data.btjsResultList,
                     loaded: true,
                     firstPlanResult: data.firstPlanResult,

@@ -31,7 +31,7 @@ export default class DanshiOmission extends React.Component{
 
     getitems(){
         var items = [];
-        for (var i in allvalue){
+        for (var i=0;i<allvalue.length;i++){
             var selected = false;
             var value = allvalue[i];
             for (var k in this.props.selected){

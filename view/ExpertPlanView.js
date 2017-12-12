@@ -21,7 +21,10 @@ import ModalPicker from './picker/ModalPicker'
 // import VipchargeView2 from './usercenter/VipchargeView2'
 import VipchargeView2 from './firstpage/ContactUs'
 
-
+/**
+ *
+ * @type {[*]}
+ */
 
 const dwdata=[
     { key: 1, section: true, label: '个' },
@@ -591,7 +594,7 @@ class ExpertPlanView extends React.Component {
                           renderRow={this.renderRow}
                           automaticallyAdjustContentInsets={false}
                           enableEmptySections={true}
-                          renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => <View key={sectionID,rowID} style={styles.splitLine_l}></View>}
+                          renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => <View key={rowID} style={styles.splitLine_l}></View>}
                       />
                       :
                       <Loading />

@@ -15,6 +15,8 @@ import NotoolTimeView from './comp/NotoolTimeView'
 import NotoolTitleView from './comp/NotoolTitleView'
 import Notool2View from './Notool2View'
 import Notool3View from './Notool3View'
+import Notool4View from './Notool4View'
+import Notool5View from './Notool5View'
 
 import _ from 'lodash'
 
@@ -27,10 +29,19 @@ var items=[
   {
     zhgjType:3,
     showStr:'三星做号',
-  }
+  },
+    {
+        zhgjType:4,
+        showStr:'四星做号',
+    },
+    {
+        zhgjType:5,
+        showStr:'五星做号',
+    }
 ]
 var zhgjType=2;
 export default class NoToolView extends React.Component{
+
   constructor(props) {
     super(props)
     this.state={
@@ -43,7 +54,6 @@ export default class NoToolView extends React.Component{
   titleChange(value){
     this.setState({
       zhgjType:value.zhgjType,
-
     })
   }
 
@@ -96,6 +106,16 @@ export default class NoToolView extends React.Component{
         }
         {this.state.zhgjType == 3 &&
           <Notool3View
+            omession={this.state.omession}
+          />
+        }
+        {this.state.zhgjType == 4 &&
+          <Notool4View
+            omession={this.state.omession}
+          />
+        }
+        {this.state.zhgjType == 5 &&
+          <Notool5View
             omession={this.state.omession}
           />
         }

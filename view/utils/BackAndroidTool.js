@@ -1,5 +1,4 @@
 /**
- * Created by lenovo on 2017/2/15.
  * android 返回键控制
  */
 'use strict';

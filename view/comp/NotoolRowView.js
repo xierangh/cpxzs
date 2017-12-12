@@ -1,4 +1,6 @@
-//做号工具中一行数字
+/**
+ * 做号工具中一行数字
+ */
 
 import React, {Component} from 'react';
 import {

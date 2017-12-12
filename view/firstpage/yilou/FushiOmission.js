@@ -82,7 +82,7 @@ export default class DanshiOmission extends React.Component{
 
     render(){
         var cols = [];
-        for (var i in this.props.selected){
+        for (var i=0;i<this.props.selected.length;i++){
             var refstr = 'w'+i;
             var titlestr = this.props.selected[i]+'位';
             cols.push(<NotoolRowViewPlus
